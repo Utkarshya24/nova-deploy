@@ -3,128 +3,146 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
 export default function AboutPage() {
   return (
     <div className="flex flex-col w-full bg-white relative overflow-hidden">
       
       {/* HERO SECTION */}
-      <section className="relative pt-32 pb-24 px-6 flex flex-col items-center md:items-start text-center md:text-left overflow-hidden">
-        <div className="absolute inset-0 circuit-pattern pointer-events-none z-0"></div>
+      <section className="relative pt-32 pb-24 px-6 flex flex-col items-center text-center overflow-hidden min-h-[60vh] justify-center">
+        <div className="absolute inset-0 circuit-pattern pointer-events-none z-0 opacity-40"></div>
+        <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-bg-page to-transparent z-0"></div>
         
-        <div className="max-w-4xl mx-auto w-full relative z-10 flex flex-col items-center md:items-start">
-          <div className="bg-bg-blue-tint text-brand text-[13px] font-semibold px-4 py-1.5 rounded-full mb-6 border border-border-blue inline-flex">
+        <motion.div 
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+          className="max-w-4xl mx-auto w-full relative z-10 flex flex-col items-center"
+        >
+          <motion.div variants={fadeUp} className="bg-bg-blue-tint text-brand text-[13px] font-bold px-4 py-1.5 rounded-full mb-6 border border-border-blue inline-flex uppercase tracking-widest">
             Our Story
+          </motion.div>
+          
+          <motion.h1 variants={fadeUp} className="text-[56px] md:text-[72px] font-heading font-extrabold text-text-heading leading-[1.05] tracking-[-0.03em] mb-6">
+            We're on a mission to <br />
+            <span className="gradient-text">humanize</span> infrastructure.
+          </motion.h1>
+          
+          <motion.p variants={fadeUp} className="text-[20px] text-text-body max-w-[700px] leading-[1.7] mb-10 opacity-80">
+            NovaDeploy was founded by engineers who were tired of fighting their tools. 
+            We build for the creators, the dreamers, and the builders.
+          </motion.p>
+        </motion.div>
+      </section>
+
+      {/* STATS SECTION */}
+      <section className="py-20 bg-white relative z-10">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              { label: "Founded", value: "2024" },
+              { label: "Team Members", value: "45+" },
+              { label: "Countries", value: "12" },
+              { label: "Investors", value: "$20M+" }
+            ].map((stat, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                className="text-center p-8 bg-bg-page rounded-3xl border border-border-default hover:border-brand transition-colors"
+              >
+                <div className="text-[32px] font-heading font-extrabold text-brand mb-2">{stat.value}</div>
+                <div className="text-[14px] font-bold text-text-muted uppercase tracking-wider">{stat.label}</div>
+              </motion.div>
+            ))}
           </div>
-          
-          <h1 className="text-[52px] font-heading font-extrabold text-text-heading leading-[1.1] tracking-[-0.02em] mb-6 max-w-[680px]">
-            We Exist to Eliminate <br />
-            DevOps <span className="gradient-text">Friction.</span>
-          </h1>
-          
-          <p className="text-[18px] text-text-body max-w-[680px] leading-[1.7] mb-10">
-            NovaDeploy was born from frustration — with slow deploys, 
-            confusing billing, and platforms that treat developers 
-            like sysadmins.
-          </p>
         </div>
       </section>
 
       {/* STORY SECTION */}
-      <section className="py-24 px-6 bg-white relative z-10 border-t border-[#F1F5F9]">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <section className="py-32 px-6 bg-white relative z-10">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           
-          {/* Left Large Pull Quote */}
-          <div className="bg-gradient-to-br from-[#EFF6FF] to-[#DBEAFE] border border-border-blue border-l-[4px] border-l-brand rounded-2xl p-8 shadow-sm">
-            <p className="text-[28px] text-[#1E40AF] font-heading font-semibold italic leading-tight mb-8">
-              "The best infrastructure is the kind you never have to think about."
-            </p>
-            <div className="text-[15px] font-semibold text-brand-hover">
-              — Alex Chen, CEO NovaDeploy
+          {/* Left Visual */}
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            <div className="aspect-square bg-gradient-to-br from-brand to-blue-400 rounded-[40px] rotate-3 shadow-2xl relative overflow-hidden">
+               <div className="absolute inset-0 circuit-pattern opacity-20"></div>
+               <div className="absolute inset-12 bg-white/10 backdrop-blur-3xl rounded-3xl border border-white/20 flex items-center justify-center">
+                  <svg className="w-24 h-24 text-white animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+               </div>
             </div>
-          </div>
+            <div className="absolute -bottom-8 -right-8 bg-white p-6 rounded-2xl shadow-xl border border-border-default animate-float max-w-[240px]">
+               <p className="text-[14px] font-medium text-text-body italic">"We didn't just want to build another hosting provider. We wanted to build a partner for developers."</p>
+            </div>
+          </motion.div>
 
-          {/* Right Story Text */}
-          <div className="flex flex-col gap-6 text-[16px] text-text-body leading-[1.7]">
-            <p>
-              In 2024, our founding team was working on a complex microservices architecture at
-              a hyper-growth startup. We found ourselves spending 30% of our week just managing
-              deployments, configuring YAML files, and debugging infrastructure issues.
+          {/* Right Text */}
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col gap-6"
+          >
+            <h2 className="text-[40px] font-heading font-bold text-text-heading leading-tight">Born from frustration, <br/>built with <span className="text-brand">passion.</span></h2>
+            <p className="text-[18px] text-text-body leading-[1.8]">
+              In 2024, our founders were scaling a high-growth startup and found themselves 
+              drowning in infrastructure complexity. The tools available were either too 
+              simplistic for production or required a massive DevOps team to maintain.
             </p>
-            <p>
-              We tried every platform on the market. Some were too simplistic and couldn't handle
-              our database needs. Others required a PhD in DevOps just to set up a staging environment.
-              There was no middle ground.
+            <p className="text-[18px] text-text-body leading-[1.8]">
+              NovaDeploy was built to bridge that gap. We've taken the best practices of 
+              enterprise infrastructure and wrapped them in an interface that anyone can use. 
+              No YAML mastery required, no surprise bills, just pure focus on your code.
             </p>
-            <p>
-              So we built NovaDeploy. Our goal wasn't just to make deployments faster—although 
-              we proudly average sub-3 minute deploys. Our goal was to build a platform that 
-              respects a developer's time, offering transparency, predictability, and a 
-              genuinely joyful developer experience.
-            </p>
-          </div>
+            <div className="mt-4">
+              <Link href="/blog" className="text-brand font-bold flex items-center gap-2 hover:gap-3 transition-all">
+                Read our full manifesto &rarr;
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* VALUES SECTION */}
-      <section className="relative py-[96px] px-6 bg-bg-page overflow-hidden">
-        {/* Top Cloud Blob */}
-        <div className="absolute top-0 inset-x-0 -translate-y-[99%]">
-          <svg viewBox="0 0 1440 120" className="w-full text-bg-page fill-current" preserveAspectRatio="none"><path d="M0,60 C320,120 420,0 720,60 C1020,120 1120,0 1440,60 L1440,120 L0,120 Z"></path></svg>
-        </div>
-
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-[36px] font-heading font-bold text-text-heading text-center mb-16">What We Believe.</h2>
+      <section className="py-32 px-6 bg-[#0F172A] relative overflow-hidden text-white">
+        <div className="absolute inset-0 circuit-pattern opacity-5 invert"></div>
+        
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div className="text-center mb-20">
+            <h2 className="text-[36px] md:text-[52px] font-heading font-bold mb-6">Our Values.</h2>
+            <p className="text-[18px] text-slate-400 max-w-2xl mx-auto">The principles that guide every decision we make and every line of code we write.</p>
+          </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
              {[
-               { icon: "⚡", title: "Speed", desc: "Every millisecond counts. We relentlessly optimize for developer velocity." },
-               { icon: "🔍", title: "Transparency", desc: "No hidden fees, no opaque billing, no unexplainable deployment errors." },
-               { icon: "🤝", title: "Empathy", desc: "We design for humans. Intuitive UI beats powerful but confusing CLI every time." },
-               { icon: "🛡️", title: "Reliability", desc: "Boring infrastructure is good infrastructure. We prioritize stability above all else." }
+               { title: "Transparency", desc: "No opaque pricing, no hidden limits. We believe in being honest with our users, always.", icon: "💎" },
+               { title: "User Autonomy", desc: "You should own your infrastructure, not be locked into it. We build on open standards.", icon: "🔓" },
+               { title: "Relentless Speed", desc: "Deployments should be faster than a coffee break. We optimize for every second.", icon: "🚀" }
              ].map((value, i) => (
-               <div key={i} className="bg-white border border-border-default rounded-2xl p-6 shadow-[0_4px_24px_rgba(37,99,235,0.08)] hover:-translate-y-1 transition-transform">
-                 <div className="w-12 h-12 bg-bg-blue-tint rounded-xl flex items-center justify-center text-[24px] mb-6">{value.icon}</div>
-                 <h3 className="text-[18px] font-bold text-text-heading mb-3">{value.title}</h3>
-                 <p className="text-[14px] text-text-muted leading-relaxed">{value.desc}</p>
-               </div>
-             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* TEAM SECTION */}
-      <section className="py-[96px] px-6 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-[36px] font-heading font-bold text-text-heading mb-4">The Team.</h2>
-            <p className="text-[18px] text-text-body">Engineers from Stripe, Vercel, GitHub, Cloudflare.</p>
-          </div>
-
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-             {[
-               { name: "Alex Chen", role: "CEO & Co-founder", loc: "🇺🇸 San Francisco", bg: "from-blue-400 to-blue-600", color: "bg-blue-500" },
-               { name: "Sarah Jenkins", role: "CTO & Co-founder", loc: "🇬🇧 London", bg: "from-purple-400 to-purple-600", color: "bg-purple-500" },
-               { name: "David Kim", role: "VP Engineering", loc: "🇨🇦 Toronto", bg: "from-teal-400 to-teal-600", color: "bg-teal-500" },
-               { name: "Elena Rodriguez", role: "Head of Product", loc: "🇪🇸 Madrid", bg: "from-amber-400 to-amber-600", color: "bg-amber-500" },
-               { name: "Marcus Johnson", role: "Principal Engineer", loc: "🇺🇸 Austin", bg: "from-rose-400 to-rose-600", color: "bg-rose-500" },
-               { name: "Priya Sharma", role: "Developer Relations", loc: "🇮🇳 Bengaluru", bg: "from-indigo-400 to-indigo-600", color: "bg-indigo-500" },
-               { name: "Tom Wilson", role: "Infrastructure Lead", loc: "🇦🇺 Sydney", bg: "from-cyan-400 to-cyan-600", color: "bg-cyan-500" },
-               { name: "Wei Lin", role: "Design Lead", loc: "🇸🇬 Singapore", bg: "from-fuchsia-400 to-fuchsia-600", color: "bg-fuchsia-500" }
-             ].map((member, i) => (
-               <div key={i} className="bg-white border border-border-default rounded-2xl overflow-hidden shadow-[0_4px_24px_rgba(37,99,235,0.08)] hover:shadow-[0_8px_40px_rgba(37,99,235,0.15)] transition-shadow group flex flex-col relative">
-                  <div className={`h-[80px] w-full bg-gradient-to-r ${member.bg}`}></div>
-                  
-                  <div className="flex-1 flex flex-col items-center text-center p-5 pt-0 relative">
-                     <div className={`w-14 h-14 rounded-full border-4 border-white ${member.color} -mt-7 mb-3 flex items-center justify-center text-white font-bold text-[18px] z-10`}>
-                       {member.name.charAt(0)}{member.name.split(' ')[1]?.charAt(0)}
-                     </div>
-                     <h4 className="text-[15px] font-semibold text-text-heading mb-1 group-hover:text-brand transition-colors">{member.name}</h4>
-                     <div className="text-[13px] text-text-muted mb-4">{member.role}</div>
-                     <div className="text-[12px] text-text-light mt-auto w-full border-t border-border-default pt-3 flex items-center justify-between">
-                        <span>{member.loc}</span>
-                        <a href="#" className="w-6 h-6 rounded-full bg-bg-blue-tint text-brand flex items-center justify-center hover:bg-brand hover:text-white transition-colors">in</a>
-                     </div>
-                  </div>
+               <div key={i} className="bg-white/5 border border-white/10 backdrop-blur-md rounded-[32px] p-10 hover:bg-white/10 transition-colors">
+                 <div className="text-[40px] mb-8">{value.icon}</div>
+                 <h3 className="text-[22px] font-bold mb-4">{value.title}</h3>
+                 <p className="text-slate-400 leading-relaxed text-[16px]">{value.desc}</p>
                </div>
              ))}
           </div>
@@ -132,17 +150,26 @@ export default function AboutPage() {
       </section>
 
       {/* CAREERS CTA */}
-      <section className="py-[80px] px-6 bg-white border-t border-[#F1F5F9]">
-         <div className="max-w-4xl mx-auto rounded-[24px] bg-gradient-to-br from-[#1E40AF] to-[#2563EB] p-12 text-center text-white shadow-xl relative overflow-hidden">
-            <div className="absolute inset-0 circuit-pattern opacity-[0.1] -z-0"></div>
-            <div className="relative z-10">
-               <h2 className="text-[36px] font-heading font-bold mb-4">Join Us.</h2>
-               <p className="text-[16px] text-white/80 max-w-lg mx-auto mb-8">We're always looking for talented engineers and designers who are passionate about developer tools.</p>
-               <button className="px-8 py-3 bg-white text-brand rounded-full font-semibold hover:bg-slate-50 shadow-md transition-all">
-                  Open Positions &rarr;
-               </button>
+      <section className="py-32 px-6 bg-white">
+         <motion.div 
+           initial={{ opacity: 0, y: 30 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           viewport={{ once: true }}
+           className="max-w-6xl mx-auto rounded-[40px] bg-bg-page border border-border-default p-12 md:p-20 text-center relative overflow-hidden"
+         >
+            <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[400px] h-[400px] bg-brand/5 rounded-full blur-[100px]"></div>
+            <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[100px]"></div>
+            
+            <h2 className="text-[40px] md:text-[56px] font-heading font-bold text-text-heading mb-6">Want to build the <br/>future with us?</h2>
+            <p className="text-[18px] text-text-body max-w-xl mx-auto mb-10 leading-relaxed">
+              We're a remote-first team of engineers, designers, and thinkers distributed across the globe. 
+              We're always looking for kind, talented people.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+               <button className="px-8 py-4 bg-brand text-white rounded-full font-bold shadow-lg shadow-brand/20 hover:scale-105 transition-all">View Openings</button>
+               <button className="px-8 py-4 bg-white border border-border-default text-text-heading rounded-full font-bold hover:border-brand transition-all">Our Culture</button>
             </div>
-         </div>
+         </motion.div>
       </section>
 
     </div>

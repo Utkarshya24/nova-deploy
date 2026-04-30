@@ -1,9 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function FeaturesPage() {
+  const tabs = ["Deployments", "Databases", "Observability", "Networking", "Security", "Collaboration"];
+  const [activeTab, setActiveTab] = useState("Deployments");
+
   return (
     <div className="flex flex-col w-full bg-white relative overflow-hidden">
       
@@ -50,277 +54,251 @@ export default function FeaturesPage() {
       </section>
 
       {/* STICKY SUB-NAV */}
-      <div className="sticky top-[68px] z-40 w-full bg-white/80 backdrop-blur-md border-b border-border-default h-[56px] flex items-center justify-center px-4 overflow-x-auto hide-scrollbar">
-        <nav className="flex gap-2">
-          {["Deployments", "Databases", "Observability", "Networking", "Security", "Collaboration"].map((item, i) => (
-            <a key={item} href={`#${item.toLowerCase()}`} className={`px-4 py-2 font-medium text-[14px] whitespace-nowrap border-b-2 ${i === 0 ? "text-brand border-brand" : "text-text-muted border-transparent hover:text-brand"}`}>
-              {item}
-            </a>
-          ))}
+      <div className="sticky top-[68px] z-40 w-full bg-white/80 backdrop-blur-md border-b border-border-default h-[64px] flex items-center justify-center px-4 overflow-x-auto hide-scrollbar">
+        <nav className="flex gap-1 bg-[#F1F5F9] p-1 rounded-full">
+          {tabs.map((item) => {
+            const isActive = activeTab === item;
+            return (
+              <button 
+                key={item} 
+                onClick={() => setActiveTab(item)}
+                className={`px-6 py-2 rounded-full font-bold text-[14px] whitespace-nowrap transition-all duration-200 ${
+                  isActive 
+                    ? "bg-white text-brand shadow-sm" 
+                    : "text-text-muted hover:text-text-heading"
+                }`}
+              >
+                {item}
+              </button>
+            );
+          })}
         </nav>
       </div>
 
-      {/* DEPLOYMENTS SECTION */}
-      <section id="deployments" className="py-[96px] px-6 bg-white overflow-hidden">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <div>
-            <div className="bg-brand-pale text-brand px-3 py-1 text-[12px] font-bold rounded-full inline-block mb-6 uppercase tracking-wider">Deployments</div>
-            <h2 className="text-[40px] font-heading font-bold text-text-heading mb-6 leading-tight">
-              From git push to <span className="gradient-text">live</span> in seconds.
-            </h2>
-            <p className="text-[18px] text-text-body mb-8 leading-[1.7]">
-              Give your team the power to deploy code seamlessly. We handle the heavy lifting so you can focus on writing features.
-            </p>
-            
-            <div className="flex flex-col gap-5 mb-8">
-              {[
-                { title: "Zero-config framework detection", desc: "Instantly supports Next.js, Nuxt, SvelteKit, and more." },
-                { title: "Real-time streaming build logs", desc: "Watch your build progress without refreshing." },
-                { title: "Pull request preview URLs", desc: "Share live preview environments for every PR." },
-                { title: "Atomic deploys with instant rollback", desc: "Go back to a previous version in 1 click." }
-              ].map((item, i) => (
-                <div key={i} className="flex flex-col">
-                  <div className="flex items-center gap-3 mb-1">
-                    <div className="w-5 h-5 rounded-full bg-bg-blue-tint text-brand flex items-center justify-center text-[10px] font-bold">&#10003;</div>
-                    <span className="text-[15px] text-text-heading font-semibold">{item.title}</span>
-                  </div>
-                  <div className="pl-8 text-[14px] text-text-muted">{item.desc}</div>
-                </div>
-              ))}
-            </div>
-            
-            <Link href="/docs" className="text-brand font-semibold text-[15px] hover:underline flex items-center gap-1">
-              Read deployment docs &rarr;
-            </Link>
-          </div>
-
-          <div className="relative">
-            <div className="bg-[#0F172A] rounded-[20px] shadow-[0_20px_60px_rgba(0,0,0,0.3)] border border-[#1E293B] overflow-hidden">
-              <div className="flex items-center justify-between px-4 py-3 bg-slate-900 border-b border-[#1E293B]">
-                <div className="flex gap-2">
-                   <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                   <div className="w-3 h-3 rounded-full bg-amber-500"></div>
-                   <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                </div>
-                <div className="text-[12px] font-mono text-slate-400">my-app — NovaDeploy</div>
-                <div className="w-12"></div>
-              </div>
-              <div className="p-6 font-mono text-[13px] text-slate-300 leading-[1.8] min-h-[300px]">
-                <div className="text-slate-500 flex gap-4"><span>11:04</span> <span className="text-slate-300">Cloning repository from GitHub...</span></div>
-                <div className="text-slate-500 flex gap-4"><span>11:04</span> <span className="text-slate-300">Detected Next.js framework... setting up build env.</span></div>
-                <div className="text-slate-500 flex gap-4"><span>11:05</span> <span className="text-[#10B981]">✔ Running build script: npm run build</span></div>
-                <div className="text-slate-500 flex gap-4"><span>11:05</span> <span className="text-slate-300">Creating optimized production build...</span></div>
-                <div className="text-slate-500 flex gap-4"><span>11:05</span> <span className="text-[#10B981]">✔ Uploading assets to Edge Network...</span></div>
-                <div className="mt-4 border-l-2 border-[#10B981] pl-4 text-white">
-                  Successfully deployed!
-                </div>
-                <div className="text-[#60A5FA] mt-2 pl-4 break-words">https://my-app-prod.novadeploy.app</div>
-              </div>
-            </div>
-            
-            <div className="absolute -top-4 -right-4 bg-[#10B981] text-white px-4 py-2 rounded-full font-bold text-[13px] shadow-lg rotate-3 z-10">
-              Deploy #487 — 23.4s
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* DATABASES SECTION */}
-      <section id="databases" className="relative py-[96px] px-6 bg-bg-page overflow-hidden">
-        <div className="absolute top-0 inset-x-0 -translate-y-[99%]">
-          <svg viewBox="0 0 1440 120" className="w-full text-bg-page fill-current" preserveAspectRatio="none"><path d="M0,120 L1440,120 L1440,60 C1120,0 1020,120 720,60 C420,0 320,120 0,60 L0,120 Z"></path></svg>
-        </div>
-        
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center flex-col-reverse md:flex-row">
-          
-          <div className="relative flex justify-center py-10">
-            {/* Database Stack */}
-            <div className="flex flex-col gap-4 relative w-full max-w-[400px]">
-              
-              <div className="bg-white rounded-2xl shadow-lg border border-border-default p-5 flex items-center justify-between z-[3] hover:-translate-y-1 transition-transform relative">
-                <div className="flex gap-4 items-center">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 text-xl font-bold">PG</div>
+      {/* DYNAMIC CONTENT AREA */}
+      <div className="min-h-[600px] relative">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="w-full"
+          >
+            {activeTab === "Deployments" && (
+              <section className="py-[96px] px-6 bg-white overflow-hidden">
+                <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                   <div>
-                    <h4 className="font-bold text-text-heading text-[16px]">PostgreSQL 16</h4>
-                    <span className="text-[12px] text-text-muted">Full SQL • Extensions • Backups</span>
+                    <div className="bg-brand-pale text-brand px-3 py-1 text-[12px] font-bold rounded-full inline-block mb-6 uppercase tracking-wider">Deployments</div>
+                    <h2 className="text-[40px] font-heading font-bold text-text-heading mb-6 leading-tight">
+                      From git push to <span className="gradient-text">live</span> in seconds.
+                    </h2>
+                    <p className="text-[18px] text-text-body mb-8 leading-[1.7]">
+                      Give your team the power to deploy code seamlessly. We handle the heavy lifting so you can focus on writing features.
+                    </p>
+                    <div className="flex flex-col gap-5 mb-8">
+                      {[
+                        { title: "Zero-config framework detection", desc: "Instantly supports Next.js, Nuxt, SvelteKit, and more." },
+                        { title: "Real-time streaming build logs", desc: "Watch your build progress without refreshing." },
+                        { title: "Pull request preview URLs", desc: "Share live preview environments for every PR." },
+                        { title: "Atomic deploys with instant rollback", desc: "Go back to a previous version in 1 click." }
+                      ].map((item, i) => (
+                        <div key={i} className="flex flex-col">
+                          <div className="flex items-center gap-3 mb-1">
+                            <div className="w-5 h-5 rounded-full bg-bg-blue-tint text-brand flex items-center justify-center text-[10px] font-bold">&#10003;</div>
+                            <span className="text-[15px] text-text-heading font-semibold">{item.title}</span>
+                          </div>
+                          <div className="pl-8 text-[14px] text-text-muted">{item.desc}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="relative">
+                    <div className="bg-[#0F172A] rounded-[20px] shadow-[0_20px_60px_rgba(0,0,0,0.3)] border border-[#1E293B] overflow-hidden">
+                      <div className="flex items-center justify-between px-4 py-3 bg-slate-900 border-b border-[#1E293B]">
+                        <div className="flex gap-2">
+                           <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                           <div className="w-3 h-3 rounded-full bg-amber-500"></div>
+                           <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                        </div>
+                        <div className="text-[12px] font-mono text-slate-400">my-app — NovaDeploy</div>
+                        <div className="w-12"></div>
+                      </div>
+                      <div className="p-6 font-mono text-[13px] text-slate-300 leading-[1.8] min-h-[300px]">
+                        <div className="text-slate-500 flex gap-4"><span>11:04</span> <span className="text-slate-300">Cloning repository from GitHub...</span></div>
+                        <div className="text-slate-500 flex gap-4"><span>11:04</span> <span className="text-slate-300">Detected Next.js framework... setting up build env.</span></div>
+                        <div className="text-slate-500 flex gap-4"><span>11:05</span> <span className="text-[#10B981]">✔ Running build script: npm run build</span></div>
+                        <div className="text-slate-500 flex gap-4"><span>11:05</span> <span className="text-slate-300">Creating optimized production build...</span></div>
+                        <div className="text-slate-500 flex gap-4"><span>11:05</span> <span className="text-[#10B981]">✔ Uploading assets to Edge Network...</span></div>
+                        <div className="mt-4 border-l-2 border-[#10B981] pl-4 text-white">Successfully deployed!</div>
+                        <div className="text-[#60A5FA] mt-2 pl-4 break-words">https://my-app-prod.novadeploy.app</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="flex flex-col items-end">
-                  <div className="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full mb-1">Active</div>
-                  <span className="text-[12px] font-semibold text-brand">$7/mo starting</span>
-                </div>
-              </div>
+              </section>
+            )}
 
-              <div className="bg-white rounded-2xl shadow-lg border border-border-default p-5 flex items-center justify-between z-[2] ml-4 hover:-translate-y-1 transition-transform relative">
-                <div className="flex gap-4 items-center">
-                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center text-red-600 text-xl font-bold">R</div>
+            {activeTab === "Databases" && (
+              <section className="py-[96px] px-6 bg-white overflow-hidden">
+                <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                  <div className="order-2 md:order-1">
+                    <div className="flex flex-col gap-4 w-full max-w-[400px]">
+                      <div className="bg-white rounded-2xl shadow-lg border border-border-default p-5 flex items-center justify-between hover:-translate-y-1 transition-transform">
+                        <div className="flex gap-4 items-center">
+                          <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 text-xl font-bold">PG</div>
+                          <div>
+                            <h4 className="font-bold text-text-heading text-[16px]">PostgreSQL 16</h4>
+                            <span className="text-[12px] text-text-muted">Managed SQL • Backups</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="bg-white rounded-2xl shadow-lg border border-border-default p-5 flex items-center justify-between ml-4 hover:-translate-y-1 transition-transform">
+                        <div className="flex gap-4 items-center">
+                          <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center text-red-600 text-xl font-bold">R</div>
+                          <div>
+                            <h4 className="font-bold text-text-heading text-[16px]">Redis 7</h4>
+                            <span className="text-[12px] text-text-muted">In-Memory Caching</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="order-1 md:order-2">
+                    <div className="bg-brand-pale text-brand px-3 py-1 text-[12px] font-bold rounded-full inline-block mb-6 uppercase tracking-wider">Databases</div>
+                    <h2 className="text-[40px] font-heading font-bold text-text-heading mb-6 leading-tight">Managed databases that <span className="gradient-text">just work.</span></h2>
+                    <p className="text-[18px] text-text-body mb-8 leading-[1.7]">Provision production-ready databases with a single click. We handle backups, scaling, and high availability natively.</p>
+                    <div className="flex flex-col gap-5">
+                      {["Daily point-in-time backups", "One-click connection injection", "Isolated DB branches for PRs"].map((item, i) => (
+                        <div key={i} className="flex items-center gap-3">
+                          <div className="w-5 h-5 rounded-full bg-bg-blue-tint text-brand flex items-center justify-center text-[10px] font-bold">&#10003;</div>
+                          <span className="text-[15px] text-text-heading font-semibold">{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </section>
+            )}
+
+            {activeTab === "Observability" && (
+              <section className="py-[96px] px-6 bg-white overflow-hidden">
+                <div className="max-w-6xl mx-auto">
+                  <div className="w-full bg-white border border-border-default rounded-[20px] shadow-lg mb-16 overflow-hidden flex flex-col md:flex-row">
+                    <div className="md:w-[40%] bg-[#F8FAFF] p-6 border-b md:border-b-0 md:border-r border-border-default">
+                      <h4 className="text-[14px] font-semibold text-text-heading mb-4">Requests / min</h4>
+                      <div className="h-[150px] relative">
+                        <svg viewBox="0 0 100 50" preserveAspectRatio="none" className="w-full h-full text-green-400 overflow-visible">
+                          <path d="M0,45 Q10,20 20,40 T40,30 T60,10 T80,35 T100,5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                          <circle cx="100" cy="5" r="3" fill="currentColor"></circle>
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="md:w-[60%] bg-[#0F172A] p-6">
+                      <div className="flex items-center justify-between mb-4">
+                        <h4 className="text-[14px] font-semibold text-white">Live logs</h4>
+                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                      </div>
+                      <div className="font-mono text-[11px] leading-relaxed text-slate-300">
+                        <div className="flex gap-2"><span className="text-slate-500">GET</span> <span>/api/users</span> <span className="text-green-400">200 OK</span></div>
+                        <div className="flex gap-2"><span className="text-slate-500">POST</span> <span>/api/login</span> <span className="text-green-400">200 OK</span></div>
+                        <div className="flex gap-2"><span className="text-slate-500">ERR</span> <span className="text-red-400">Worker timeout</span> <span className="text-red-400">500</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="max-w-3xl mx-auto text-center">
+                    <h2 className="text-[32px] md:text-[40px] font-heading font-bold text-text-heading mb-6">Complete Observability</h2>
+                    <p className="text-[18px] text-text-body mb-12">Monitor metrics, streaming logs, and custom alerts without third-party tools.</p>
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                      {["Real-time logs", "Metric gauges", "Smart alerts", "Usage quotas"].map((f, i) => (
+                        <div key={i} className="bg-bg-blue-tint text-brand font-bold p-4 rounded-xl text-[14px]">{f}</div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </section>
+            )}
+
+            {activeTab === "Networking" && (
+              <section className="py-[96px] px-6 bg-white overflow-hidden">
+                <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                   <div>
-                    <h4 className="font-bold text-text-heading text-[16px]">Redis 7</h4>
-                    <span className="text-[12px] text-text-muted">In-Memory • Caching • Pub/Sub</span>
+                    <div className="bg-brand-pale text-brand px-3 py-1 text-[12px] font-bold rounded-full inline-block mb-6 uppercase tracking-wider">Networking</div>
+                    <h2 className="text-[40px] font-heading font-bold text-text-heading mb-6 leading-tight">Global Edge <span className="gradient-text">Acceleration.</span></h2>
+                    <p className="text-[18px] text-text-body mb-8 leading-[1.7]">Deliver content at lightning speed with our global edge network. Automatic TLS, smart routing, and global CDN caching.</p>
+                    <div className="grid grid-cols-1 gap-4">
+                      {["35+ Global regions", "Automatic Managed TLS", "Smart L7 Load Balancing", "Custom Domain Support"].map((f, i) => (
+                        <div key={i} className="flex items-center gap-3">
+                           <div className="w-6 h-6 rounded-full bg-brand/10 text-brand flex items-center justify-center font-bold">✓</div>
+                           <span className="text-[16px] font-semibold text-text-heading">{f}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="bg-[#F8FAFF] rounded-3xl p-10 border border-border-default relative overflow-hidden flex items-center justify-center min-h-[400px]">
+                    <div className="absolute inset-0 circuit-pattern opacity-10"></div>
+                    <div className="relative w-48 h-48 bg-brand/20 rounded-full flex items-center justify-center animate-pulse">
+                      <div className="w-32 h-32 bg-brand/40 rounded-full flex items-center justify-center animate-ping absolute"></div>
+                      <div className="w-24 h-24 bg-brand rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(37,99,235,0.5)] relative z-10">
+                        <svg className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="flex flex-col items-end">
-                  <div className="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full mb-1">Active</div>
-                  <span className="text-[12px] font-semibold text-brand">$5/mo starting</span>
-                </div>
-              </div>
+              </section>
+            )}
 
-              <div className="bg-white rounded-2xl shadow-lg border border-border-default p-5 flex items-center justify-between z-[1] ml-8 hover:-translate-y-1 transition-transform relative">
-                <div className="flex gap-4 items-center">
-                  <div className="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center text-amber-600 text-xl font-bold">M</div>
-                  <div>
-                    <h4 className="font-bold text-text-heading text-[16px]">MySQL 8</h4>
-                    <span className="text-[12px] text-text-muted">Relational • High Availability</span>
+            {activeTab === "Security" && (
+              <section className="py-[96px] px-6 bg-white overflow-hidden text-center">
+                <div className="max-w-4xl mx-auto">
+                  <div className="bg-brand-pale text-brand px-3 py-1 text-[12px] font-bold rounded-full inline-block mb-6 uppercase tracking-wider">Security</div>
+                  <h2 className="text-[40px] font-heading font-bold text-text-heading mb-6 leading-tight">Enterprise-Grade <span className="gradient-text">Protection.</span></h2>
+                  <p className="text-[18px] text-text-body mb-16">Every application deployed on NovaDeploy is protected by our multi-layered security architecture.</p>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    {["SOC 2 Type II", "GDPR Compliant", "AES-256 Encryption", "TLS 1.3", "RBAC Control", "VPC Isolation", "Anti-DDoS", "Audit Logging"].map((s, i) => (
+                      <div key={i} className="bg-white border border-border-default p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                        <div className="text-2xl mb-3">🛡️</div>
+                        <span className="text-[14px] font-bold text-text-heading">{s}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
-                <div className="flex flex-col items-end">
-                  <div className="bg-slate-100 text-slate-500 text-[10px] font-bold px-2 py-0.5 rounded-full mb-1">Paused</div>
-                  <span className="text-[12px] font-semibold text-brand">$7/mo starting</span>
-                </div>
-              </div>
+              </section>
+            )}
 
-              <p className="text-[13px] text-text-muted italic text-center mt-4">
-                Connection strings auto-injected into env vars. Zero manual setup.
-              </p>
-            </div>
-          </div>
-
-          <div>
-            <div className="bg-brand-pale text-brand px-3 py-1 text-[12px] font-bold rounded-full inline-block mb-6 uppercase tracking-wider">Databases</div>
-            <h2 className="text-[40px] font-heading font-bold text-text-heading mb-6 leading-tight">
-              Managed databases that <span className="gradient-text">just work.</span>
-            </h2>
-            <p className="text-[18px] text-text-body mb-8 leading-[1.7]">
-              Provision production-ready databases with a single click. We handle backups, scaling, and high availability natively.
-            </p>
-            
-            <div className="flex flex-col gap-5 mb-8">
-              {[
-                { title: "Daily point-in-time backups", desc: "Never lose data with automated backups retained for 30 days." },
-                { title: "One-click connection injection", desc: "Automatically set DATABASE_URL in your app environments." },
-                { title: "Branching support", desc: "Spin up isolated DB branches for pull requests." },
-              ].map((item, i) => (
-                <div key={i} className="flex flex-col">
-                  <div className="flex items-center gap-3 mb-1">
-                    <div className="w-5 h-5 rounded-full bg-bg-blue-tint text-brand flex items-center justify-center text-[10px] font-bold">&#10003;</div>
-                    <span className="text-[15px] text-text-heading font-semibold">{item.title}</span>
+            {activeTab === "Collaboration" && (
+              <section className="py-[96px] px-6 bg-white overflow-hidden">
+                <div className="max-w-6xl mx-auto">
+                  <div className="text-center mb-16">
+                    <div className="bg-brand-pale text-brand px-3 py-1 text-[12px] font-bold rounded-full inline-block mb-6 uppercase tracking-wider">Collaboration</div>
+                    <h2 className="text-[40px] font-heading font-bold text-text-heading mb-6 leading-tight">Built for <span className="gradient-text">Teams.</span></h2>
+                    <p className="text-[18px] text-text-body max-w-2xl mx-auto">Seamlessly manage projects across your entire organization with powerful collaboration tools.</p>
                   </div>
-                  <div className="pl-8 text-[14px] text-text-muted">{item.desc}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-          
-        </div>
-      </section>
-
-      {/* OBSERVABILITY */}
-      <section id="observability" className="py-[96px] px-6 bg-white overflow-hidden">
-        <div className="max-w-6xl mx-auto">
-           {/* Visual */}
-           <div className="w-full bg-white border border-border-default rounded-[20px] shadow-lg mb-16 overflow-hidden flex flex-col md:flex-row">
-              {/* Chart Panel */}
-              <div className="md:w-[40%] bg-[#F8FAFF] p-6 border-b md:border-b-0 md:border-r border-border-default flex flex-col">
-                 <h4 className="text-[14px] font-semibold text-text-heading mb-4">Requests / min</h4>
-                 <div className="flex-1 w-full h-[150px] relative">
-                    <svg viewBox="0 0 100 50" preserveAspectRatio="none" className="w-full h-full text-green-400 overflow-visible">
-                      <path d="M0,45 Q10,20 20,40 T40,30 T60,10 T80,35 T100,5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                      <circle cx="100" cy="5" r="3" fill="currentColor"></circle>
-                    </svg>
-                 </div>
-              </div>
-              
-              {/* Gauges Panel */}
-              <div className="md:w-[25%] bg-white p-6 border-b md:border-b-0 md:border-r border-border-default flex md:flex-col justify-center items-center gap-8">
-                 <div className="flex flex-col items-center gap-2">
-                   <div className="w-16 h-16 rounded-full border-4 border-slate-100 border-t-brand border-r-brand rotate-45 flex items-center justify-center">
-                     <span className="text-[14px] font-bold text-text-heading -rotate-45">34%</span>
-                   </div>
-                   <span className="text-[12px] font-semibold text-text-muted uppercase">CPU</span>
-                 </div>
-                 <div className="flex flex-col items-center gap-2">
-                   <div className="w-16 h-16 rounded-full border-4 border-slate-100 border-t-teal-400 border-r-teal-400 border-b-teal-400 -rotate-12 flex items-center justify-center">
-                     <span className="text-[14px] font-bold text-text-heading rotate-12">67%</span>
-                   </div>
-                   <span className="text-[12px] font-semibold text-text-muted uppercase">RAM</span>
-                 </div>
-              </div>
-
-              {/* Logs Panel */}
-              <div className="md:w-[35%] bg-[#0F172A] p-6 flex flex-col">
-                 <div className="flex items-center justify-between mb-4">
-                   <h4 className="text-[14px] font-semibold text-white">Live logs</h4>
-                   <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                 </div>
-                 <div className="flex-1 font-mono text-[11px] leading-relaxed text-slate-300">
-                    <div className="flex gap-2"><span className="text-slate-500">GET</span> <span>/api/users</span> <span className="text-green-400">200</span></div>
-                    <div className="flex gap-2"><span className="text-slate-500">POST</span> <span>/api/login</span> <span className="text-green-400">200</span></div>
-                    <div className="flex gap-2"><span className="text-slate-500">GET</span> <span>/_next/static...</span> <span className="text-slate-400">304</span></div>
-                    <div className="flex gap-2"><span className="text-slate-500">ERR</span> <span className="text-red-400">Worker timeout</span> <span className="text-red-400">500</span></div>
-                 </div>
-              </div>
-           </div>
-
-           <div className="max-w-3xl mx-auto text-center">
-             <h2 className="text-[32px] md:text-[40px] font-heading font-bold text-text-heading mb-6">Complete Observability</h2>
-             <p className="text-[18px] text-text-body mb-12">Monitor your applications with built-in metrics, live streaming logs, and custom alerts. Never be in the dark about production issues.</p>
-             
-             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-               {["Streaming logs", "Custom metrics", "Smart alerts", "30-day history"].map((feature, i) => (
-                 <div key={i} className="bg-bg-blue-tint text-brand font-semibold text-[14px] p-4 rounded-xl flex items-center justify-center text-center">
-                   {feature}
-                 </div>
-               ))}
-             </div>
-           </div>
-        </div>
-      </section>
-
-      {/* SECURITY */}
-      <section id="security" className="py-[96px] px-6 bg-bg-page">
-        <div className="max-w-6xl mx-auto text-center">
-          <div className="bg-brand-pale text-brand px-3 py-1 text-[12px] font-bold rounded-full inline-block mb-6 uppercase tracking-wider">Security First</div>
-          <h2 className="text-[32px] md:text-[40px] font-heading font-bold text-text-heading mb-6">Enterprise-Grade Security</h2>
-          <p className="text-[18px] text-text-body max-w-2xl mx-auto mb-16">Security isn't an afterthought. It's built into every layer of our platform.</p>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-             {[
-               "SOC 2 Type II", "ISO 27001", "GDPR Compliant", "HIPAA-Ready",
-               "AES-256-GCM", "TLS 1.3", "Zero-trust architecture", "Strict RBAC"
-             ].map((badge) => (
-               <div key={badge} className="bg-white border border-border-blue rounded-xl p-5 flex flex-col items-center justify-center gap-3 shadow-sm hover:shadow-md transition-shadow">
-                 <div className="w-8 h-8 rounded-full bg-bg-blue-tint flex items-center justify-center text-brand font-bold">🔒</div>
-                 <span className="text-[14px] font-semibold text-text-heading text-center">{badge}</span>
-               </div>
-             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* INTEGRATIONS */}
-      <section id="collaboration" className="py-[120px] px-6 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-[32px] md:text-[40px] font-heading font-bold text-text-heading mb-4">Connects With Your Entire Stack.</h2>
-            <p className="text-[18px] text-text-body">100+ integrations out of the box.</p>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-             {[
-               {name: "GitHub", cat: "CI/CD"}, {name: "GitLab", cat: "CI/CD"}, {name: "Bitbucket", cat: "CI/CD"}, {name: "Jenkins", cat: "CI/CD"}, {name: "CircleCI", cat: "CI/CD"},
-               {name: "Datadog", cat: "Monitoring"}, {name: "Grafana", cat: "Monitoring"}, {name: "New Relic", cat: "Monitoring"}, {name: "Sentry", cat: "Monitoring"}, {name: "PagerDuty", cat: "Monitoring"},
-               {name: "Slack", cat: "Comms"}, {name: "Discord", cat: "Comms"}, {name: "Teams", cat: "Comms"}, {name: "Email", cat: "Comms"}, {name: "Webhooks", cat: "Comms"},
-               {name: "Auth0", cat: "Auth"}, {name: "Clerk", cat: "Auth"}, {name: "Supabase", cat: "Auth"}, {name: "Firebase", cat: "Auth"}, {name: "Okta", cat: "Auth"}
-             ].map((integration, i) => (
-               <div key={i} className="bg-white border border-border-default rounded-xl p-6 flex flex-col justify-center items-center gap-3 hover:border-border-blue hover:shadow-[0_8px_24px_rgba(37,99,235,0.12)] transition-all group cursor-pointer">
-                  <div className="w-10 h-10 bg-slate-100 rounded-lg group-hover:bg-bg-blue-tint group-hover:text-brand transition-colors flex items-center justify-center font-bold text-slate-400 text-[10px]">
-                     IMG
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {[
+                      { title: "Team Organizations", desc: "Manage multiple projects under a single organization account." },
+                      { title: "Role-Based Access", desc: "Assign Viewer, Developer, or Admin roles to team members." },
+                      { title: "Project Sharing", desc: "Share direct links to preview environments and logs." }
+                    ].map((item, i) => (
+                      <div key={i} className="p-8 border border-border-default rounded-[32px] bg-bg-page hover:border-brand transition-colors">
+                        <div className="w-12 h-12 rounded-xl bg-brand text-white flex items-center justify-center mb-6 font-bold text-xl">{i+1}</div>
+                        <h3 className="text-xl font-bold text-text-heading mb-3">{item.title}</h3>
+                        <p className="text-text-muted leading-relaxed">{item.desc}</p>
+                      </div>
+                    ))}
                   </div>
-                  <span className="text-[14px] font-semibold text-text-muted group-hover:text-text-heading">{integration.name}</span>
-               </div>
-             ))}
-          </div>
-        </div>
+                </div>
+              </section>
+            )}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* FINAL CTA */}
+      <section className="py-24 px-6 bg-[#0F172A] text-white text-center">
+        <h2 className="text-[36px] font-heading font-bold mb-6">Ready to experience these features?</h2>
+        <button className="bg-brand text-white font-bold px-8 py-4 rounded-full hover:bg-brand-hover transition-all shadow-lg">Start Building Now</button>
       </section>
 
     </div>

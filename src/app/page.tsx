@@ -16,10 +16,98 @@ const stagger: Variants = {
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("Deploy");
+  const [activeStep, setActiveStep] = useState(1);
   const tabs = ["Deploy", "Observe", "Scale", "Collaborate", "Secure"];
+  
+  const { scrollYProgress } = useScroll();
+
+  const tabContent: Record<string, { checklist: string[], terminal: React.ReactNode }> = {
+    "Deploy": {
+      checklist: ["Auto-detect 40+ frameworks", "Live streaming build logs", "Preview URLs for every PR", "One-click instant rollback", "Monorepo native support"],
+      terminal: (
+        <>
+          <div className="text-brand-light font-bold mb-4">$ nova deploy --production</div>
+          <div className="text-slate-400 mb-2">› Initializing build environment...</div>
+          <div className="text-slate-400 mb-2">› Detected framework: <span className="text-white font-bold">Next.js 14</span></div>
+          <div className="text-slate-400 mb-2">› Installing dependencies... <span className="text-green-400 px-2 rounded font-semibold ml-2">1.2s</span></div>
+          <div className="text-slate-400 mb-6">› Building static segments...</div>
+          <div className="animate-pulse flex gap-2">
+             <div className="w-2 h-4 bg-brand"></div> 
+             <span className="text-brand">Uploading assets to Edge Network...</span>
+          </div>
+        </>
+      )
+    },
+    "Observe": {
+      checklist: ["Real-time traffic metrics", "Automatic error tracking", "Custom log filtering", "Performance Web Vitals", "Usage & quota alerts"],
+      terminal: (
+        <>
+          <div className="text-brand-light font-bold mb-4">$ nova logs --follow --env prod</div>
+          <div className="text-slate-500 mb-2">[12:44:02] Connected to production stream...</div>
+          <div className="text-green-400 mb-2">GET /api/v1/user/profile 200 OK (42ms)</div>
+          <div className="text-green-400 mb-2">GET /_next/static/chunks/main.js 200 OK (12ms)</div>
+          <div className="text-amber-400 mb-2">POST /api/webhook 202 Accepted (115ms)</div>
+          <div className="text-slate-300 mt-4 animate-pulse">_ Waiting for new logs...</div>
+        </>
+      )
+    },
+    "Scale": {
+      checklist: ["Global edge distribution", "Auto-scaling compute", "Smart asset caching", "Load balancing at edge", "Zero-downtime upgrades"],
+      terminal: (
+        <>
+          <div className="text-brand-light font-bold mb-4">$ nova scale --min 3 --max 20</div>
+          <div className="text-slate-400 mb-2">› Scaling cluster "main-api" across 35 regions...</div>
+          <div className="text-slate-400 mb-2">› US-East-1 (N. Virginia): <span className="text-green-400">Active</span></div>
+          <div className="text-slate-400 mb-2">› EU-West-1 (Dublin): <span className="text-green-400">Active</span></div>
+          <div className="text-slate-400 mb-2">› AP-South-1 (Mumbai): <span className="text-green-400">Active</span></div>
+          <div className="text-white font-bold mt-4">✔ Successfully scaled to 20 potential nodes.</div>
+        </>
+      )
+    },
+    "Collaborate": {
+      checklist: ["Granular RBAC roles", "Team activity feeds", "Shared env variables", "Project ownership transfer", "Organization audit logs"],
+      terminal: (
+        <>
+          <div className="text-brand-light font-bold mb-4">$ nova team add sarah@company.com</div>
+          <div className="text-slate-400 mb-2">› Checking organization seats... [14/20 used]</div>
+          <div className="text-slate-400 mb-2">› Assigning role: <span className="text-white font-bold">Senior Engineer</span></div>
+          <div className="text-slate-400 mb-4">› Sending invitation email...</div>
+          <div className="text-green-400 font-bold">✔ Sarah has been invited to the project.</div>
+          <div className="text-slate-500 mt-4 font-mono italic"># Updated 14s ago by admin</div>
+        </>
+      )
+    },
+    "Secure": {
+      checklist: ["Automatic managed TLS/SSL", "Enterprise DDoS protection", "Environment secret encryption", "IP Access Whitelisting", "SOC2 Compliance ready"],
+      terminal: (
+        <>
+          <div className="text-brand-light font-bold mb-4">$ nova secure --audit</div>
+          <div className="text-slate-400 mb-2">› Scanning environment variables... <span className="text-green-400">Safe</span></div>
+          <div className="text-slate-400 mb-2">› Checking SSL certificates... <span className="text-green-400">Valid</span></div>
+          <div className="text-slate-400 mb-2">› DDoS Firewall Status: <span className="text-green-400">Active (L7)</span></div>
+          <div className="text-slate-400 mb-4">› Secret management: <span className="text-white">AES-256 GCM</span></div>
+          <div className="bg-green-500/10 text-green-400 p-2 rounded border border-green-500/20 text-xs">
+            SECURITY SCORE: 100/100 - NO VULNERABILITIES FOUND
+          </div>
+        </>
+      )
+    }
+  };
+
+  const steps = [
+    { num: "01", title: "Connect Your Repositories", body: "Link GitHub, GitLab, or Bitbucket. We sync instantly." },
+    { num: "02", title: "Add Your Configuration", body: "Set environment variables and build commands. Or let us auto-detect — we support 40+ frameworks." },
+    { num: "03", title: "Connect Your Services", body: "Add databases, Redis, and third-party integrations in one click. No YAML required." },
+    { num: "04", title: "Share Your Deploy Link", body: "Get a live URL the moment your build completes. Share previews with your team instantly." },
+  ];
 
   return (
     <div className="flex flex-col w-full bg-white relative overflow-hidden">
+      {/* Scroll Progress Bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-brand z-[100] origin-left"
+        style={{ scaleX: scrollYProgress }}
+      />
       
       {/* SECTION 1: HERO */}
       <section className="relative min-h-screen flex flex-col items-center pt-32 pb-24 px-6 overflow-hidden bg-white">
@@ -217,19 +305,19 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Left Steps */}
             <div className="flex flex-col gap-4">
-              {[
-                { num: "01", title: "Connect Your Repositories", body: "Link GitHub, GitLab, or Bitbucket. We sync instantly.", active: false },
-                { num: "02", title: "Add Your Configuration", body: "Set environment variables and build commands. Or let us auto-detect — we support 40+ frameworks.", active: true },
-                { num: "03", title: "Connect Your Services", body: "Add databases, Redis, and third-party integrations in one click. No YAML required.", active: false },
-                { num: "04", title: "Share Your Deploy Link", body: "Get a live URL the moment your build completes. Share previews with your team instantly.", active: false },
-              ].map((step, i) => (
-                <motion.div variants={fadeUp} key={step.num} className={`p-6 flex gap-6 transition-colors duration-300 ${step.active ? 'bg-white border border-border-default shadow-[0_8px_32px_rgba(37,99,235,0.08)] rounded-2xl relative' : 'border border-transparent opacity-60 hover:opacity-100'}`}>
-                  {step.active && <div className="absolute left-0 top-6 bottom-6 w-1 bg-brand rounded-r-md"></div>}
-                  <div className={`w-10 h-10 shrink-0 rounded-full flex items-center justify-center font-bold text-[15px] ${step.active ? 'bg-brand text-white shadow-md' : 'bg-slate-200 text-slate-500'}`}>
+              {steps.map((step, i) => (
+                <motion.div 
+                  variants={fadeUp} 
+                  key={step.num} 
+                  onClick={() => setActiveStep(i + 1)}
+                  className={`p-6 flex gap-6 cursor-pointer transition-all duration-300 ${activeStep === i + 1 ? 'bg-white border border-border-default shadow-[0_8px_32px_rgba(37,99,235,0.08)] rounded-2xl relative' : 'border border-transparent opacity-60 hover:opacity-100'}`}
+                >
+                  {activeStep === i + 1 && <div className="absolute left-0 top-6 bottom-6 w-1 bg-brand rounded-r-md"></div>}
+                  <div className={`w-10 h-10 shrink-0 rounded-full flex items-center justify-center font-bold text-[15px] transition-colors ${activeStep === i + 1 ? 'bg-brand text-white shadow-md' : 'bg-slate-200 text-slate-500'}`}>
                     {step.num}
                   </div>
                   <div>
-                    <h3 className="text-[18px] font-semibold text-text-heading mb-2">{step.title}</h3>
+                    <h3 className={`text-[18px] font-semibold transition-colors mb-2 ${activeStep === i + 1 ? 'text-text-heading' : 'text-text-muted'}`}>{step.title}</h3>
                     <p className="text-[15px] text-text-muted leading-[1.6]">{step.body}</p>
                   </div>
                 </motion.div>
@@ -237,8 +325,8 @@ export default function Home() {
             </div>
 
             {/* Right Mockup */}
-            <motion.div variants={fadeUp} className="relative">
-              <div className="bg-white border border-border-default rounded-[24px] shadow-[0_20px_60px_rgba(37,99,235,0.12)] overflow-hidden">
+            <motion.div variants={fadeUp} className="relative h-full">
+              <div className="bg-white border border-border-default rounded-[24px] shadow-[0_20px_60px_rgba(37,99,235,0.12)] overflow-hidden h-full">
                 {/* Header */}
                 <div className="flex items-center px-5 py-4 border-b border-border-default bg-[#F8FAFF]">
                    <div className="flex gap-2 mr-4">
@@ -246,10 +334,15 @@ export default function Home() {
                      <div className="w-3 h-3 rounded-full bg-amber-400"></div>
                      <div className="w-3 h-3 rounded-full bg-green-400"></div>
                    </div>
-                   <div className="flex-1 text-center text-[13px] font-semibold text-text-muted font-mono tracking-wide">dashboard.novadeploy.app</div>
+                   <div className="flex-1 text-center text-[13px] font-semibold text-text-muted font-mono tracking-wide">
+                    {activeStep === 1 && "connect.novadeploy.app"}
+                    {activeStep === 2 && "config.novadeploy.app"}
+                    {activeStep === 3 && "services.novadeploy.app"}
+                    {activeStep === 4 && "dashboard.novadeploy.app"}
+                   </div>
                 </div>
                 {/* Body */}
-                <div className="flex flex-col md:flex-row h-[360px]">
+                <div className="flex flex-col md:flex-row h-[420px]">
                    <div className="w-full md:w-20 border-r border-border-default bg-[#F8FAFF] flex md:flex-col items-center py-6 px-4 gap-6 shrink-0">
                       <div className="w-10 h-10 rounded-xl bg-bg-blue-tint border border-border-blue flex items-center justify-center shadow-sm">
                          <div className="w-5 h-5 bg-brand rounded-md"></div>
@@ -259,42 +352,104 @@ export default function Home() {
                       <div className="w-8 h-8 rounded-lg bg-slate-200 mt-auto"></div>
                    </div>
                    <div className="flex-1 p-8 relative bg-white bg-[radial-gradient(#F1F5F9_1px,transparent_1px)] [background-size:16px_16px]">
-                      <div className="flex items-center justify-between mb-8">
-                         <div className="flex items-center gap-4">
-                           <div className="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center font-bold text-slate-400">SA</div>
-                           <div>
-                             <h3 className="text-[20px] font-bold text-text-heading">my-saas-app</h3>
-                             <span className="text-[13px] text-text-muted">production • main</span>
-                           </div>
-                         </div>
-                         <span className="bg-green-100 text-green-700 text-[12px] font-bold px-3 py-1 rounded-full border border-green-200">Live</span>
-                      </div>
                       
-                      {/* Process Steps Bar */}
-                      <div className="flex items-center w-full mb-8">
-                         <div className="flex flex-col justify-center gap-2 items-center flex-1">
-                            <div className="w-6 h-6 rounded-full bg-brand text-white flex items-center justify-center text-[12px] font-bold">✓</div>
-                            <span className="text-[12px] font-semibold text-text-heading">Build</span>
-                         </div>
-                         <div className="w-16 h-1 bg-brand rounded-full mb-6"></div>
-                         <div className="flex flex-col justify-center gap-2 items-center flex-1">
-                            <div className="w-6 h-6 rounded-full bg-brand text-white flex items-center justify-center text-[12px] font-bold">✓</div>
-                            <span className="text-[12px] font-semibold text-text-heading">Test</span>
-                         </div>
-                         <div className="w-16 h-1 bg-brand rounded-full mb-6"></div>
-                         <div className="flex flex-col justify-center gap-2 items-center flex-1">
-                            <div className="w-6 h-6 rounded-full bg-brand text-white flex items-center justify-center text-[12px] font-bold">✓</div>
-                            <span className="text-[12px] font-semibold text-text-heading">Deploy</span>
-                         </div>
-                      </div>
+                      {activeStep === 1 && (
+                        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="h-full">
+                          <h3 className="text-[18px] font-bold text-text-heading mb-6">Connect Repository</h3>
+                          <div className="space-y-3">
+                            {["nextjs-saas-template", "ecommerce-dashboard", "portfolio-v3"].map((repo, idx) => (
+                              <div key={idx} className="p-4 border border-border-default rounded-xl flex items-center justify-between hover:border-brand transition-colors bg-white">
+                                <div className="flex items-center gap-3">
+                                  <div className="w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center text-lg">📁</div>
+                                  <span className="font-semibold text-text-heading">{repo}</span>
+                                </div>
+                                <button className="text-[13px] font-bold text-brand">Connect</button>
+                              </div>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
 
-                      <div className="bg-white border border-[#10B981] shadow-[0_8px_24px_rgba(16,185,129,0.15)] rounded-xl p-4 text-[14px] font-semibold flex items-center justify-between">
-                         <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold">✓</div>
-                            <span className="text-text-heading">Deployed successfully</span>
-                         </div>
-                         <span className="text-brand hover:underline cursor-pointer">Visit URL ↗</span>
-                      </div>
+                      {activeStep === 2 && (
+                        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="h-full">
+                          <h3 className="text-[18px] font-bold text-text-heading mb-6">Build Configuration</h3>
+                          <div className="space-y-4">
+                            <div>
+                              <label className="text-[12px] font-bold text-text-muted uppercase mb-2 block">Framework Preset</label>
+                              <div className="p-3 border border-brand rounded-lg bg-bg-blue-tint flex items-center justify-between">
+                                <span className="font-semibold text-brand">Next.js (Detected)</span>
+                                <span>✨</span>
+                              </div>
+                            </div>
+                            <div>
+                              <label className="text-[12px] font-bold text-text-muted uppercase mb-2 block">Build Command</label>
+                              <div className="p-3 border border-border-default rounded-lg bg-slate-50 font-mono text-[13px]">npm run build</div>
+                            </div>
+                            <button className="w-full py-3 bg-brand text-white rounded-lg font-bold shadow-md">Continue to Services</button>
+                          </div>
+                        </motion.div>
+                      )}
+
+                      {activeStep === 3 && (
+                        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="h-full">
+                          <h3 className="text-[18px] font-bold text-text-heading mb-4">Add Services</h3>
+                          <div className="grid grid-cols-2 gap-4">
+                            {[
+                              { name: "PostgreSQL", icon: "🐘" },
+                              { name: "Redis", icon: "🔴" },
+                              { name: "S3 Storage", icon: "📦" },
+                              { name: "Meilisearch", icon: "🔍" }
+                            ].map((service, idx) => (
+                              <div key={idx} className="p-4 border border-border-default rounded-xl flex flex-col items-center gap-2 hover:border-brand bg-white group transition-all">
+                                <span className="text-2xl">{service.icon}</span>
+                                <span className="text-[13px] font-bold text-text-heading">{service.name}</span>
+                                <button className="mt-2 w-full py-1.5 rounded-lg bg-slate-100 text-[11px] font-bold group-hover:bg-brand group-hover:text-white transition-colors">Add</button>
+                              </div>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+
+                      {activeStep === 4 && (
+                        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="h-full">
+                          <div className="flex items-center justify-between mb-8">
+                             <div className="flex items-center gap-4">
+                               <div className="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center font-bold text-slate-400">SA</div>
+                               <div>
+                                 <h3 className="text-[20px] font-bold text-text-heading">my-saas-app</h3>
+                                 <span className="text-[13px] text-text-muted">production • main</span>
+                               </div>
+                             </div>
+                             <span className="bg-green-100 text-green-700 text-[12px] font-bold px-3 py-1 rounded-full border border-green-200">Live</span>
+                          </div>
+                          
+                          <div className="flex items-center w-full mb-8">
+                             <div className="flex flex-col justify-center gap-2 items-center flex-1">
+                                <div className="w-6 h-6 rounded-full bg-brand text-white flex items-center justify-center text-[12px] font-bold">✓</div>
+                                <span className="text-[12px] font-semibold text-text-heading">Build</span>
+                             </div>
+                             <div className="w-16 h-1 bg-brand rounded-full mb-6"></div>
+                             <div className="flex flex-col justify-center gap-2 items-center flex-1">
+                                <div className="w-6 h-6 rounded-full bg-brand text-white flex items-center justify-center text-[12px] font-bold">✓</div>
+                                <span className="text-[12px] font-semibold text-text-heading">Test</span>
+                             </div>
+                             <div className="w-16 h-1 bg-brand rounded-full mb-6"></div>
+                             <div className="flex flex-col justify-center gap-2 items-center flex-1">
+                                <div className="w-6 h-6 rounded-full bg-brand text-white flex items-center justify-center text-[12px] font-bold">✓</div>
+                                <span className="text-[12px] font-semibold text-text-heading">Deploy</span>
+                             </div>
+                          </div>
+
+                          <div className="bg-white border border-[#10B981] shadow-[0_8px_24px_rgba(16,185,129,0.15)] rounded-xl p-4 text-[14px] font-semibold flex items-center justify-between">
+                             <div className="flex items-center gap-3">
+                                <div className="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold">✓</div>
+                                <span className="text-text-heading">Deployed successfully</span>
+                             </div>
+                             <span className="text-brand hover:underline cursor-pointer">Visit URL ↗</span>
+                          </div>
+                        </motion.div>
+                      )}
+
                    </div>
                 </div>
               </div>
@@ -479,16 +634,16 @@ export default function Home() {
           </motion.div>
 
           {/* Tab Content */}
-          <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center w-full min-h-[400px]">
+          <motion.div 
+            key={activeTab}
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 0.4 }} 
+            className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center w-full min-h-[400px]"
+          >
             {/* Left Checklist */}
             <div className="flex flex-col gap-6">
-              {[
-                "Auto-detect 40+ frameworks",
-                "Live streaming build logs",
-                "Preview URLs for every pull request",
-                "One-click instant rollback",
-                "Monorepo native support"
-              ].map((item, i) => (
+              {tabContent[activeTab].checklist.map((item, i) => (
                 <div key={i} className="flex items-center gap-4 bg-white p-4 rounded-2xl border border-border-default shadow-sm hover:shadow-md transition-shadow">
                   <div className="w-8 h-8 rounded-full bg-brand-pale flex items-center justify-center text-brand text-[14px] font-bold shrink-0">&#10003;</div>
                   <span className="text-[16px] text-text-heading font-semibold">{item}</span>
@@ -511,16 +666,7 @@ export default function Home() {
                  <div className="w-12"></div> {/* Spacer */}
               </div>
               <div className="p-8 font-mono text-[14px] leading-relaxed text-slate-300 h-[320px]">
-                <div className="text-brand-light font-bold mb-4">$ nova deploy --production</div>
-                <div className="text-slate-400 mb-2">› Initializing build environment...</div>
-                <div className="text-slate-400 mb-2">› Detected framework: <span className="text-white font-bold">Next.js 14</span></div>
-                <div className="text-slate-400 mb-2">› Installing dependencies... <span className="text-green-400 px-2 rounded font-semibold ml-2">1.2s</span></div>
-                <div className="text-slate-400 mb-6">› Building static segments...</div>
-                
-                <div className="animate-pulse flex gap-2">
-                   <div className="w-2 h-4 bg-brand"></div> 
-                   <span className="text-brand">Uploading assets to Edge Network...</span>
-                </div>
+                {tabContent[activeTab].terminal}
               </div>
             </div>
           </motion.div>
@@ -582,6 +728,190 @@ export default function Home() {
                 <div className="text-[18px] text-white font-bold mb-1">{stat.label}</div>
                 <div className="text-[14px] text-white/70">{stat.desc}</div>
               </div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* NEW SECTION 10: INTEGRATIONS MARQUEE */}
+      <section className="py-24 bg-white overflow-hidden">
+        <div className="max-w-6xl mx-auto px-6 mb-12 text-center">
+          <motion.h2 initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp} className="text-[32px] font-heading font-bold text-text-heading mb-4">Integrates with everything you use.</motion.h2>
+          <motion.p initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp} className="text-text-muted">Connect your favorite tools and workflows in seconds.</motion.p>
+        </div>
+        
+        <div className="flex overflow-hidden relative group">
+          <div className="flex animate-marquee whitespace-nowrap gap-12 py-4">
+            {[
+              "GitHub", "GitLab", "Bitbucket", "Slack", "Discord", "Terraform", "Docker", "Sentry", "New Relic", "Datadog", "LogRocket", "Stripe"
+            ].map((tool) => (
+              <div key={tool} className="flex items-center gap-3 bg-white border border-border-default px-6 py-4 rounded-2xl shadow-sm hover:border-brand hover:shadow-md transition-all cursor-default">
+                <div className="w-8 h-8 bg-bg-blue-tint rounded-lg flex items-center justify-center font-bold text-brand">
+                  {tool[0]}
+                </div>
+                <span className="text-[18px] font-semibold text-text-heading">{tool}</span>
+              </div>
+            ))}
+          </div>
+          {/* Duplicate for seamless loop */}
+          <div className="flex animate-marquee whitespace-nowrap gap-12 py-4" aria-hidden="true">
+            {[
+              "GitHub", "GitLab", "Bitbucket", "Slack", "Discord", "Terraform", "Docker", "Sentry", "New Relic", "Datadog", "LogRocket", "Stripe"
+            ].map((tool) => (
+              <div key={`${tool}-clone`} className="flex items-center gap-3 bg-white border border-border-default px-6 py-4 rounded-2xl shadow-sm hover:border-brand hover:shadow-md transition-all cursor-default">
+                <div className="w-8 h-8 bg-bg-blue-tint rounded-lg flex items-center justify-center font-bold text-brand">
+                  {tool[0]}
+                </div>
+                <span className="text-[18px] font-semibold text-text-heading">{tool}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* NEW SECTION 11: SECURITY & COMPLIANCE */}
+      <section className="py-32 bg-[#0F172A] relative overflow-hidden">
+        <div className="absolute inset-0 circuit-pattern opacity-[0.03] invert"></div>
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger}>
+              <motion.div variants={fadeUp} className="bg-brand/20 text-brand-light border border-brand/30 text-[12px] font-bold px-4 py-1.5 rounded-full mb-6 inline-block uppercase tracking-widest">
+                Enterprise Ready
+              </motion.div>
+              <motion.h2 variants={fadeUp} className="text-[40px] md:text-[56px] font-heading font-extrabold text-white mb-6 leading-tight">
+                Security that's <br/>
+                <span className="text-brand-light">non-negotiable.</span>
+              </motion.h2>
+              <motion.p variants={fadeUp} className="text-[18px] text-slate-400 mb-10 leading-relaxed max-w-lg">
+                We handle the complexity of infrastructure security so you can focus on building. From SOC2 to DDoS protection, we've got you covered.
+              </motion.p>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {[
+                  { title: "Automatic SSL", desc: "Managed TLS certificates for all domains." },
+                  { title: "DDoS Mitigation", desc: "Enterprise-grade protection at the edge." },
+                  { title: "Private Networking", desc: "Isolated VPCs for sensitive workloads." },
+                  { title: "Audit Logs", desc: "Track every action across your organization." }
+                ].map((item, i) => (
+                  <motion.div variants={fadeUp} key={i} className="flex gap-4">
+                    <div className="w-6 h-6 rounded-full bg-brand/20 flex items-center justify-center text-brand-light shrink-0">✓</div>
+                    <div>
+                      <h4 className="text-white font-bold mb-1">{item.title}</h4>
+                      <p className="text-slate-500 text-[14px]">{item.desc}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0, rotateY: 30 }}
+              whileInView={{ opacity: 1, rotateY: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1 }}
+              className="relative perspective-[1000px]"
+            >
+              <div className="relative z-10 bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 p-10 rounded-[40px] shadow-2xl overflow-hidden group">
+                 <div className="absolute inset-0 bg-brand/5 group-hover:bg-brand/10 transition-colors"></div>
+                 <div className="relative z-20 flex flex-col items-center text-center">
+                    <div className="w-24 h-24 bg-brand rounded-3xl flex items-center justify-center mb-8 shadow-[0_0_50px_rgba(37,99,235,0.4)] animate-float">
+                       <svg className="w-12 h-12 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-2">SOC2 Type II Certified</h3>
+                    <p className="text-slate-400 mb-8">Rigorous security standards for your peace of mind.</p>
+                    <div className="flex gap-3">
+                       <div className="bg-slate-800 border border-slate-700 px-4 py-2 rounded-xl text-[12px] font-bold text-slate-300">ISO 27001</div>
+                       <div className="bg-slate-800 border border-slate-700 px-4 py-2 rounded-xl text-[12px] font-bold text-slate-300">HIPAA</div>
+                       <div className="bg-slate-800 border border-slate-700 px-4 py-2 rounded-xl text-[12px] font-bold text-slate-300">GDPR</div>
+                    </div>
+                 </div>
+              </div>
+              {/* Decorative elements */}
+              <div className="absolute -top-10 -right-10 w-40 h-40 bg-brand/20 rounded-full blur-[80px]"></div>
+              <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-500/20 rounded-full blur-[80px]"></div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* NEW SECTION 12: PRICING */}
+      <section className="py-32 bg-white px-6">
+        <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger} className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <motion.div variants={fadeUp} className="bg-brand-pale text-brand text-[13px] font-bold px-4 py-1.5 rounded-full mb-6 inline-block uppercase tracking-widest">Pricing</motion.div>
+            <motion.h2 variants={fadeUp} className="text-[36px] md:text-[52px] font-heading font-bold text-text-heading mb-6">Simple, scalable pricing.</motion.h2>
+            <motion.p variants={fadeUp} className="text-[18px] text-text-muted max-w-2xl mx-auto">Start for free and scale as you grow. No hidden fees or surprise overages.</motion.p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { name: "Starter", price: "$0", desc: "For hobbyists and small projects.", features: ["3 Projects", "Community Support", "Automatic SSL", "Global CDN"], cta: "Start for Free", highlight: false },
+              { name: "Pro", price: "$29", desc: "For growing teams and production apps.", features: ["Unlimited Projects", "Priority Support", "Custom Domains", "Advanced Metrics", "Team RBAC"], cta: "Start 14-day Trial", highlight: true },
+              { name: "Enterprise", price: "Custom", desc: "For large organizations with complex needs.", features: ["Custom SLA", "Dedicated Account Manager", "SSO/SAML", "VPC Peering", "Audit Logs"], cta: "Contact Sales", highlight: false }
+            ].map((plan, i) => (
+              <motion.div 
+                variants={fadeUp} 
+                key={i} 
+                whileHover={{ y: -10 }}
+                className={`p-10 rounded-[32px] border ${plan.highlight ? 'border-brand bg-white shadow-[0_20px_50px_rgba(37,99,235,0.1)] relative' : 'border-border-default bg-[#F8FAFF]'} transition-all`}
+              >
+                {plan.highlight && <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand text-white text-[12px] font-bold px-4 py-1 rounded-full uppercase tracking-widest">Most Popular</div>}
+                <h3 className="text-[20px] font-bold text-text-heading mb-2">{plan.name}</h3>
+                <div className="flex items-baseline gap-1 mb-6">
+                  <span className="text-[48px] font-heading font-extrabold text-text-heading">{plan.price}</span>
+                  {plan.price !== "Custom" && <span className="text-text-muted font-semibold">/mo</span>}
+                </div>
+                <p className="text-text-muted mb-8 text-[15px]">{plan.desc}</p>
+                <button className={`w-full py-4 rounded-full font-bold transition-all mb-8 ${plan.highlight ? 'bg-brand text-white hover:bg-brand-hover shadow-lg shadow-brand/20' : 'bg-white border border-border-default text-text-heading hover:border-brand hover:text-brand'}`}>
+                  {plan.cta}
+                </button>
+                <div className="space-y-4">
+                  {plan.features.map((feature, idx) => (
+                    <div key={idx} className="flex items-center gap-3">
+                      <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 ${plan.highlight ? 'bg-brand/10 text-brand' : 'bg-slate-200 text-slate-500'}`}>
+                        <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M20 6L9 17L4 12"/></svg>
+                      </div>
+                      <span className="text-[14px] font-medium text-text-body">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* NEW SECTION 13: FAQ */}
+      <section className="py-32 bg-[#F8FAFF] px-6">
+        <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger} className="max-w-3xl mx-auto">
+          <div className="text-center mb-16">
+            <motion.h2 variants={fadeUp} className="text-[36px] md:text-[48px] font-heading font-bold text-text-heading mb-6">Frequently Asked Questions</motion.h2>
+            <motion.p variants={fadeUp} className="text-[18px] text-text-muted">Everything you need to know about the platform.</motion.p>
+          </div>
+          
+          <div className="space-y-4">
+            {[
+              { q: "How does the free tier work?", a: "Our free tier includes everything you need to host hobby projects. You get 3 projects, a global CDN, and automatic SSL forever." },
+              { q: "Can I use my own domain?", a: "Yes, you can connect unlimited custom domains to any project on the Pro and Enterprise plans." },
+              { q: "Do you support monorepos?", a: "Absolutely. NovaDeploy has native support for monorepos. You can configure multiple apps from a single repository with ease." },
+              { q: "What happens if I exceed my limits?", a: "We don't believe in surprise bills. If you're approaching your limit, we'll notify you. We never shut down your app for minor overages." },
+              { q: "Is my data secure?", a: "We take security seriously. We are SOC2 Type II certified and use enterprise-grade encryption for all sensitive data." }
+            ].map((faq, i) => (
+              <motion.div 
+                variants={fadeUp} 
+                key={i}
+                className="bg-white border border-border-default rounded-[24px] overflow-hidden group"
+              >
+                <details className="w-full">
+                  <summary className="flex items-center justify-between p-8 cursor-pointer list-none font-bold text-text-heading text-[18px] group-hover:text-brand transition-colors">
+                    {faq.q}
+                    <span className="w-8 h-8 rounded-full bg-bg-blue-tint flex items-center justify-center text-brand group-open:rotate-180 transition-transform">+</span>
+                  </summary>
+                  <div className="px-8 pb-8 text-text-body leading-relaxed">
+                    {faq.a}
+                  </div>
+                </details>
+              </motion.div>
             ))}
           </div>
         </motion.div>
