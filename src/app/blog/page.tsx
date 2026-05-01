@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { client, urlFor } from "@/lib/sanity";
+import { client, urlFor } from "../../lib/sanity";
 import { groq } from "next-sanity";
 
 // This enables live updates without full redeploy using Incremental Static Regeneration (ISR)

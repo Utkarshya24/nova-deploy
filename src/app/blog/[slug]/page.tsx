@@ -1,4 +1,4 @@
-import { client, urlFor } from "@/lib/sanity";
+import { client, urlFor } from "../../../lib/sanity";
 import { groq } from "next-sanity";
 import { notFound } from "next/navigation";
 import Link from "next/link";
