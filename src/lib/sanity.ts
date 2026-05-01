@@ -1,5 +1,5 @@
 import { createClient } from "next-sanity";
-import { createImageUrlBuilder } from "@sanity/image-url";
+import imageUrlBuilder from "@sanity/image-url";
 
 export const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "your-project-id",
@@ -8,7 +8,7 @@ export const client = createClient({
   useCdn: false, // Set to false for live updates (or use ISR with revalidate)
 });
 
-const builder = createImageUrlBuilder(client);
+const builder = imageUrlBuilder(client);
 
 export function urlFor(source: any) {
   return builder.image(source);
