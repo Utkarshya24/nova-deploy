@@ -103,7 +103,7 @@ export default function DocsPage() {
             <div className="md:w-1/2 relative z-10">
                <div className="bg-white/10 text-white text-[11px] font-bold px-3 py-1 rounded-full inline-flex mb-4 uppercase tracking-wider backdrop-blur-md border border-white/10">For Developers</div>
                <h2 className="text-[32px] font-heading font-bold text-white mb-4">API Reference</h2>
-               <p className="text-[16px] text-slate-300 mb-8 leading-[1.7]">Build custom automations, integrate with your internal tools, and manage your NovaDeploy resources programmatically using our RESTful API.</p>
+               <p className="text-[16px] text-slate-300 mb-8 leading-[1.7]">Build custom automations, integrate with your internal tools, and manage your DCDeploy resources programmatically using our RESTful API.</p>
                <button className="px-6 py-3 bg-white text-[#0F172A] font-semibold rounded-full hover:bg-slate-100 transition-colors">
                   Explore API Docs
                </button>
@@ -118,10 +118,10 @@ export default function DocsPage() {
                   </div>
                   <div className="text-slate-400 mb-2"># Create a new deployment</div>
                   <div className="text-slate-300">
-                    <span className="text-purple-400">curl</span> -X POST <span className="text-brand-light">https://api.novadeploy.app/v1/deployments</span> \
+                    <span className="text-purple-400">curl</span> -X POST <span className="text-brand-light">https://api.dcdeploy.app/v1/deployments</span> \
                   </div>
                   <div className="text-slate-300 ml-4">
-                    -H <span className="text-amber-300">"Authorization: Bearer $NOVA_TOKEN"</span> \
+                    -H <span className="text-amber-300">"Authorization: Bearer $DCD_TOKEN"</span> \
                   </div>
                   <div className="text-slate-300 ml-4">
                     -H <span className="text-amber-300">"Content-Type: application/json"</span> \

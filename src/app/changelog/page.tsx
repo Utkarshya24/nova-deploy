@@ -8,7 +8,7 @@ export default function ChangelogPage() {
       typeColor: "bg-green-100 text-green-700",
       date: "April 24, 2026",
       title: "Introducing Managed Redis",
-      desc: "You can now provision and manage Redis instances directly from your NovaDeploy dashboard. Managed Redis instances automatically inject connection strings into your connected services securely.",
+      desc: "You can now provision and manage Redis instances directly from your DCDeploy dashboard. Managed Redis instances automatically inject connection strings into your connected services securely.",
       bullets: [
         "1-click provisioning for Redis 7.x",
         "Automatic connection string injection via REDIS_URL",
@@ -68,7 +68,7 @@ export default function ChangelogPage() {
         </h1>
         
         <p className="relative z-10 text-[18px] text-text-body max-w-[600px]">
-          New updates and improvements to NovaDeploy.
+          New updates and improvements to DCDeploy.
         </p>
       </section>
 

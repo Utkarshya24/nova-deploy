@@ -43,7 +43,7 @@ export default function AboutPage() {
           </motion.h1>
           
           <motion.p variants={fadeUp} className="text-[20px] text-text-body max-w-[700px] leading-[1.7] mb-10 opacity-80">
-            NovaDeploy was founded by engineers who were tired of fighting their tools. 
+            DCDeploy was founded by engineers who were tired of fighting their tools. 
             We build for the creators, the dreamers, and the builders.
           </motion.p>
         </motion.div>
@@ -110,7 +110,7 @@ export default function AboutPage() {
               simplistic for production or required a massive DevOps team to maintain.
             </p>
             <p className="text-[18px] text-text-body leading-[1.8]">
-              NovaDeploy was built to bridge that gap. We've taken the best practices of 
+              DCDeploy was built to bridge that gap. We've taken the best practices of 
               enterprise infrastructure and wrapped them in an interface that anyone can use. 
               No YAML mastery required, no surprise bills, just pure focus on your code.
             </p>

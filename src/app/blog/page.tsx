@@ -5,7 +5,7 @@ export default function BlogPage() {
     { title: "Building a Serverless Database from Scratch", bg: "from-blue-100 to-blue-200", badge: "ENGINEERING", time: "10 min", author: "David Kim" },
     { title: "Deploy Next.js 14 to production in 3 clicks", bg: "from-purple-100 to-purple-200", badge: "TUTORIAL", time: "5 min", author: "Alex Chen" },
     { title: "How we cut deploy times by 40% with Nixpacks", bg: "from-green-100 to-green-200", badge: "ENGINEERING", time: "8 min", author: "Sarah Jenkins" },
-    { title: "NovaDeploy vs Railway vs Render: honest 2026 comparison", bg: "from-amber-100 to-amber-200", badge: "GUIDE", time: "12 min", author: "Tom Wilson" },
+    { title: "DCDeploy vs Railway vs Render: honest 2026 comparison", bg: "from-amber-100 to-amber-200", badge: "GUIDE", time: "12 min", author: "Tom Wilson" },
     { title: "The ultimate guide to role-based access control", bg: "from-indigo-100 to-indigo-200", badge: "TUTORIAL", time: "15 min", author: "Marcus Johnson" },
     { title: "Why we abandoned Kubernetes for our Edge Network", bg: "from-rose-100 to-rose-200", badge: "ENGINEERING", time: "9 min", author: "Elena Rodriguez" },
   ];
@@ -16,7 +16,7 @@ export default function BlogPage() {
       {/* HERO / FEATURED POST */}
       <section className="relative pt-32 pb-16 px-6 max-w-6xl mx-auto w-full">
         <h1 className="text-[48px] font-heading font-extrabold text-text-heading leading-[1.1] tracking-[-0.02em] mb-12 text-center md:text-left">
-          The NovaDeploy <span className="gradient-text">Blog</span>
+          The DCDeploy <span className="gradient-text">Blog</span>
         </h1>
         
         {/* Featured Post Card */}
@@ -33,7 +33,7 @@ export default function BlogPage() {
               {/* Right Content Area */}
               <div className="md:w-[45%] p-10 flex flex-col justify-center">
                  <div className="bg-bg-blue-tint text-brand text-[11px] font-bold px-3 py-1 rounded-full w-max mb-6 uppercase tracking-wider">Product Update</div>
-                 <h2 className="text-[32px] font-heading font-bold text-text-heading mb-4 leading-tight group-hover:text-brand transition-colors">Introducing NovaDeploy Edge Workers</h2>
+                 <h2 className="text-[32px] font-heading font-bold text-text-heading mb-4 leading-tight group-hover:text-brand transition-colors">Introducing DCDeploy Edge Workers</h2>
                  <p className="text-[16px] text-text-muted leading-[1.7] mb-8">
                    Run your compute at the edge, globally distributed across 35 regions. 0ms cold starts, native TypeScript support, and built directly into our deployment pipeline.
                  </p>

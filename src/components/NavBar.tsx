@@ -18,12 +18,12 @@ export function NavBar() {
   return (
     <header className="sticky top-0 z-50 h-[68px] w-full bg-white/80 backdrop-blur-md border-b border-transparent transition-colors duration-200" id="navbar">
       <div className="mx-auto max-w-7xl px-6 h-full flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 group">
-          {/* Logo icon placeholder */}
-          <div className="text-brand transition-transform group-hover:scale-110">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-          </div>
-          <span className="font-heading font-bold text-[18px] text-text-heading">NovaDeploy</span>
+        <Link href="/" className="flex items-center group">
+          <img 
+            src="/logo-full.svg" 
+            alt="DCDeploy" 
+            className="h-10 w-auto transition-transform group-hover:scale-105" 
+          />
         </Link>
 
         {/* Center Pill Navigation */}

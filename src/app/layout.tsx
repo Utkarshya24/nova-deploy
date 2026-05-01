@@ -23,7 +23,7 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NovaDeploy | Ship at the speed of thought",
+  title: "DCDeploy | Ship at the speed of thought",
   description: "Deploy any stack in under 3 minutes, anywhere in the world.",
 };
 

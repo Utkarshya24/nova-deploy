@@ -90,14 +90,14 @@ export default function ContactPage() {
                         <span className="text-2xl">📧</span>
                         <div className="flex flex-col">
                           <span className="text-[12px] font-bold text-text-muted uppercase tracking-wider">Email Us</span>
-                          <span className="text-[15px] font-bold text-brand">sales@novadeploy.app</span>
+                          <span className="text-[15px] font-bold text-brand">sales@dcdeploy.app</span>
                         </div>
                       </div>
                       <div className="flex items-center gap-4 p-4 bg-white border border-border-default rounded-2xl">
                         <span className="text-2xl">📅</span>
                         <div className="flex flex-col">
                           <span className="text-[12px] font-bold text-text-muted uppercase tracking-wider">Book a Demo</span>
-                          <span className="text-[15px] font-bold text-text-heading">calendly.com/novadeploy</span>
+                          <span className="text-[15px] font-bold text-text-heading">calendly.com/dcdeploy</span>
                         </div>
                       </div>
                     </div>
@@ -114,7 +114,7 @@ export default function ContactPage() {
                         <span className="text-2xl">🛠️</span>
                         <div className="flex flex-col">
                           <span className="text-[12px] font-bold text-text-muted uppercase tracking-wider">Support Ticket</span>
-                          <span className="text-[15px] font-bold text-brand">support.novadeploy.app</span>
+                          <span className="text-[15px] font-bold text-brand">support.dcdeploy.app</span>
                         </div>
                       </div>
                       <div className="flex items-center gap-4 p-4 bg-white border border-border-default rounded-2xl">
@@ -146,7 +146,7 @@ export default function ContactPage() {
                    <span className="text-slate-400">🐦</span>
                    <div>
                      <p className="font-bold text-[14px]">Twitter / X</p>
-                     <p className="text-[13px] text-slate-400">@novadeploy</p>
+                     <p className="text-[13px] text-slate-400">@dcdeploy</p>
                    </div>
                  </div>
                </div>
@@ -210,7 +210,7 @@ export default function ContactPage() {
                     <label className="text-[13px] font-bold text-text-heading uppercase tracking-wider">Project URL (Optional)</label>
                     <input 
                       type="text" 
-                      placeholder="novadeploy.app/my-project" 
+                      placeholder="dcdeploy.app/my-project" 
                       className="w-full px-5 py-4 bg-bg-page border border-border-default rounded-2xl focus:outline-none focus:border-brand transition-colors text-[15px]" 
                     />
                   </div>

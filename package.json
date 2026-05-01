@@ -1,5 +1,5 @@
 {
-  "name": "nova-deploy",
+  "name": "dcdeploy",
   "version": "0.1.0",
   "private": true,
   "type": "module",

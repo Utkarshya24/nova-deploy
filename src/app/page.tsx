@@ -26,7 +26,7 @@ export default function Home() {
       checklist: ["Auto-detect 40+ frameworks", "Live streaming build logs", "Preview URLs for every PR", "One-click instant rollback", "Monorepo native support"],
       terminal: (
         <>
-          <div className="text-brand-light font-bold mb-4">$ nova deploy --production</div>
+          <div className="text-brand-light font-bold mb-4">$ dcd deploy --production</div>
           <div className="text-slate-400 mb-2">› Initializing build environment...</div>
           <div className="text-slate-400 mb-2">› Detected framework: <span className="text-white font-bold">Next.js 14</span></div>
           <div className="text-slate-400 mb-2">› Installing dependencies... <span className="text-green-400 px-2 rounded font-semibold ml-2">1.2s</span></div>
@@ -42,7 +42,7 @@ export default function Home() {
       checklist: ["Real-time traffic metrics", "Automatic error tracking", "Custom log filtering", "Performance Web Vitals", "Usage & quota alerts"],
       terminal: (
         <>
-          <div className="text-brand-light font-bold mb-4">$ nova logs --follow --env prod</div>
+          <div className="text-brand-light font-bold mb-4">$ dcd logs --follow --env prod</div>
           <div className="text-slate-500 mb-2">[12:44:02] Connected to production stream...</div>
           <div className="text-green-400 mb-2">GET /api/v1/user/profile 200 OK (42ms)</div>
           <div className="text-green-400 mb-2">GET /_next/static/chunks/main.js 200 OK (12ms)</div>
@@ -55,7 +55,7 @@ export default function Home() {
       checklist: ["Global edge distribution", "Auto-scaling compute", "Smart asset caching", "Load balancing at edge", "Zero-downtime upgrades"],
       terminal: (
         <>
-          <div className="text-brand-light font-bold mb-4">$ nova scale --min 3 --max 20</div>
+          <div className="text-brand-light font-bold mb-4">$ dcd scale --min 3 --max 20</div>
           <div className="text-slate-400 mb-2">› Scaling cluster "main-api" across 35 regions...</div>
           <div className="text-slate-400 mb-2">› US-East-1 (N. Virginia): <span className="text-green-400">Active</span></div>
           <div className="text-slate-400 mb-2">› EU-West-1 (Dublin): <span className="text-green-400">Active</span></div>
@@ -68,7 +68,7 @@ export default function Home() {
       checklist: ["Granular RBAC roles", "Team activity feeds", "Shared env variables", "Project ownership transfer", "Organization audit logs"],
       terminal: (
         <>
-          <div className="text-brand-light font-bold mb-4">$ nova team add sarah@company.com</div>
+          <div className="text-brand-light font-bold mb-4">$ dcd team add sarah@company.com</div>
           <div className="text-slate-400 mb-2">› Checking organization seats... [14/20 used]</div>
           <div className="text-slate-400 mb-2">› Assigning role: <span className="text-white font-bold">Senior Engineer</span></div>
           <div className="text-slate-400 mb-4">› Sending invitation email...</div>
@@ -81,7 +81,7 @@ export default function Home() {
       checklist: ["Automatic managed TLS/SSL", "Enterprise DDoS protection", "Environment secret encryption", "IP Access Whitelisting", "SOC2 Compliance ready"],
       terminal: (
         <>
-          <div className="text-brand-light font-bold mb-4">$ nova secure --audit</div>
+          <div className="text-brand-light font-bold mb-4">$ dcd secure --audit</div>
           <div className="text-slate-400 mb-2">› Scanning environment variables... <span className="text-green-400">Safe</span></div>
           <div className="text-slate-400 mb-2">› Checking SSL certificates... <span className="text-green-400">Valid</span></div>
           <div className="text-slate-400 mb-2">› DDoS Firewall Status: <span className="text-green-400">Active (L7)</span></div>
@@ -174,7 +174,7 @@ export default function Home() {
              <div className="absolute bottom-[40px] w-full h-[180px] bg-white rounded-xl opacity-100 backdrop-blur-md border border-white/20 overflow-hidden shadow-xl" style={{ transform: 'translateZ(40px)' }}>
                 <img 
                   src="/dash.png" 
-                  alt="NovaDeploy Dashboard Screenshot"
+                  alt="DCDeploy Dashboard Screenshot"
                   className="w-full h-full object-cover opacity-90"
                 />
              </div>
@@ -255,7 +255,7 @@ export default function Home() {
                From <span className="text-[#0F172A] border-b-4 border-brand/30">git push</span> to <span className="gradient-text">global impact.</span>
             </motion.h2>
             <motion.p variants={fadeUp} className="text-[18px] text-text-body text-center max-w-2xl mb-16 leading-[1.7]">
-               We've eliminated the friction of traditional CI/CD. NovaDeploy intelligently orchestrates your builds, optimizes your assets, and distributes them automatically.
+               We've eliminated the friction of traditional CI/CD. DCDeploy intelligently orchestrates your builds, optimizes your assets, and distributes them automatically.
             </motion.p>
 
             <motion.div variants={fadeUp} className="w-full relative">
@@ -341,10 +341,10 @@ export default function Home() {
                      <div className="w-3 h-3 rounded-full bg-green-400"></div>
                    </div>
                    <div className="flex-1 text-center text-[13px] font-semibold text-text-muted font-mono tracking-wide">
-                    {activeStep === 1 && "connect.novadeploy.app"}
-                    {activeStep === 2 && "config.novadeploy.app"}
-                    {activeStep === 3 && "services.novadeploy.app"}
-                    {activeStep === 4 && "dashboard.novadeploy.app"}
+                    {activeStep === 1 && "connect.dcdeploy.app"}
+                    {activeStep === 2 && "config.dcdeploy.app"}
+                    {activeStep === 3 && "services.dcdeploy.app"}
+                    {activeStep === 4 && "dashboard.dcdeploy.app"}
                    </div>
                 </div>
                 {/* Body */}
@@ -433,7 +433,7 @@ export default function Home() {
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-[#4da1db]">35+ regions worldwide.</span>
                </h2>
                <p className="text-[18px] text-slate-300 mb-10 leading-[1.8] max-w-xl">
-                  Your users shouldn't have to wait. NovaDeploy automatically provisions your application across our enterprise-grade Edge Network, ensuring millisecond latency regardless of where your customers are.
+                  Your users shouldn't have to wait. DCDeploy automatically provisions your application across our enterprise-grade Edge Network, ensuring millisecond latency regardless of where your customers are.
                </p>
                
                <div className="grid grid-cols-2 gap-8 w-full max-w-lg border-t border-white/10 pt-8">
@@ -607,7 +607,7 @@ export default function Home() {
                     <div className="w-3 h-3 rounded-full bg-amber-500"></div>
                     <div className="w-3 h-3 rounded-full bg-green-500"></div>
                  </div>
-                 <div className="text-[#64748B] text-[12px] font-mono font-semibold">~/projects/nova-deploy</div>
+                 <div className="text-[#64748B] text-[12px] font-mono font-semibold">~/projects/dcdeploy</div>
                  <div className="w-12"></div> {/* Spacer */}
               </div>
               <div className="p-8 font-mono text-[14px] leading-relaxed text-slate-300 h-[320px]">
@@ -838,7 +838,7 @@ export default function Home() {
             {[
               { q: "How does the free tier work?", a: "Our free tier includes everything you need to host hobby projects. You get 3 projects, a global CDN, and automatic SSL forever." },
               { q: "Can I use my own domain?", a: "Yes, you can connect unlimited custom domains to any project on the Pro and Enterprise plans." },
-              { q: "Do you support monorepos?", a: "Absolutely. NovaDeploy has native support for monorepos. You can configure multiple apps from a single repository with ease." },
+              { q: "Do you support monorepos?", a: "Absolutely. DCDeploy has native support for monorepos. You can configure multiple apps from a single repository with ease." },
               { q: "What happens if I exceed my limits?", a: "We don't believe in surprise bills. If you're approaching your limit, we'll notify you. We never shut down your app for minor overages." },
               { q: "Is my data secure?", a: "We take security seriously. We are SOC2 Type II certified and use enterprise-grade encryption for all sensitive data." }
             ].map((faq, i) => (
@@ -887,7 +887,7 @@ export default function Home() {
             {[
               { title: "Deploy Next.js 14 to production in 3 clicks", bg: "bg-gradient-to-br from-[#EFF6FF] to-[#DBEAFE]", badge: "TUTORIAL", time: "5 min", color: "text-blue-600" },
               { title: "How we cut deploy times by 40% with Nixpacks", bg: "bg-gradient-to-br from-[#F0FDF4] to-[#DCFCE7]", badge: "ENGINEERING", time: "8 min", color: "text-green-600" },
-              { title: "NovaDeploy vs Railway vs Render: honest comparison", bg: "bg-gradient-to-br from-[#FFF7ED] to-[#FFEDD5]", badge: "GUIDE", time: "12 min", color: "text-orange-600" },
+              { title: "DCDeploy vs Railway vs Render: honest comparison", bg: "bg-gradient-to-br from-[#FFF7ED] to-[#FFEDD5]", badge: "GUIDE", time: "12 min", color: "text-orange-600" },
             ].map((post, i) => (
               <motion.div variants={fadeUp} key={i} className="bg-white border border-border-default rounded-[24px] overflow-hidden shadow-[0_4px_14px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(14,84,135,0.12)] hover:-translate-y-2 transition-all duration-300 flex flex-col group cursor-pointer">
                  <div className={`h-[220px] w-full ${post.bg} p-8 flex items-start relative`}>
@@ -939,11 +939,11 @@ export default function Home() {
                 <div className="p-6 font-mono text-[13px] leading-[1.8]">
                    <div className="text-slate-300">$ git commit -m "Launch feature"</div>
                    <div className="text-slate-300">$ git push origin main</div>
-                   <div className="text-slate-500 mt-2">› NovaDeploy detected changes.</div>
+                   <div className="text-slate-500 mt-2">› DCDeploy detected changes.</div>
                    <div className="text-brand-light">› Building application... 1.2s</div>
                    <div className="text-brand-light">› Deploying to Edge Network...</div>
                    <div className="text-[#10B981] font-bold mt-2">✔ Deployment Live!</div>
-                   <div className="text-white mt-1 border-b border-white/20 inline-block">https://app.novadeploy.app</div>
+                   <div className="text-white mt-1 border-b border-white/20 inline-block">https://app.dcdeploy.app</div>
                 </div>
              </motion.div>
           </div>

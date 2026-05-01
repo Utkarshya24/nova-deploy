@@ -122,7 +122,7 @@ export default function FeaturesPage() {
                            <div className="w-3 h-3 rounded-full bg-amber-500"></div>
                            <div className="w-3 h-3 rounded-full bg-green-500"></div>
                         </div>
-                        <div className="text-[12px] font-mono text-slate-400">my-app — NovaDeploy</div>
+                        <div className="text-[12px] font-mono text-slate-400">my-app — DCDeploy</div>
                         <div className="w-12"></div>
                       </div>
                       <div className="p-6 font-mono text-[13px] text-slate-300 leading-[1.8] min-h-[300px]">
@@ -132,7 +132,7 @@ export default function FeaturesPage() {
                         <div className="text-slate-500 flex gap-4"><span>11:05</span> <span className="text-slate-300">Creating optimized production build...</span></div>
                         <div className="text-slate-500 flex gap-4"><span>11:05</span> <span className="text-[#10B981]">✔ Uploading assets to Edge Network...</span></div>
                         <div className="mt-4 border-l-2 border-[#10B981] pl-4 text-white">Successfully deployed!</div>
-                        <div className="text-[#4da1db] mt-2 pl-4 break-words">https://my-app-prod.novadeploy.app</div>
+                        <div className="text-[#4da1db] mt-2 pl-4 break-words">https://my-app-prod.dcdeploy.app</div>
                       </div>
                     </div>
                   </div>
@@ -240,7 +240,7 @@ export default function FeaturesPage() {
                 <div className="max-w-4xl mx-auto">
                   <div className="bg-brand-pale text-brand px-3 py-1 text-[12px] font-bold rounded-full inline-block mb-6 uppercase tracking-wider">Security</div>
                   <h2 className="text-[40px] font-heading font-bold text-text-heading mb-6 leading-tight">Enterprise-Grade <span className="gradient-text">Protection.</span></h2>
-                  <p className="text-[18px] text-text-body mb-16">Every application deployed on NovaDeploy is protected by our multi-layered security architecture.</p>
+                  <p className="text-[18px] text-text-body mb-16">Every application deployed on DCDeploy is protected by our multi-layered security architecture.</p>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                     {["SOC 2 Type II", "GDPR Compliant", "AES-256 Encryption", "TLS 1.3", "RBAC Control", "VPC Isolation", "Anti-DDoS", "Audit Logging"].map((s, i) => (
                       <div key={i} className="bg-white border border-border-default p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">

@@ -4,69 +4,77 @@ export function Footer() {
   return (
     <footer className="bg-[#0F172A] text-white pt-[80px] pb-[40px] px-6">
       <div className="mx-auto max-w-7xl max-w-layout">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-12 text-[14px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
           
-          <div className="md:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-              <span className="font-heading font-bold text-[18px]">NovaDeploy</span>
+          {/* Logo & About */}
+          <div className="lg:col-span-4">
+            <Link href="/" className="flex items-center gap-2 mb-6 group">
+              <img 
+                src="/logo-full.svg" 
+                alt="DCDeploy" 
+                className="h-8 w-auto brightness-0 invert transition-transform group-hover:scale-105" 
+              />
+            </Link>
+            <p className="text-white/60 text-[15px] leading-relaxed mb-8 max-w-[320px]">
+              Deploy modern web applications in seconds with DCDeploy. 
+              The infrastructure for companies that scale.
+            </p>
+            <div className="flex gap-4">
+               <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 cursor-pointer transition-colors border border-white/10">
+                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+               </div>
+               <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 cursor-pointer transition-colors border border-white/10">
+                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+               </div>
+               <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 cursor-pointer transition-colors border border-white/10">
+                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+               </div>
             </div>
-            <p className="text-white/60 mb-6">Ship at the speed of thought.</p>
-            <div className="flex flex-col gap-2 mb-6">
-              <input type="email" placeholder="Email address" className="bg-white/10 border border-white/20 rounded-xl px-4 py-2 text-white placeholder:text-white/40 focus:outline-none focus:border-white/40" />
-              <button className="bg-white text-[#0F172A] font-semibold rounded-xl px-4 py-2 hover:bg-white/90">Subscribe</button>
-              <span className="text-[11px] text-white/40">By subscribing you agree to our terms.</span>
+          </div>
+
+          {/* Links Columns */}
+          <div className="lg:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div>
+              <h4 className="font-bold text-[15px] mb-6">Product</h4>
+              <ul className="flex flex-col gap-4 text-white/50 text-[14px]">
+                <li><Link href="/features" className="hover:text-white transition-colors">Features</Link></li>
+                <li><Link href="/pricing" className="hover:text-white transition-colors">Pricing</Link></li>
+                <li><Link href="/changelog" className="hover:text-white transition-colors">Changelog</Link></li>
+                <li><Link href="/docs" className="hover:text-white transition-colors">Documentation</Link></li>
+              </ul>
             </div>
-          </div>
-
-          <div className="md:col-span-1 flex flex-col gap-3">
-            <h4 className="font-semibold text-white mb-2">Product</h4>
-            <Link href="/features" className="text-white/70 hover:text-white transition-colors">Features</Link>
-            <Link href="/pricing" className="text-white/70 hover:text-white transition-colors">Pricing</Link>
-            <Link href="/changelog" className="text-white/70 hover:text-white transition-colors">Changelog</Link>
-            <Link href="/docs" className="text-white/70 hover:text-white transition-colors">Documentation</Link>
-          </div>
-
-          <div className="md:col-span-1 flex flex-col gap-3">
-            <h4 className="font-semibold text-white mb-2">Company</h4>
-            <Link href="/about" className="text-white/70 hover:text-white transition-colors">About Us</Link>
-            <Link href="/careers" className="text-white/70 hover:text-white transition-colors">Careers</Link>
-            <Link href="/blog" className="text-white/70 hover:text-white transition-colors">Blog</Link>
-            <Link href="/contact" className="text-white/70 hover:text-white transition-colors">Contact</Link>
-          </div>
-
-          <div className="md:col-span-1 flex flex-col gap-3">
-            <h4 className="font-semibold text-white mb-2">Resources</h4>
-            <Link href="/templates" className="text-white/70 hover:text-white transition-colors">Templates</Link>
-            <Link href="/community" className="text-white/70 hover:text-white transition-colors">Community</Link>
-            <Link href="/partners" className="text-white/70 hover:text-white transition-colors">Partners</Link>
-            <Link href="/status" className="text-white/70 hover:text-white transition-colors">System Status</Link>
-          </div>
-
-          <div className="md:col-span-1 flex flex-col gap-3">
-            <h4 className="font-semibold text-white mb-2">Download App</h4>
-            <button className="border border-white/20 rounded-xl px-4 py-2 hover:bg-white/5 transition-colors text-left flex items-center gap-3">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/><path d="M10 2c1 .5 2 2 2 5"/></svg>
-              <div className="flex flex-col">
-                <span className="text-[10px] text-white/70">Download on the</span>
-                <span className="font-semibold">App Store</span>
-              </div>
-            </button>
-            <button className="border border-white/20 rounded-xl px-4 py-2 hover:bg-white/5 transition-colors text-left flex items-center gap-3">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-              <div className="flex flex-col">
-                <span className="text-[10px] text-white/70">GET IT ON</span>
-                <span className="font-semibold">Google Play</span>
-              </div>
-            </button>
+            <div>
+              <h4 className="font-bold text-[15px] mb-6">Company</h4>
+              <ul className="flex flex-col gap-4 text-white/50 text-[14px]">
+                <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
+                <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
+                <li><Link href="/careers" className="hover:text-white transition-colors">Careers</Link></li>
+                <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold text-[15px] mb-6">Support</h4>
+              <ul className="flex flex-col gap-4 text-white/50 text-[14px]">
+                <li><Link href="/docs" className="hover:text-white transition-colors">Help Center</Link></li>
+                <li><Link href="/status" className="hover:text-white transition-colors">Platform Status</Link></li>
+                <li><Link href="/security" className="hover:text-white transition-colors">Security</Link></li>
+                <li><Link href="/contact" className="hover:text-white transition-colors">Priority Support</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold text-[15px] mb-6">Legal</h4>
+              <ul className="flex flex-col gap-4 text-white/50 text-[14px]">
+                <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
+                <li><Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link></li>
+                <li><Link href="/cookies" className="hover:text-white transition-colors">Cookie Policy</Link></li>
+              </ul>
+            </div>
           </div>
         </div>
-        
-        <div className="w-full h-px bg-white/10 my-8"></div>
-        
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-[13px] text-white/40">
-          <div>© {new Date().getFullYear()} NovaDeploy Inc. All rights reserved.</div>
-          <div className="flex gap-4">
+
+        <div className="mt-20 pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-white/40 text-[13px]">
+          <div>© {new Date().getFullYear()} DCDeploy Inc. All rights reserved.</div>
+          <div className="flex gap-8">
             <Link href="/privacy" className="hover:text-white/70 transition-colors">Privacy</Link>
             <Link href="/terms" className="hover:text-white/70 transition-colors">Terms</Link>
             <Link href="/cookies" className="hover:text-white/70 transition-colors">Cookies</Link>
