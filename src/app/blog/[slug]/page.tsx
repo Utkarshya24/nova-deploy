@@ -2,6 +2,7 @@ import { client, urlFor } from "@/lib/sanity";
 import { groq } from "next-sanity";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { PortableText } from "@portabletext/react";
 
 export const revalidate = 60; // Revalidate every minute
 
@@ -20,6 +21,52 @@ async function getPost(slug: string) {
   const post = await client.fetch(query, { slug });
   return post;
 }
+
+const components = {
+  types: {
+    image: ({ value }: any) => {
+      return (
+        <div className="my-10 overflow-hidden rounded-2xl border border-border-default">
+          <img
+            src={urlFor(value).url()}
+            alt={value.alt || "Blog image"}
+            className="w-full h-auto"
+            loading="lazy"
+          />
+          {value.caption && (
+            <div className="bg-slate-50 px-4 py-3 text-sm text-text-muted border-t border-border-default italic">
+              {value.caption}
+            </div>
+          )}
+        </div>
+      );
+    },
+  },
+  block: {
+    h2: ({ children }: any) => <h2 className="text-3xl font-bold mt-12 mb-6 text-text-heading">{children}</h2>,
+    h3: ({ children }: any) => <h3 className="text-2xl font-bold mt-10 mb-4 text-text-heading">{children}</h3>,
+    normal: ({ children }: any) => <p className="text-lg text-text-body leading-[1.8] mb-6">{children}</p>,
+    blockquote: ({ children }: any) => (
+      <blockquote className="border-l-4 border-brand pl-6 py-2 italic text-text-heading bg-bg-blue-tint/30 rounded-r-xl my-8 text-xl">
+        {children}
+      </blockquote>
+    ),
+  },
+  list: {
+    bullet: ({ children }: any) => <ul className="list-disc pl-6 space-y-3 mb-8 text-text-body text-lg">{children}</ul>,
+    number: ({ children }: any) => <ol className="list-decimal pl-6 space-y-3 mb-8 text-text-body text-lg">{children}</ol>,
+  },
+  marks: {
+    link: ({ children, value }: any) => {
+      const rel = !value.href.startsWith("/") ? "noreferrer noopener" : undefined;
+      return (
+        <a href={value.href} rel={rel} className="text-brand underline decoration-brand/30 hover:decoration-brand font-semibold transition-all">
+          {children}
+        </a>
+      );
+    },
+  },
+};
 
 export default async function BlogPostPage({ params }: { params: { slug: string } }) {
   const post = await getPost(params.slug);
@@ -50,8 +97,12 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         </h1>
 
         <div className="flex items-center gap-4 mb-12 pb-12 border-b border-border-default">
-           <div className="w-12 h-12 rounded-full bg-brand text-white flex items-center justify-center font-bold text-lg">
-             {post.author?.name?.slice(0, 2).toUpperCase() || "DC"}
+           <div className="w-12 h-12 rounded-full bg-brand text-white flex items-center justify-center font-bold text-lg overflow-hidden">
+             {post.author?.image ? (
+               <img src={post.author.image} alt={post.author.name} className="w-full h-full object-cover" />
+             ) : (
+               post.author?.name?.slice(0, 2).toUpperCase() || "DC"
+             )}
            </div>
            <div className="flex flex-col">
               <span className="text-[16px] font-bold text-text-heading">{post.author?.name || "DCDeploy Team"}</span>
@@ -68,16 +119,15 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         )}
 
         {/* Content Area */}
-        <article className="prose prose-lg max-w-none prose-slate prose-headings:font-heading prose-headings:font-bold prose-a:text-brand">
-           {/* Simple rendering of description as lead */}
-           <p className="text-xl text-text-body font-medium leading-relaxed mb-8">
-             {post.description}
-           </p>
+        <article className="max-w-none">
+           {post.description && (
+             <p className="text-2xl text-text-body font-medium leading-relaxed mb-12 text-slate-600">
+               {post.description}
+             </p>
+           )}
            
-           {/* In a real scenario, you'd use @portabletext/react for the body field */}
-           <div className="text-text-body leading-[1.8] space-y-6">
-              <p>This is a preview of the article content. To render full rich text from Sanity, you would typically use the PortableText component.</p>
-              <p>DCDeploy provides the fastest way to get your code into production. With our global edge network, your users experience minimal latency, and our automated pipelines handle the complexity of scaling.</p>
+           <div className="blog-content">
+             <PortableText value={post.body} components={components} />
            </div>
         </article>
       </section>
@@ -88,8 +138,8 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
             <h2 className="text-[32px] font-heading font-bold text-text-heading mb-6">Ready to ship?</h2>
             <p className="text-[18px] text-text-muted mb-10">Join thousands of developers building the future on DCDeploy.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-               <button className="px-8 py-4 bg-brand text-white rounded-full font-bold shadow-lg shadow-brand/20">Start Building Now</button>
-               <Link href="/pricing" className="px-8 py-4 bg-white border border-border-default text-text-heading rounded-full font-bold">View Pricing</Link>
+               <button className="px-8 py-4 bg-brand text-white rounded-full font-bold shadow-lg shadow-brand/20 hover:bg-brand-hover transition-all">Start Building Now</button>
+               <Link href="/pricing" className="px-8 py-4 bg-white border border-border-default text-text-heading rounded-full font-bold hover:border-brand transition-all">View Pricing</Link>
             </div>
          </div>
       </section>
