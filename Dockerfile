@@ -1,9 +1,8 @@
-# Base image (Use Node 20-slim for better compatibility with native modules like lightningcss)
-FROM node:20-slim AS base
+# Base image (Use full node:20 for guaranteed compatibility with all native modules)
+FROM node:20 AS base
 
 # Install dependencies only when needed
 FROM base AS deps
-# Install essential build tools if needed (though slim often has what's required for npm install)
 WORKDIR /app
 
 # Install dependencies based on the preferred package manager
