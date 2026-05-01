@@ -36,7 +36,7 @@ export function NavBar() {
                 href={item.href}
                 className={`px-4 py-1.5 text-[14px] font-medium transition-all duration-200 ${
                   isActive
-                    ? 'text-white bg-brand rounded-full shadow-[0_2px_8px_rgba(37,99,235,0.3)]'
+                    ? 'text-white bg-brand rounded-full shadow-[0_2px_8px_rgba(14,84,135,0.3)]'
                     : 'text-text-muted hover:text-brand'
                 }`}
               >
@@ -50,7 +50,7 @@ export function NavBar() {
           <Link href="/login" className="hidden sm:inline-flex text-[15px] font-medium text-text-body hover:text-brand transition-colors">
             Log In
           </Link>
-          <Link href="/signup" className="inline-flex items-center justify-center bg-[#0F172A] text-white rounded-full px-5 py-2 font-semibold text-[15px] hover:bg-[#1E293B] transition-colors shadow-sm">
+          <Link href="/signup" className="inline-flex items-center justify-center bg-brand text-white rounded-full px-5 py-2 font-semibold text-[15px] hover:bg-brand-hover transition-colors shadow-sm">
             Sign Up
           </Link>
         </div>

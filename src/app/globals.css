@@ -10,26 +10,26 @@
   --font-heading: var(--font-heading);
   --font-body: var(--font-body);
 
-  /* NovaDeploy Brand Tokens */
+  /* NovaDeploy Brand Tokens - Updated to #0e5487 */
   --color-white: #FFFFFF;
   --color-bg-page: #F8FAFF;
   --color-bg-section-alt: #F0F4FF;
   --color-bg-card: #FFFFFF;
-  --color-bg-blue-tint: #EFF6FF;
-  --color-brand: #2563EB;
-  --color-brand-hover: #1D4ED8;
-  --color-brand-light: #3B82F6;
-  --color-brand-pale: #DBEAFE;
+  --color-bg-blue-tint: #f3f8fd;
+  --color-brand: #0e5487;
+  --color-brand-hover: #0a4163;
+  --color-brand-light: #227dbf;
+  --color-brand-pale: #e7f2f9;
   --color-text-heading: #0F172A;
   --color-text-body: #334155;
   --color-text-muted: #64748B;
   --color-text-light: #94A3B8;
   --color-border-default: #E2E8F0;
-  --color-border-blue: #BFDBFE;
+  --color-border-blue: #cfe2f3;
 
-  --shadow-card: 0 4px 24px rgba(37, 99, 235, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
-  --shadow-card-hover: 0 8px 40px rgba(37, 99, 235, 0.15), 0 2px 8px rgba(0, 0, 0, 0.06);
-  --shadow-blue-glow: 0 8px 32px rgba(37, 99, 235, 0.25);
+  --shadow-card: 0 4px 24px rgba(14, 84, 135, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0 8px 40px rgba(14, 84, 135, 0.15), 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-blue-glow: 0 8px 32px rgba(14, 84, 135, 0.25);
 
   --radius-pill: 999px;
 
@@ -72,8 +72,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: #2563EB;
-  /* Make primary electric blue */
+  --primary: #0e5487;
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -84,7 +83,7 @@
   --destructive: oklch(0.577 0.245 27.325);
   --border: #E2E8F0;
   --input: #E2E8F0;
-  --ring: #3B82F6;
+  --ring: #227dbf;
   --radius: 0.5rem;
 }
 
@@ -110,7 +109,7 @@
 /* Base Utility Classes needed by the design */
 @layer utilities {
   .gradient-text {
-    background: linear-gradient(135deg, #2563EB 0%, #3B82F6 60%, #60A5FA 100%);
+    background: linear-gradient(135deg, #0e5487 0%, #227dbf 60%, #4da1db 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -119,15 +118,15 @@
   /* Circuit Board Background Pattern */
   .circuit-pattern {
     background-image:
-      radial-gradient(circle, #2563EB10 1px, transparent 1px),
-      linear-gradient(#2563EB08 1px, transparent 1px),
-      linear-gradient(90deg, #2563EB08 1px, transparent 1px);
+      radial-gradient(circle, #0e548710 1px, transparent 1px),
+      linear-gradient(#0e548708 1px, transparent 1px),
+      linear-gradient(90deg, #0e548708 1px, transparent 1px);
     background-size: 40px 40px, 80px 80px, 80px 80px;
   }
 
   /* Perspective Grid Background */
   .perspective-grid {
-    background-image: linear-gradient(0deg, #2563EB1a 1px, transparent 1px), linear-gradient(90deg, #2563EB1a 1px, transparent 1px);
+    background-image: linear-gradient(0deg, #0e54871a 1px, transparent 1px), linear-gradient(90deg, #0e54871a 1px, transparent 1px);
     background-size: 40px 40px;
     transform: perspective(600px) rotateX(60deg) scale(2);
     transform-origin: bottom;

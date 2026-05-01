@@ -20,10 +20,10 @@ export default function BlogPage() {
         </h1>
         
         {/* Featured Post Card */}
-        <Link href="/blog/featured" className="block relative bg-white border border-border-default rounded-[24px] overflow-hidden shadow-sm hover:shadow-[0_12px_48px_rgba(37,99,235,0.12)] transition-shadow group">
+        <Link href="/blog/featured" className="block relative bg-white border border-border-default rounded-[24px] overflow-hidden shadow-sm hover:shadow-[0_12px_48px_rgba(14,84,135,0.12)] transition-shadow group">
            <div className="flex flex-col md:flex-row h-auto md:h-[400px]">
               {/* Left Image Area */}
-              <div className="md:w-[55%] h-[240px] md:h-full bg-gradient-to-br from-[#1E40AF] via-[#2563EB] to-[#3B82F6] relative p-8 flex items-end">
+              <div className="md:w-[55%] h-[240px] md:h-full bg-gradient-to-br from-[#073a61] via-[#0e5487] to-[#227dbf] relative p-8 flex items-end">
                  <div className="absolute inset-0 circuit-pattern opacity-[0.1] -z-0"></div>
                  <div className="bg-white/20 backdrop-blur-md rounded-xl p-4 text-white z-10 font-mono text-[14px] shadow-lg border border-white/20">
                    export const deploy = async () =&gt; &#123; ... &#125;
@@ -64,7 +64,7 @@ export default function BlogPage() {
       <section className="px-6 mb-24">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
            {posts.map((post, i) => (
-              <div key={i} className="bg-white border border-border-default rounded-[20px] overflow-hidden shadow-sm hover:shadow-[0_8px_40px_rgba(37,99,235,0.12)] transition-shadow flex flex-col group cursor-pointer">
+              <div key={i} className="bg-white border border-border-default rounded-[20px] overflow-hidden shadow-sm hover:shadow-[0_8px_40px_rgba(14,84,135,0.12)] transition-shadow flex flex-col group cursor-pointer">
                  <div className={`h-[200px] w-full bg-gradient-to-br ${post.bg} p-6 flex items-start relative`}>
                    <div className="bg-white/80 backdrop-blur text-text-heading text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">{post.badge}</div>
                  </div>
@@ -98,7 +98,7 @@ export default function BlogPage() {
              <p className="text-[16px] text-text-muted mb-8">Get the latest engineering posts, platform updates, and deployment tips sent straight to your inbox once a month.</p>
              <div className="flex flex-col sm:flex-row gap-3">
                <input type="email" placeholder="Email address" className="flex-1 bg-white border border-border-default rounded-full px-5 py-3 focus:outline-none focus:border-brand shadow-sm text-[15px]" />
-               <button className="bg-brand text-white font-semibold rounded-full px-8 py-3 hover:bg-brand-hover transition-colors shadow-[0_4px_14px_rgba(37,99,235,0.3)]">Subscribe</button>
+               <button className="bg-brand text-white font-semibold rounded-full px-8 py-3 hover:bg-brand-hover transition-colors shadow-[0_4px_14px_rgba(14,84,135,0.3)]">Subscribe</button>
              </div>
              <p className="text-[12px] text-text-light mt-4">No spam. Unsubscribe anytime.</p>
            </div>

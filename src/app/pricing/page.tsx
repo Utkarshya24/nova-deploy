@@ -86,7 +86,7 @@ export default function PricingPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
           
           {/* HOBBY CARD */}
-          <div className="bg-white border border-border-default rounded-2xl p-8 flex flex-col h-full hover:shadow-[0_8px_40px_rgba(37,99,235,0.08)] transition-shadow">
+          <div className="bg-white border border-border-default rounded-2xl p-8 flex flex-col h-full hover:shadow-[0_8px_40px_rgba(14,84,135,0.08)] transition-shadow">
             <div className="bg-slate-100 text-text-muted text-[12px] font-bold px-3 py-1 rounded-full uppercase tracking-widest inline-flex w-max mb-6">Free Forever</div>
             <h3 className="text-[20px] font-heading font-semibold text-text-heading mb-4">Hobby</h3>
             <div className="mb-2 flex items-end gap-2">
@@ -115,7 +115,7 @@ export default function PricingPage() {
           </div>
 
           {/* PRO CARD - FEATURED */}
-          <div className="bg-gradient-to-b from-[#EFF6FF] to-[#DBEAFE] border-2 border-brand rounded-2xl p-8 flex flex-col h-[105%] shadow-[0_0_0_4px_#BFDBFE,0_20px_60px_rgba(37,99,235,0.15)] relative scale-100 md:scale-[1.04] md:-translate-y-2 z-10">
+          <div className="bg-gradient-to-b from-[#EFF6FF] to-[#DBEAFE] border-2 border-brand rounded-2xl p-8 flex flex-col h-[105%] shadow-[0_0_0_4px_#BFDBFE,0_20px_60px_rgba(14,84,135,0.15)] relative scale-100 md:scale-[1.04] md:-translate-y-2 z-10">
             <div className="bg-brand text-white text-[12px] font-bold px-3 py-1 rounded-full uppercase tracking-widest inline-flex w-max mb-6">Most Popular</div>
             <h3 className="text-[20px] font-heading font-semibold text-text-heading mb-4">Pro</h3>
             <div className="mb-2 flex flex-col items-start gap-1">
@@ -142,13 +142,13 @@ export default function PricingPage() {
               ))}
             </ul>
             
-            <button className="w-full py-3 px-6 rounded-full bg-brand text-white font-semibold text-[15px] shadow-[0_8px_24px_rgba(37,99,235,0.3)] hover:bg-brand-hover hover:scale-[1.02] transition-all">
+            <button className="w-full py-3 px-6 rounded-full bg-brand text-white font-semibold text-[15px] shadow-[0_8px_24px_rgba(14,84,135,0.3)] hover:bg-brand-hover hover:scale-[1.02] transition-all">
               Start with Pro &rarr;
             </button>
           </div>
 
           {/* SCALE CARD */}
-          <div className="bg-white border border-border-default rounded-2xl p-8 flex flex-col h-full hover:shadow-[0_8px_40px_rgba(37,99,235,0.08)] transition-shadow">
+          <div className="bg-white border border-border-default rounded-2xl p-8 flex flex-col h-full hover:shadow-[0_8px_40px_rgba(14,84,135,0.08)] transition-shadow">
             <div className="bg-[#0F172A] text-white text-[12px] font-bold px-3 py-1 rounded-full uppercase tracking-widest inline-flex w-max mb-6">Enterprise</div>
             <h3 className="text-[20px] font-heading font-semibold text-text-heading mb-4">Scale</h3>
             <div className="mb-2 flex items-end gap-2 h-[72px]">
@@ -241,7 +241,7 @@ export default function PricingPage() {
 
       {/* COST CALCULATOR */}
       <section className="py-24 px-6 bg-bg-page relative border-t border-[#E2E8F0] shadow-inner">
-        <div className="max-w-[700px] mx-auto bg-white border border-border-default rounded-2xl p-8 shadow-[0_4px_24px_rgba(37,99,235,0.08)]">
+        <div className="max-w-[700px] mx-auto bg-white border border-border-default rounded-2xl p-8 shadow-[0_4px_24px_rgba(14,84,135,0.08)]">
            <h3 className="text-[28px] font-heading font-bold text-text-heading mb-8 text-center">Estimate Your Monthly Cost</h3>
            
            <div className="flex flex-col gap-6 mb-10">

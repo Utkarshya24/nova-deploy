@@ -17,7 +17,7 @@ export default function DocsPage() {
             How can we <span className="gradient-text">help?</span>
           </h1>
           
-          <div className="w-full relative mt-4 shadow-[0_8px_32px_rgba(37,99,235,0.12)] rounded-full">
+          <div className="w-full relative mt-4 shadow-[0_8px_32px_rgba(14,84,135,0.12)] rounded-full">
             <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-text-muted"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
             </div>
@@ -33,24 +33,24 @@ export default function DocsPage() {
       <section className="py-16 px-6 max-w-6xl mx-auto w-full">
         <h2 className="text-[24px] font-heading font-bold text-text-heading mb-6">Quick Start</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-           <div className="bg-bg-page border border-border-default rounded-2xl p-6 group cursor-pointer hover:border-brand hover:shadow-[0_8px_24px_rgba(37,99,235,0.08)] transition-all flex flex-col items-start">
+           <div className="bg-bg-page border border-border-default rounded-2xl p-6 group cursor-pointer hover:border-brand hover:shadow-[0_8px_24px_rgba(14,84,135,0.08)] transition-all flex flex-col items-start">
              <div className="w-10 h-10 rounded-full bg-blue-100 text-brand font-bold flex items-center justify-center mb-4">1</div>
              <h3 className="text-[18px] font-semibold text-text-heading mb-2">Connect Repository</h3>
              <p className="text-[14px] text-text-muted mb-4 line-clamp-2">Connect GitHub, GitLab or Bitbucket to import your code.</p>
              <span className="text-brand text-[13px] font-semibold mt-auto flex items-center gap-1 group-hover:gap-2 transition-all">Import repo <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
            </div>
            
-           <div className="bg-bg-page border border-border-default rounded-2xl p-6 group cursor-pointer hover:border-brand hover:shadow-[0_8px_24px_rgba(37,99,235,0.08)] transition-all flex flex-col items-start relative overflow-hidden">
+           <div className="bg-bg-page border border-border-default rounded-2xl p-6 group cursor-pointer hover:border-brand hover:shadow-[0_8px_24px_rgba(14,84,135,0.08)] transition-all flex flex-col items-start relative overflow-hidden">
              <div className="w-10 h-10 rounded-full bg-blue-100 text-brand font-bold flex items-center justify-center mb-4">2</div>
              <h3 className="text-[18px] font-semibold text-text-heading mb-2">Configure Build</h3>
              <p className="text-[14px] text-text-muted mb-4 line-clamp-2">Set up environment variables, build commands, and root directory.</p>
              <span className="text-brand text-[13px] font-semibold mt-auto flex items-center gap-1 group-hover:gap-2 transition-all">Configuration guide <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
              
              {/* Fake pulse indicator */}
-             <div className="absolute top-6 right-6 w-3 h-3 bg-brand rounded-full animate-pulse shadow-[0_0_8px_rgba(37,99,235,0.5)]"></div>
+             <div className="absolute top-6 right-6 w-3 h-3 bg-brand rounded-full animate-pulse shadow-[0_0_8px_rgba(14,84,135,0.5)]"></div>
            </div>
            
-           <div className="bg-gradient-to-br from-[#1E40AF] to-[#2563EB] rounded-2xl p-6 group cursor-pointer hover:shadow-[0_8px_24px_rgba(37,99,235,0.3)] transition-all flex flex-col items-start text-white relative h-full">
+           <div className="bg-gradient-to-br from-[#073a61] to-[#0e5487] rounded-2xl p-6 group cursor-pointer hover:shadow-[0_8px_24px_rgba(14,84,135,0.3)] transition-all flex flex-col items-start text-white relative h-full">
              <div className="absolute inset-0 circuit-pattern opacity-10"></div>
              <div className="relative z-10 flex flex-col h-full w-full">
                <div className="w-10 h-10 rounded-full bg-white/20 text-white font-bold flex items-center justify-center mb-4">3</div>

@@ -28,7 +28,7 @@ export default function FeaturesPage() {
         </p>
         
         <div className="relative z-10 flex flex-col sm:flex-row gap-4 mb-20">
-          <button className="px-7 py-3 bg-brand text-white font-semibold rounded-full shadow-[0_4px_14px_rgba(37,99,235,0.35)] hover:bg-brand-hover transition-colors">
+          <button className="px-7 py-3 bg-brand text-white font-semibold rounded-full shadow-[0_4px_14px_rgba(14,84,135,0.35)] hover:bg-brand-hover transition-colors">
             Get Started Free &rarr;
           </button>
           <Link href="/pricing" className="px-7 py-3 bg-white text-text-body border-[1.5px] border-border-default font-semibold rounded-full hover:border-brand hover:text-brand transition-colors">
@@ -132,7 +132,7 @@ export default function FeaturesPage() {
                         <div className="text-slate-500 flex gap-4"><span>11:05</span> <span className="text-slate-300">Creating optimized production build...</span></div>
                         <div className="text-slate-500 flex gap-4"><span>11:05</span> <span className="text-[#10B981]">✔ Uploading assets to Edge Network...</span></div>
                         <div className="mt-4 border-l-2 border-[#10B981] pl-4 text-white">Successfully deployed!</div>
-                        <div className="text-[#60A5FA] mt-2 pl-4 break-words">https://my-app-prod.novadeploy.app</div>
+                        <div className="text-[#4da1db] mt-2 pl-4 break-words">https://my-app-prod.novadeploy.app</div>
                       </div>
                     </div>
                   </div>
@@ -185,27 +185,13 @@ export default function FeaturesPage() {
             {activeTab === "Observability" && (
               <section className="py-[96px] px-6 bg-white overflow-hidden">
                 <div className="max-w-6xl mx-auto">
-                  <div className="w-full bg-white border border-border-default rounded-[20px] shadow-lg mb-16 overflow-hidden flex flex-col md:flex-row">
-                    <div className="md:w-[40%] bg-[#F8FAFF] p-6 border-b md:border-b-0 md:border-r border-border-default">
-                      <h4 className="text-[14px] font-semibold text-text-heading mb-4">Requests / min</h4>
-                      <div className="h-[150px] relative">
-                        <svg viewBox="0 0 100 50" preserveAspectRatio="none" className="w-full h-full text-green-400 overflow-visible">
-                          <path d="M0,45 Q10,20 20,40 T40,30 T60,10 T80,35 T100,5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                          <circle cx="100" cy="5" r="3" fill="currentColor"></circle>
-                        </svg>
-                      </div>
-                    </div>
-                    <div className="md:w-[60%] bg-[#0F172A] p-6">
-                      <div className="flex items-center justify-between mb-4">
-                        <h4 className="text-[14px] font-semibold text-white">Live logs</h4>
-                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                      </div>
-                      <div className="font-mono text-[11px] leading-relaxed text-slate-300">
-                        <div className="flex gap-2"><span className="text-slate-500">GET</span> <span>/api/users</span> <span className="text-green-400">200 OK</span></div>
-                        <div className="flex gap-2"><span className="text-slate-500">POST</span> <span>/api/login</span> <span className="text-green-400">200 OK</span></div>
-                        <div className="flex gap-2"><span className="text-slate-500">ERR</span> <span className="text-red-400">Worker timeout</span> <span className="text-red-400">500</span></div>
-                      </div>
-                    </div>
+                  <div className="w-full bg-white border border-border-default rounded-[24px] shadow-xl mb-16 overflow-hidden aspect-video relative">
+                    <img 
+                      src="/metrics.png" 
+                      alt="Observability Metrics Dashboard" 
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent pointer-events-none"></div>
                   </div>
                   <div className="max-w-3xl mx-auto text-center">
                     <h2 className="text-[32px] md:text-[40px] font-heading font-bold text-text-heading mb-6">Complete Observability</h2>
@@ -240,7 +226,7 @@ export default function FeaturesPage() {
                     <div className="absolute inset-0 circuit-pattern opacity-10"></div>
                     <div className="relative w-48 h-48 bg-brand/20 rounded-full flex items-center justify-center animate-pulse">
                       <div className="w-32 h-32 bg-brand/40 rounded-full flex items-center justify-center animate-ping absolute"></div>
-                      <div className="w-24 h-24 bg-brand rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(37,99,235,0.5)] relative z-10">
+                      <div className="w-24 h-24 bg-brand rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(14,84,135,0.5)] relative z-10">
                         <svg className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                       </div>
                     </div>

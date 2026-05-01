@@ -123,7 +123,7 @@ export default function Home() {
           initial="hidden" animate="show" variants={fadeUp}
           className="relative z-10 flex items-center gap-2 bg-bg-blue-tint border border-border-blue text-brand rounded-full px-4 py-1.5 text-[13px] font-semibold mb-8 shadow-sm"
         >
-          <span className="w-2 h-2 rounded-full bg-brand animate-pulse shadow-[0_0_8px_rgba(37,99,235,0.8)]"></span>
+          <span className="w-2 h-2 rounded-full bg-brand animate-pulse shadow-[0_0_8px_rgba(14,84,135,0.8)]"></span>
           Smart Deployment Made Simple
         </motion.div>
 
@@ -152,7 +152,7 @@ export default function Home() {
           initial="hidden" animate="show" transition={{ delay: 0.3 }} variants={fadeUp}
           className="relative z-10 flex flex-col sm:flex-row items-center gap-4 mb-20"
         >
-          <Link href="/contact" className="px-8 py-3.5 bg-brand text-white text-[16px] font-semibold rounded-full shadow-[0_4px_14px_rgba(37,99,235,0.35)] hover:bg-brand-hover hover:-translate-y-0.5 transition-all">
+          <Link href="/contact" className="px-8 py-3.5 bg-brand text-white text-[16px] font-semibold rounded-full shadow-[0_4px_14px_rgba(14,84,135,0.35)] hover:bg-brand-hover hover:-translate-y-0.5 transition-all">
             Get Started For Free
           </Link>
           <Link href="/docs" className="px-8 py-3.5 bg-white text-text-body border-[1.5px] border-border-default text-[16px] font-semibold rounded-full hover:border-[#CBD5E1] hover:text-text-heading hover:-translate-y-0.5 transition-all">
@@ -171,8 +171,14 @@ export default function Home() {
           {/* Main 3D Shape Mockup */}
           <div className="relative w-[320px] h-[360px] animate-[float_4s_ease-in-out_infinite]" style={{ transformStyle: 'preserve-3d', transform: 'rotateX(20deg) rotateZ(-15deg)' }}>
              <div className="absolute bottom-0 w-full h-[60px] bg-[#0F172A] rounded-xl shadow-2xl" style={{ transform: 'translateZ(0px)' }}></div>
-             <div className="absolute bottom-[40px] w-full h-[180px] bg-gradient-to-br from-[#60A5FA] to-[#3B82F6] rounded-xl opacity-90 backdrop-blur-md border border-white/20" style={{ transform: 'translateZ(40px)' }}></div>
-             <div className="absolute bottom-[200px] w-full h-[100px] bg-gradient-to-br from-[#2563EB] to-[#1E40AF] rounded-xl shadow-[0_20px_60px_rgba(37,99,235,0.5)] border border-white/10" style={{ transform: 'translateZ(80px)' }}>
+             <div className="absolute bottom-[40px] w-full h-[180px] bg-white rounded-xl opacity-100 backdrop-blur-md border border-white/20 overflow-hidden shadow-xl" style={{ transform: 'translateZ(40px)' }}>
+                <img 
+                  src="/dash.png" 
+                  alt="NovaDeploy Dashboard Screenshot"
+                  className="w-full h-full object-cover opacity-90"
+                />
+             </div>
+             <div className="absolute bottom-[200px] w-full h-[100px] bg-gradient-to-br from-[#0e5487] to-[#073a61] rounded-xl shadow-[0_20px_60px_rgba(14,84,135,0.5)] border border-white/10" style={{ transform: 'translateZ(80px)' }}>
                 <div className="w-full h-full flex flex-col justify-center items-center gap-3">
                    <div className="w-20 h-2 bg-white/30 rounded-full"></div>
                    <div className="w-32 h-2 bg-white/30 rounded-full"></div>
@@ -182,7 +188,7 @@ export default function Home() {
           </div>
 
           {/* Floating Accessory Cards Element */}
-          <div className="absolute top-[8%] -left-[10%] bg-white p-4 rounded-[16px] shadow-[0_12px_40px_rgba(37,99,235,0.12)] border border-border-default animate-[float_3s_ease-in-out_infinite] flex items-center gap-3">
+          <div className="absolute top-[8%] -left-[10%] bg-white p-4 rounded-[16px] shadow-[0_12px_40px_rgba(14,84,135,0.12)] border border-border-default animate-[float_3s_ease-in-out_infinite] flex items-center gap-3">
              <div className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></div>
              <div className="flex flex-col">
                <span className="text-[14px] font-semibold text-text-heading">Deploy successful</span>
@@ -190,7 +196,7 @@ export default function Home() {
              </div>
           </div>
 
-          <div className="absolute top-[25%] -right-[8%] bg-white p-5 rounded-[16px] shadow-[0_12px_40px_rgba(37,99,235,0.12)] border border-border-default animate-[float_3.5s_ease-in-out_infinite] flex flex-col gap-3">
+          <div className="absolute top-[25%] -right-[8%] bg-white p-5 rounded-[16px] shadow-[0_12px_40px_rgba(14,84,135,0.12)] border border-border-default animate-[float_3.5s_ease-in-out_infinite] flex flex-col gap-3">
              <span className="text-[14px] font-semibold text-brand">Performance • 98/100</span>
              <div className="flex items-end gap-1.5 h-10">
                 <div className="w-4 bg-brand-pale rounded-t-sm h-[40%]"></div>
@@ -199,7 +205,7 @@ export default function Home() {
              </div>
           </div>
 
-          <div className="absolute bottom-[25%] -left-[15%] bg-white py-3 px-5 rounded-[16px] shadow-[0_12px_40px_rgba(37,99,235,0.12)] border border-border-default animate-[float_4s_ease-in-out_infinite] flex items-center gap-3">
+          <div className="absolute bottom-[25%] -left-[15%] bg-white py-3 px-5 rounded-[16px] shadow-[0_12px_40px_rgba(14,84,135,0.12)] border border-border-default animate-[float_4s_ease-in-out_infinite] flex items-center gap-3">
              <div className="w-8 h-8 bg-bg-blue-tint rounded-full flex items-center justify-center text-brand text-[14px]">🌍</div>
              <div className="flex flex-col">
                 <span className="text-[14px] font-semibold text-text-heading">35+ Regions</span>
@@ -266,7 +272,7 @@ export default function Home() {
                      <motion.div 
                         key={i}
                         whileHover={{ y: -8 }}
-                        className="bg-white border border-border-default rounded-2xl p-6 shadow-sm hover:shadow-[0_12px_40px_rgba(37,99,235,0.12)] transition-all flex flex-col items-center text-center group"
+                        className="bg-white border border-border-default rounded-2xl p-6 shadow-sm hover:shadow-[0_12px_40px_rgba(14,84,135,0.12)] transition-all flex flex-col items-center text-center group"
                      >
                         <div className="w-16 h-16 bg-bg-blue-tint rounded-2xl flex items-center justify-center text-[28px] mb-6 border border-border-blue group-hover:scale-110 transition-transform">
                            {node.icon}
@@ -310,7 +316,7 @@ export default function Home() {
                   variants={fadeUp} 
                   key={step.num} 
                   onClick={() => setActiveStep(i + 1)}
-                  className={`p-6 flex gap-6 cursor-pointer transition-all duration-300 ${activeStep === i + 1 ? 'bg-white border border-border-default shadow-[0_8px_32px_rgba(37,99,235,0.08)] rounded-2xl relative' : 'border border-transparent opacity-60 hover:opacity-100'}`}
+                  className={`p-6 flex gap-6 cursor-pointer transition-all duration-300 ${activeStep === i + 1 ? 'bg-white border border-border-default shadow-[0_8px_32px_rgba(14,84,135,0.08)] rounded-2xl relative' : 'border border-transparent opacity-60 hover:opacity-100'}`}
                 >
                   {activeStep === i + 1 && <div className="absolute left-0 top-6 bottom-6 w-1 bg-brand rounded-r-md"></div>}
                   <div className={`w-10 h-10 shrink-0 rounded-full flex items-center justify-center font-bold text-[15px] transition-colors ${activeStep === i + 1 ? 'bg-brand text-white shadow-md' : 'bg-slate-200 text-slate-500'}`}>
@@ -326,7 +332,7 @@ export default function Home() {
 
             {/* Right Mockup */}
             <motion.div variants={fadeUp} className="relative h-full">
-              <div className="bg-white border border-border-default rounded-[24px] shadow-[0_20px_60px_rgba(37,99,235,0.12)] overflow-hidden h-full">
+              <div className="bg-white border border-border-default rounded-[24px] shadow-[0_20px_60px_rgba(14,84,135,0.12)] overflow-hidden h-full">
                 {/* Header */}
                 <div className="flex items-center px-5 py-4 border-b border-border-default bg-[#F8FAFF]">
                    <div className="flex gap-2 mr-4">
@@ -351,101 +357,40 @@ export default function Home() {
                       <div className="w-8 h-8 rounded-lg bg-slate-200"></div>
                       <div className="w-8 h-8 rounded-lg bg-slate-200 mt-auto"></div>
                    </div>
-                   <div className="flex-1 p-8 relative bg-white bg-[radial-gradient(#F1F5F9_1px,transparent_1px)] [background-size:16px_16px]">
+                   <div className="flex-1 p-8 relative bg-white bg-[radial-gradient(#F1F5F9_1px,transparent_1px)] [background-size:16px_16px] overflow-hidden">
                       
                       {activeStep === 1 && (
-                        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="h-full">
-                          <h3 className="text-[18px] font-bold text-text-heading mb-6">Connect Repository</h3>
-                          <div className="space-y-3">
-                            {["nextjs-saas-template", "ecommerce-dashboard", "portfolio-v3"].map((repo, idx) => (
-                              <div key={idx} className="p-4 border border-border-default rounded-xl flex items-center justify-between hover:border-brand transition-colors bg-white">
-                                <div className="flex items-center gap-3">
-                                  <div className="w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center text-lg">📁</div>
-                                  <span className="font-semibold text-text-heading">{repo}</span>
-                                </div>
-                                <button className="text-[13px] font-bold text-brand">Connect</button>
-                              </div>
-                            ))}
+                        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="h-full flex flex-col">
+                          <h3 className="text-[18px] font-bold text-text-heading mb-4">Connect Repository</h3>
+                          <div className="flex-1 rounded-xl border border-border-default overflow-hidden shadow-sm bg-slate-50">
+                             <img src="/gitconfig.png" alt="Git Configuration" className="w-full h-full object-cover" />
                           </div>
                         </motion.div>
                       )}
 
                       {activeStep === 2 && (
-                        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="h-full">
-                          <h3 className="text-[18px] font-bold text-text-heading mb-6">Build Configuration</h3>
-                          <div className="space-y-4">
-                            <div>
-                              <label className="text-[12px] font-bold text-text-muted uppercase mb-2 block">Framework Preset</label>
-                              <div className="p-3 border border-brand rounded-lg bg-bg-blue-tint flex items-center justify-between">
-                                <span className="font-semibold text-brand">Next.js (Detected)</span>
-                                <span>✨</span>
-                              </div>
-                            </div>
-                            <div>
-                              <label className="text-[12px] font-bold text-text-muted uppercase mb-2 block">Build Command</label>
-                              <div className="p-3 border border-border-default rounded-lg bg-slate-50 font-mono text-[13px]">npm run build</div>
-                            </div>
-                            <button className="w-full py-3 bg-brand text-white rounded-lg font-bold shadow-md">Continue to Services</button>
+                        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="h-full flex flex-col">
+                          <h3 className="text-[18px] font-bold text-text-heading mb-4">Build Configuration</h3>
+                          <div className="flex-1 rounded-xl border border-border-default overflow-hidden shadow-sm bg-slate-50">
+                             <img src="/formfill.png" alt="Form Configuration" className="w-full h-full object-cover" />
                           </div>
                         </motion.div>
                       )}
 
                       {activeStep === 3 && (
-                        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="h-full">
+                        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="h-full flex flex-col">
                           <h3 className="text-[18px] font-bold text-text-heading mb-4">Add Services</h3>
-                          <div className="grid grid-cols-2 gap-4">
-                            {[
-                              { name: "PostgreSQL", icon: "🐘" },
-                              { name: "Redis", icon: "🔴" },
-                              { name: "S3 Storage", icon: "📦" },
-                              { name: "Meilisearch", icon: "🔍" }
-                            ].map((service, idx) => (
-                              <div key={idx} className="p-4 border border-border-default rounded-xl flex flex-col items-center gap-2 hover:border-brand bg-white group transition-all">
-                                <span className="text-2xl">{service.icon}</span>
-                                <span className="text-[13px] font-bold text-text-heading">{service.name}</span>
-                                <button className="mt-2 w-full py-1.5 rounded-lg bg-slate-100 text-[11px] font-bold group-hover:bg-brand group-hover:text-white transition-colors">Add</button>
-                              </div>
-                            ))}
+                          <div className="flex-1 rounded-xl border border-border-default overflow-hidden shadow-sm bg-slate-50">
+                             <img src="/add database.png" alt="Add Database" className="w-full h-full object-cover" />
                           </div>
                         </motion.div>
                       )}
 
                       {activeStep === 4 && (
-                        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="h-full">
-                          <div className="flex items-center justify-between mb-8">
-                             <div className="flex items-center gap-4">
-                               <div className="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center font-bold text-slate-400">SA</div>
-                               <div>
-                                 <h3 className="text-[20px] font-bold text-text-heading">my-saas-app</h3>
-                                 <span className="text-[13px] text-text-muted">production • main</span>
-                               </div>
-                             </div>
-                             <span className="bg-green-100 text-green-700 text-[12px] font-bold px-3 py-1 rounded-full border border-green-200">Live</span>
-                          </div>
-                          
-                          <div className="flex items-center w-full mb-8">
-                             <div className="flex flex-col justify-center gap-2 items-center flex-1">
-                                <div className="w-6 h-6 rounded-full bg-brand text-white flex items-center justify-center text-[12px] font-bold">✓</div>
-                                <span className="text-[12px] font-semibold text-text-heading">Build</span>
-                             </div>
-                             <div className="w-16 h-1 bg-brand rounded-full mb-6"></div>
-                             <div className="flex flex-col justify-center gap-2 items-center flex-1">
-                                <div className="w-6 h-6 rounded-full bg-brand text-white flex items-center justify-center text-[12px] font-bold">✓</div>
-                                <span className="text-[12px] font-semibold text-text-heading">Test</span>
-                             </div>
-                             <div className="w-16 h-1 bg-brand rounded-full mb-6"></div>
-                             <div className="flex flex-col justify-center gap-2 items-center flex-1">
-                                <div className="w-6 h-6 rounded-full bg-brand text-white flex items-center justify-center text-[12px] font-bold">✓</div>
-                                <span className="text-[12px] font-semibold text-text-heading">Deploy</span>
-                             </div>
-                          </div>
-
-                          <div className="bg-white border border-[#10B981] shadow-[0_8px_24px_rgba(16,185,129,0.15)] rounded-xl p-4 text-[14px] font-semibold flex items-center justify-between">
-                             <div className="flex items-center gap-3">
-                                <div className="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold">✓</div>
-                                <span className="text-text-heading">Deployed successfully</span>
-                             </div>
-                             <span className="text-brand hover:underline cursor-pointer">Visit URL ↗</span>
+                        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="h-full flex flex-col">
+                          <h3 className="text-[18px] font-bold text-text-heading mb-4">Share Your Project</h3>
+                          <div className="flex-1 rounded-xl border border-border-default overflow-hidden shadow-sm bg-slate-50">
+                             <img src="/shareservice.png" alt="Share Service" className="w-full h-full object-cover" />
                           </div>
                         </motion.div>
                       )}
@@ -483,9 +428,9 @@ export default function Home() {
                <div className="bg-white/10 text-brand-light border border-white/20 text-[13px] font-bold px-4 py-1.5 rounded-full mb-6 uppercase tracking-wider backdrop-blur-md">
                  Global Network
                </div>
-               <h2 className="text-[36px] md:text-[52px] font-heading font-extrabold mb-6 leading-tight">
+               <h2 className="text-[36px] md:text-[52px] font-heading font-extrabold mb-6 leading-tight text-white">
                   Deploy instantly to <br className="hidden lg:block"/>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-[#60A5FA]">35+ regions worldwide.</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-[#4da1db]">35+ regions worldwide.</span>
                </h2>
                <p className="text-[18px] text-slate-300 mb-10 leading-[1.8] max-w-xl">
                   Your users shouldn't have to wait. NovaDeploy automatically provisions your application across our enterprise-grade Edge Network, ensuring millisecond latency regardless of where your customers are.
@@ -497,7 +442,7 @@ export default function Home() {
                      <div className="text-[14px] text-slate-400">Avg Global Latency</div>
                   </div>
                   <div>
-                     <div className="text-[36px] font-extrabold text-[#60A5FA] mb-2">3Tbps</div>
+                     <div className="text-[36px] font-extrabold text-[#4da1db] mb-2">3Tbps</div>
                      <div className="text-[14px] text-slate-400">Network Capacity</div>
                   </div>
                </div>
@@ -505,12 +450,12 @@ export default function Home() {
 
             <motion.div variants={fadeUp} className="flex-1 relative w-full aspect-square max-w-[500px]">
                {/* Abstract Globe / Nodes Visualization */}
-               <div className="w-full h-full rounded-full border border-white/10 bg-[#1E293B]/50 backdrop-blur-3xl shadow-[0_0_80px_rgba(37,99,235,0.3)] relative flex items-center justify-center p-8">
+               <div className="w-full h-full rounded-full border border-white/10 bg-[#1E293B]/50 backdrop-blur-3xl shadow-[0_0_80px_rgba(14,84,135,0.3)] relative flex items-center justify-center p-8">
                   <div className="absolute inset-0 rounded-full border border-brand/30 animate-[ping_4s_cubic-bezier(0,0,0.2,1)_infinite]"></div>
                   <div className="absolute inset-8 rounded-full border border-brand-light/20 border-dashed animate-spin-slow"></div>
                   
                   {/* Central Node */}
-                  <div className="w-24 h-24 bg-gradient-to-br from-[#2563EB] to-[#1E40AF] rounded-full shadow-[0_0_40px_rgba(37,99,235,0.8)] z-10 flex items-center justify-center relative">
+                  <div className="w-24 h-24 bg-gradient-to-br from-[#0e5487] to-[#073a61] rounded-full shadow-[0_0_40px_rgba(14,84,135,0.8)] z-10 flex items-center justify-center relative">
                      <div className="w-16 h-16 bg-white/10 rounded-full animate-pulse"></div>
                   </div>
 
@@ -520,7 +465,7 @@ export default function Home() {
                      { top: "65%", left: "85%", pulse: "2.5s" }, { top: "80%", left: "40%", pulse: "4s" },
                      { top: "50%", left: "12%", pulse: "3.5s" }, { top: "35%", left: "50%", pulse: "2.8s" }
                   ].map((pos, i) => (
-                     <div key={i} className="absolute w-4 h-4 rounded-full bg-brand-light shadow-[0_0_15px_#60A5FA]" style={{ top: pos.top, left: pos.left, animation: `pulse ${pos.pulse} infinite`}}>
+                     <div key={i} className="absolute w-4 h-4 rounded-full bg-brand-light shadow-[0_0_15px_#4da1db]" style={{ top: pos.top, left: pos.left, animation: `pulse ${pos.pulse} infinite`}}>
                         <div className="absolute inset-y-1/2 right-1/2 w-32 h-[1px] bg-gradient-to-l from-brand-light to-transparent origin-right -rotate-45 opacity-40"></div>
                      </div>
                   ))}
@@ -542,7 +487,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[240px]">
             {/* Big Card Left */}
-            <motion.div variants={fadeUp} className="md:col-span-1 md:row-span-2 relative bg-gradient-to-br from-[#1E40AF] via-[#2563EB] to-[#3B82F6] rounded-[24px] p-10 overflow-hidden flex flex-col justify-between text-white shadow-[0_12px_40px_rgba(37,99,235,0.25)] hover:shadow-[0_20px_60px_rgba(37,99,235,0.35)] hover:-translate-y-2 transition-all duration-300 group">
+            <motion.div variants={fadeUp} className="md:col-span-1 md:row-span-2 relative bg-gradient-to-br from-[#073a61] via-[#0e5487] to-[#227dbf] rounded-[24px] p-10 overflow-hidden flex flex-col justify-between text-white shadow-[0_12px_40px_rgba(14,84,135,0.25)] hover:shadow-[0_20px_60px_rgba(14,84,135,0.35)] hover:-translate-y-2 transition-all duration-300 group">
                <div>
                  <div className="w-14 h-14 mb-8 text-white opacity-90 group-hover:scale-110 transition-transform">
                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m8 16 4-4 4 4"/></svg>
@@ -559,7 +504,7 @@ export default function Home() {
             </motion.div>
 
             {/* Top Right */}
-            <motion.div variants={fadeUp} className="md:col-span-1 md:row-span-1 bg-white border border-border-default rounded-[24px] p-8 shadow-[0_8px_24px_rgba(37,99,235,0.06)] hover:border-brand hover:shadow-[0_12px_40px_rgba(37,99,235,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-center relative overflow-hidden group">
+            <motion.div variants={fadeUp} className="md:col-span-1 md:row-span-1 bg-white border border-border-default rounded-[24px] p-8 shadow-[0_8px_24px_rgba(14,84,135,0.06)] hover:border-brand hover:shadow-[0_12px_40px_rgba(14,84,135,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-center relative overflow-hidden group">
                <h3 className="text-[22px] font-heading font-bold text-text-heading mb-3 group-hover:text-brand transition-colors">Serverless Databases</h3>
                <p className="text-[15px] text-text-muted leading-[1.6] max-w-[200px]">1-click managed PostgreSQL and Redis clusters for your apps.</p>
                <div className="absolute -right-8 -bottom-8 w-40 h-40 opacity-10 text-brand group-hover:scale-110 group-hover:opacity-20 transition-all duration-500">
@@ -568,7 +513,7 @@ export default function Home() {
             </motion.div>
 
             {/* Middle Right */}
-            <motion.div variants={fadeUp} className="md:col-span-1 md:row-span-1 bg-[#F0F9FF] border border-[#BAE6FD] rounded-[24px] p-8 shadow-[0_8px_24px_rgba(37,99,235,0.06)] hover:shadow-[0_12px_40px_rgba(37,99,235,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-center relative overflow-hidden">
+            <motion.div variants={fadeUp} className="md:col-span-1 md:row-span-1 bg-[#F0F9FF] border border-[#BAE6FD] rounded-[24px] p-8 shadow-[0_8px_24px_rgba(14,84,135,0.06)] hover:shadow-[0_12px_40px_rgba(14,84,135,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-center relative overflow-hidden">
                <div className="text-[48px] font-heading font-extrabold text-brand mb-2 leading-none">99.99%</div>
                <h3 className="text-[16px] font-bold text-text-heading mb-6">Guaranteed Uptime SLA</h3>
                <div className="flex gap-2">
@@ -577,7 +522,7 @@ export default function Home() {
             </motion.div>
 
             {/* Bottom Left Small */}
-            <motion.div variants={fadeUp} className="md:col-span-1 md:row-span-1 bg-[#FFF7ED] border border-[#FED7AA] rounded-[24px] p-8 shadow-[0_8px_24px_rgba(37,99,235,0.06)] hover:shadow-[0_12px_40px_rgba(245,158,11,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-center">
+            <motion.div variants={fadeUp} className="md:col-span-1 md:row-span-1 bg-[#FFF7ED] border border-[#FED7AA] rounded-[24px] p-8 shadow-[0_8px_24px_rgba(14,84,135,0.06)] hover:shadow-[0_12px_40px_rgba(245,158,11,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-center">
                <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 rounded-[14px] bg-[#FEF3C7] text-[#D97706] flex items-center justify-center font-bold text-[24px] shadow-inner">$</div>
                   <h3 className="text-[22px] font-heading font-bold text-[#92400E]">Opaque Billing. <br/>Gone.</h3>
@@ -586,7 +531,7 @@ export default function Home() {
             </motion.div>
 
             {/* Bottom Right Wide */}
-            <motion.div variants={fadeUp} className="md:col-span-2 md:row-span-1 bg-white border border-border-default rounded-[24px] p-8 shadow-[0_8px_24px_rgba(37,99,235,0.06)] hover:border-brand hover:shadow-[0_12px_40px_rgba(37,99,235,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col sm:flex-row items-center justify-between gap-8 group">
+            <motion.div variants={fadeUp} className="md:col-span-2 md:row-span-1 bg-white border border-border-default rounded-[24px] p-8 shadow-[0_8px_24px_rgba(14,84,135,0.06)] hover:border-brand hover:shadow-[0_12px_40px_rgba(14,84,135,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col sm:flex-row items-center justify-between gap-8 group">
                <div className="flex-1">
                  <div className="w-12 h-12 rounded-[14px] bg-bg-blue-tint text-brand flex items-center justify-center mb-6 shadow-inner group-hover:bg-brand group-hover:text-white transition-colors">
                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
@@ -692,7 +637,7 @@ export default function Home() {
               { text: "Docs are actually good. Set up Postgres, Redis, and a custom domain in under 15 minutes from zero.", author: "Leo W.", role: "Junior Developer", bg: "bg-blue-400" },
               { text: "The live cost meter in the UI changed how our team thinks about infrastructure spend. A total game changer.", author: "Ana B.", role: "Startup CTO", bg: "bg-teal-500" }
             ].map((quote, i) => (
-              <motion.div variants={fadeUp} key={i} className="break-inside-avoid bg-white border border-border-default rounded-[24px] p-8 shadow-[0_4px_14px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_40px_rgba(37,99,235,0.12)] hover:-translate-y-1 transition-all duration-300">
+              <motion.div variants={fadeUp} key={i} className="break-inside-avoid bg-white border border-border-default rounded-[24px] p-8 shadow-[0_4px_14px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_40px_rgba(14,84,135,0.12)] hover:-translate-y-1 transition-all duration-300">
                 <div className="flex gap-1 mb-6 text-[#F59E0B] text-[20px]">
                   <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                 </div>
@@ -714,7 +659,7 @@ export default function Home() {
 
       {/* SECTION 9: STATS ROW */}
       <section className="px-6 py-12">
-        <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp} className="max-w-6xl mx-auto bg-gradient-to-br from-[#1E40AF] via-[#2563EB] to-[#3B82F6] rounded-[32px] py-[80px] shadow-[0_20px_60px_rgba(37,99,235,0.25)] relative overflow-hidden">
+        <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp} className="max-w-6xl mx-auto bg-gradient-to-br from-[#073a61] via-[#0e5487] to-[#227dbf] rounded-[32px] py-[80px] shadow-[0_20px_60px_rgba(14,84,135,0.25)] relative overflow-hidden">
           <div className="absolute inset-0 circuit-pattern opacity-[0.1] mix-blend-overlay -z-0"></div>
           <div className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-white/20 relative z-10 w-full px-12">
             {[
@@ -814,7 +759,7 @@ export default function Home() {
               <div className="relative z-10 bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 p-10 rounded-[40px] shadow-2xl overflow-hidden group">
                  <div className="absolute inset-0 bg-brand/5 group-hover:bg-brand/10 transition-colors"></div>
                  <div className="relative z-20 flex flex-col items-center text-center">
-                    <div className="w-24 h-24 bg-brand rounded-3xl flex items-center justify-center mb-8 shadow-[0_0_50px_rgba(37,99,235,0.4)] animate-float">
+                    <div className="w-24 h-24 bg-brand rounded-3xl flex items-center justify-center mb-8 shadow-[0_0_50px_rgba(14,84,135,0.4)] animate-float">
                        <svg className="w-12 h-12 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                     </div>
                     <h3 className="text-2xl font-bold text-white mb-2">SOC2 Type II Certified</h3>
@@ -853,7 +798,7 @@ export default function Home() {
                 variants={fadeUp} 
                 key={i} 
                 whileHover={{ y: -10 }}
-                className={`p-10 rounded-[32px] border ${plan.highlight ? 'border-brand bg-white shadow-[0_20px_50px_rgba(37,99,235,0.1)] relative' : 'border-border-default bg-[#F8FAFF]'} transition-all`}
+                className={`p-10 rounded-[32px] border ${plan.highlight ? 'border-brand bg-white shadow-[0_20px_50px_rgba(14,84,135,0.1)] relative' : 'border-border-default bg-[#F8FAFF]'} transition-all`}
               >
                 {plan.highlight && <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand text-white text-[12px] font-bold px-4 py-1 rounded-full uppercase tracking-widest">Most Popular</div>}
                 <h3 className="text-[20px] font-bold text-text-heading mb-2">{plan.name}</h3>
@@ -944,7 +889,7 @@ export default function Home() {
               { title: "How we cut deploy times by 40% with Nixpacks", bg: "bg-gradient-to-br from-[#F0FDF4] to-[#DCFCE7]", badge: "ENGINEERING", time: "8 min", color: "text-green-600" },
               { title: "NovaDeploy vs Railway vs Render: honest comparison", bg: "bg-gradient-to-br from-[#FFF7ED] to-[#FFEDD5]", badge: "GUIDE", time: "12 min", color: "text-orange-600" },
             ].map((post, i) => (
-              <motion.div variants={fadeUp} key={i} className="bg-white border border-border-default rounded-[24px] overflow-hidden shadow-[0_4px_14px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(37,99,235,0.12)] hover:-translate-y-2 transition-all duration-300 flex flex-col group cursor-pointer">
+              <motion.div variants={fadeUp} key={i} className="bg-white border border-border-default rounded-[24px] overflow-hidden shadow-[0_4px_14px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(14,84,135,0.12)] hover:-translate-y-2 transition-all duration-300 flex flex-col group cursor-pointer">
                  <div className={`h-[220px] w-full ${post.bg} p-8 flex items-start relative`}>
                    <div className={`bg-white/80 backdrop-blur ${post.color} text-[11px] font-bold px-4 py-1.5 rounded-full uppercase tracking-widest shadow-sm`}>{post.badge}</div>
                  </div>
@@ -966,7 +911,7 @@ export default function Home() {
 
       {/* SECTION 11: FINAL CTA BANNER */}
       <section className="bg-white py-[120px] px-6">
-        <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp} className="max-w-6xl mx-auto rounded-[32px] overflow-hidden flex flex-col md:flex-row shadow-[0_20px_80px_rgba(37,99,235,0.15)] bg-gradient-to-br from-[#1E40AF] to-[#2563EB] relative">
+        <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp} className="max-w-6xl mx-auto rounded-[32px] overflow-hidden flex flex-col md:flex-row shadow-[0_20px_80px_rgba(14,84,135,0.15)] bg-gradient-to-br from-[#073a61] to-[#0e5487] relative">
           <div className="absolute inset-0 circuit-pattern opacity-[0.1] -z-0 mix-blend-overlay"></div>
           
           {/* Left Half */}
@@ -975,7 +920,7 @@ export default function Home() {
             <p className="text-[18px] text-blue-100 mb-10 max-w-md leading-relaxed">Join thousands of developers building scalable applications without the DevOps friction.</p>
             <div className="flex flex-col sm:flex-row gap-4">
                <button className="bg-white text-brand font-bold px-8 py-4 rounded-full text-[16px] hover:bg-slate-50 hover:scale-105 transition-all shadow-lg">Start Deploying Free</button>
-               <button className="bg-[#1E3A8A] border border-[#3B82F6] text-white font-bold px-8 py-4 rounded-full text-[16px] hover:bg-[#1E40AF] transition-all">Talk To Sales</button>
+               <button className="bg-[#052b49] border border-[#227dbf] text-white font-bold px-8 py-4 rounded-full text-[16px] hover:bg-[#073a61] transition-all">Talk To Sales</button>
             </div>
           </div>
           
