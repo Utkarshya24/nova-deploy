@@ -22,7 +22,7 @@ export function NavBar() {
           <img 
             src="/logo-full.svg" 
             alt="DCDeploy" 
-            className="h-10 w-auto transition-transform group-hover:scale-105" 
+            className="h-8 w-auto transition-transform group-hover:scale-105" 
           />
         </Link>
 
