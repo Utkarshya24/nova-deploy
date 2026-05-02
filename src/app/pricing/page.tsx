@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function PricingPage() {
   const [isAnnual, setIsAnnual] = useState(false);
+  const [currency, setCurrency] = useState<"USD" | "INR">("INR");
 
   // Calculator State
   const [services, setServices] = useState(3);
@@ -31,21 +32,86 @@ export default function PricingPage() {
     return Math.max(0, Math.round(cost));
   };
 
-  const estimatedCost = calculateCost();
-  const recommendedPlan = estimatedCost === 0 ? "Hobby" : estimatedCost > 150 ? "Scale" : "Pro";
+  const estimatedCostUSD = calculateCost();
+  const estimatedCost = currency === "USD" ? estimatedCostUSD : estimatedCostUSD * 85;
+  const recommendedPlan = estimatedCostUSD === 0 ? "Hobby" : estimatedCostUSD > 150 ? "Scale" : "Pro";
+
+  const dcdPlans = [
+    {
+      id: "DCD-1",
+      monthlyPrice: { INR: 85, USD: 1 },
+      minutePrice: { INR: 0.0019, USD: 0.000022 },
+      type: "Shared",
+      memory: "250 MB Memory",
+      storage: "5 GB Storage",
+      cpu: "1 CPU",
+    },
+    {
+      id: "DCD-2",
+      monthlyPrice: { INR: 170, USD: 2 },
+      minutePrice: { INR: 0.0039, USD: 0.000046 },
+      type: "Shared",
+      memory: "500 MB Memory",
+      storage: "5 GB Storage",
+      cpu: "1 CPU",
+    },
+    {
+      id: "DCD-3",
+      monthlyPrice: { INR: 340, USD: 4 },
+      minutePrice: { INR: 0.0078, USD: 0.000092 },
+      type: "Dedicated",
+      memory: "1 GB Memory",
+      storage: "10 GB Storage",
+      cpu: "1 CPU",
+    },
+    {
+      id: "DCD-4",
+      monthlyPrice: { INR: 595, USD: 7 },
+      minutePrice: { INR: 0.0137, USD: 0.00016 },
+      type: "Dedicated",
+      memory: "2 GB Memory",
+      storage: "10 GB Storage",
+      cpu: "1 CPU",
+    },
+    {
+      id: "DCD-5",
+      monthlyPrice: { INR: 1190, USD: 14 },
+      minutePrice: { INR: 0.0275, USD: 0.00032 },
+      type: "Dedicated",
+      memory: "4 GB Memory",
+      storage: "10 GB Storage",
+      cpu: "2 CPU",
+    },
+    {
+      id: "DCD-6",
+      monthlyPrice: { INR: 2380, USD: 28 },
+      minutePrice: { INR: 0.0550, USD: 0.00065 },
+      type: "Dedicated",
+      memory: "8 GB Memory",
+      storage: "20 GB Storage",
+      cpu: "4 CPU",
+    },
+  ];
 
   const faqs = [
-    "Is the free tier really free forever?",
-    "What exactly counts as a \"service\"?",
-    "How does usage-based billing work?",
-    "Can I set a hard spending limit?",
-    "Do you offer student or open source discounts?",
-    "What payment methods do you accept?",
-    "Can I switch between plans anytime?",
-    "Do you offer refunds?",
-    "Is there a discount for annual billing?",
-    "How does team billing work?"
+    { q: "Is the free tier really free forever?", a: "Yes, our free tier is designed to give you everything you need to host a hobby project indefinitely. It comes with custom domains, automatic HTTPS, and enough compute for small applications." },
+    { q: "What exactly counts as a \"service\"?", a: "A service is any individual application, worker, or static site you deploy on DCDeploy." },
+    { q: "How does usage-based billing work?", a: "We track your resource usage down to the minute. You only pay for what you use, when you use it." },
+    { q: "Can I set a hard spending limit?", a: "Yes, you can configure budget alerts and hard limits in your billing dashboard to prevent unexpected costs." },
+    { q: "Do you offer student or open source discounts?", a: "Absolutely! Contact our support team with proof of your status or project details to apply." },
   ];
+
+  const formatPrice = (amount: number) => {
+    return currency === "INR" 
+      ? `₹${amount.toLocaleString('en-IN')}` 
+      : `$${amount.toLocaleString('en-US')}`;
+  };
+
+  const formatMinutePrice = (amount: number) => {
+    return currency === "INR" 
+      ? `₹${amount.toFixed(4)}` 
+      : `$${amount.toFixed(6)}`;
+  };
 
   return (
     <div className="flex flex-col w-full bg-white relative overflow-hidden">
@@ -63,267 +129,230 @@ export default function PricingPage() {
           Start free. Scale as you grow. Cancel anytime.
         </p>
 
-        {/* Toggle Pill */}
-        <div className="relative z-10 bg-[#F1F5F9] border border-border-default rounded-full p-1 inline-flex items-center">
-          <button 
-            onClick={() => setIsAnnual(false)}
-            className={`px-5 py-2 rounded-full text-[15px] font-semibold transition-all ${!isAnnual ? "bg-white shadow-sm text-text-heading" : "text-text-muted hover:text-text-heading"}`}
-          >
-            Monthly
-          </button>
-          <button 
-            onClick={() => setIsAnnual(true)}
-            className={`px-5 py-2 rounded-full text-[15px] font-semibold transition-all flex items-center gap-2 ${isAnnual ? "bg-white shadow-sm text-text-heading" : "text-text-muted hover:text-text-heading"}`}
-          >
-            Annual
-            <span className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded-full ${isAnnual ? 'bg-green-100 text-green-700' : 'bg-slate-200 text-text-muted'}`}>Save 20%</span>
-          </button>
+        <div className="flex flex-col gap-6 items-center">
+          {/* Currency Toggle */}
+          <div className="relative z-10 bg-[#F1F5F9] border border-border-default rounded-full p-1 inline-flex items-center">
+            <button 
+              onClick={() => setCurrency("USD")}
+              className={`px-6 py-2 rounded-full text-[15px] font-bold transition-all ${currency === "USD" ? "bg-white shadow-sm text-brand" : "text-text-muted hover:text-text-heading"}`}
+            >
+              USD
+            </button>
+            <button 
+              onClick={() => setCurrency("INR")}
+              className={`px-6 py-2 rounded-full text-[15px] font-bold transition-all ${currency === "INR" ? "bg-white shadow-sm text-brand" : "text-text-muted hover:text-text-heading"}`}
+            >
+              INR
+            </button>
+          </div>
+
+          {/* Monthly/Annual Toggle */}
+          <div className="relative z-10 bg-[#F1F5F9] border border-border-default rounded-full p-1 inline-flex items-center">
+            <button 
+              onClick={() => setIsAnnual(false)}
+              className={`px-5 py-2 rounded-full text-[15px] font-semibold transition-all ${!isAnnual ? "bg-white shadow-sm text-text-heading" : "text-text-muted hover:text-text-heading"}`}
+            >
+              Monthly
+            </button>
+            <button 
+              onClick={() => setIsAnnual(true)}
+              className={`px-5 py-2 rounded-full text-[15px] font-semibold transition-all flex items-center gap-2 ${isAnnual ? "bg-white shadow-sm text-text-heading" : "text-text-muted hover:text-text-heading"}`}
+            >
+              Annual
+              <span className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded-full ${isAnnual ? 'bg-green-100 text-green-700' : 'bg-slate-200 text-text-muted'}`}>Save 20%</span>
+            </button>
+          </div>
         </div>
       </section>
 
-      {/* PRICING CARDS */}
-      <section className="relative px-6 pb-24 max-w-[1100px] mx-auto w-full z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
-          
-          {/* HOBBY CARD */}
-          <div className="bg-white border border-border-default rounded-2xl p-8 flex flex-col h-full hover:shadow-[0_8px_40px_rgba(14,84,135,0.08)] transition-shadow">
-            <div className="bg-slate-100 text-text-muted text-[12px] font-bold px-3 py-1 rounded-full uppercase tracking-widest inline-flex w-max mb-6">Free Forever</div>
-            <h3 className="text-[20px] font-heading font-semibold text-text-heading mb-4">Hobby</h3>
-            <div className="mb-2 flex items-end gap-2">
-              <span className="text-[64px] font-heading font-extrabold text-text-heading leading-none">$0</span>
-              <span className="text-[18px] text-text-muted mb-2">/month</span>
-            </div>
-            <p className="text-[14px] text-text-muted mb-8">Perfect for side projects</p>
-            
-            <div className="w-full border-t border-dashed border-border-default mb-8"></div>
-            
-            <ul className="flex flex-col gap-4 mb-10 flex-1">
-              {[
-                "2 services", "512MB RAM per service", "1GB storage", "Shared CPU", 
-                "Custom domains", "Auto HTTPS/SSL", "Community support", "100GB bandwidth"
-              ].map((feature, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full bg-bg-blue-tint text-brand flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">&#10003;</div>
-                  <span className="text-[14px] text-text-body">{feature}</span>
-                </li>
-              ))}
-            </ul>
-            
-            <button className="w-full py-3 px-6 rounded-full border border-border-default font-semibold text-[15px] hover:border-brand hover:text-brand transition-colors">
-              Get Started Free
-            </button>
-          </div>
-
-          {/* PRO CARD - FEATURED */}
-          <div className="bg-gradient-to-b from-[#EFF6FF] to-[#DBEAFE] border-2 border-brand rounded-2xl p-8 flex flex-col h-[105%] shadow-[0_0_0_4px_#BFDBFE,0_20px_60px_rgba(14,84,135,0.15)] relative scale-100 md:scale-[1.04] md:-translate-y-2 z-10">
-            <div className="bg-brand text-white text-[12px] font-bold px-3 py-1 rounded-full uppercase tracking-widest inline-flex w-max mb-6">Most Popular</div>
-            <h3 className="text-[20px] font-heading font-semibold text-text-heading mb-4">Pro</h3>
-            <div className="mb-2 flex flex-col items-start gap-1">
-              <div className="flex items-end gap-2">
-                <span className="text-[64px] font-heading font-extrabold gradient-text leading-none">{isAnnual ? "$16" : "$20"}</span>
-                <span className="text-[18px] text-text-muted mb-2">/month</span>
-              </div>
-              {isAnnual && <div className="text-[13px] font-semibold text-green-600 line-through decoration-slate-400 mr-2">$24<span className="no-underline ml-1 text-green-600">$192 billed annually</span></div>}
-            </div>
-            <p className="text-[14px] text-text-muted mb-8">For serious projects and small teams</p>
-            
-            <div className="w-full border-t border-brand/20 mb-8"></div>
-            
-            <ul className="flex flex-col gap-4 mb-10 flex-1">
-              {[
-                "Unlimited services", "2GB RAM per service", "50GB storage", "Dedicated CPU", 
-                "Custom domains + wildcard SSL", "Managed Postgres + Redis", "Preview deploy URLs", 
-                "Team collaboration (5 members)", "Priority email support", "1TB bandwidth"
-              ].map((feature, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full bg-green-500 text-white flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">&#10003;</div>
-                  <span className="text-[14px] text-text-heading font-medium">{feature}</span>
-                </li>
-              ))}
-            </ul>
-            
-            <button className="w-full py-3 px-6 rounded-full bg-brand text-white font-semibold text-[15px] shadow-[0_8px_24px_rgba(14,84,135,0.3)] hover:bg-brand-hover hover:scale-[1.02] transition-all">
-              Start with Pro &rarr;
-            </button>
-          </div>
-
-          {/* SCALE CARD */}
-          <div className="bg-white border border-border-default rounded-2xl p-8 flex flex-col h-full hover:shadow-[0_8px_40px_rgba(14,84,135,0.08)] transition-shadow">
-            <div className="bg-[#0F172A] text-white text-[12px] font-bold px-3 py-1 rounded-full uppercase tracking-widest inline-flex w-max mb-6">Enterprise</div>
-            <h3 className="text-[20px] font-heading font-semibold text-text-heading mb-4">Scale</h3>
-            <div className="mb-2 flex items-end gap-2 h-[72px]">
-              <span className="text-[48px] font-heading font-extrabold text-text-heading leading-tight">Custom</span>
-            </div>
-            <p className="text-[14px] text-text-muted mb-8">For teams that need everything</p>
-            
-            <div className="w-full border-t border-dashed border-border-default mb-8"></div>
-            
-            <ul className="flex flex-col gap-4 mb-10 flex-1">
-              {[
-                "Everything in Pro", "Unlimited team members", "SAML SSO + SCIM", "Dedicated infrastructure", 
-                "SOC 2 Type II", "99.99% SLA guarantee", "Full audit logs", "Dedicated success manager"
-              ].map((feature, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full bg-[#1E293B] text-white flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">&#10003;</div>
-                  <span className="text-[14px] text-text-body">{feature}</span>
-                </li>
-              ))}
-            </ul>
-            
-            <button className="w-full py-3 px-6 rounded-full border border-border-default font-semibold text-[15px] hover:border-[#0F172A] hover:bg-slate-50 transition-colors">
-              Talk To Sales &rarr;
-            </button>
-          </div>
-
+      {/* DCD RESOURCE PLANS */}
+      <section className="relative px-6 pb-32 max-w-7xl mx-auto w-full z-10">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-heading font-bold text-text-heading mb-4">Resource Plans</h2>
+          <p className="text-text-body">Predictable compute resources for your applications.</p>
         </div>
-        
-        <p className="text-center text-[14px] text-text-muted mt-12 w-full max-w-2xl mx-auto">
-          All plans include: Custom domains · HTTPS · Git deploys · Global CDN · Docker support · API access
-        </p>
-      </section>
 
-      {/* COMPARISON TABLE */}
-      <section className="py-24 px-6 bg-white border-t border-[#F1F5F9] overflow-x-auto">
-        <h3 className="text-[28px] font-heading font-bold text-center text-text-heading mb-12">Compare All Features</h3>
-        
-        <div className="max-w-[900px] mx-auto min-w-[700px]">
-          <div className="grid grid-cols-4 border-b border-border-default pb-4 sticky top-[68px] bg-white z-20">
-             <div className="font-semibold text-text-heading text-[16px]">Feature</div>
-             <div className="font-semibold text-text-heading text-[16px] text-center">Hobby</div>
-             <div className="font-semibold text-brand text-[16px] text-center">Pro</div>
-             <div className="font-semibold text-text-heading text-[16px] text-center">Scale</div>
-          </div>
-          
-          {[
-            { cat: "Compute", items: [
-               { name: "Services", h: "2", p: "Unlimited", s: "Unlimited" },
-               { name: "RAM per service", h: "512MB", p: "2GB", s: "Custom" },
-               { name: "CPU", h: "Shared", p: "Dedicated", s: "Dedicated Node" }
-            ]},
-            { cat: "Storage & Bandwidth", items: [
-               { name: "Storage", h: "1GB", p: "50GB", s: "Unlimited" },
-               { name: "Bandwidth", h: "100GB", p: "1TB", s: "Unlimited" },
-               { name: "Global Edge Network", h: true, p: true, s: true }
-            ]},
-            { cat: "Databases", items: [
-               { name: "Managed Postgres", h: false, p: true, s: true },
-               { name: "Managed Redis", h: false, p: true, s: true },
-               { name: "Automated Backups", h: false, p: "30 days", s: "1 year" }
-            ]},
-            { cat: "Teams", items: [
-               { name: "Members", h: "1", p: "5", s: "Unlimited" },
-               { name: "RBAC", h: false, p: true, s: true },
-               { name: "SSO (SAML)", h: false, p: false, s: true }
-            ]}
-          ].map((section, idx) => (
-             <div key={idx}>
-               <div className="grid grid-cols-4 bg-bg-section-alt py-2 px-4 mt-4">
-                  <div className="col-span-4 text-brand font-bold text-[13px] uppercase tracking-wider">{section.cat}</div>
-               </div>
-               {section.items.map((item, i) => (
-                  <div key={i} className={`grid grid-cols-4 py-4 px-4 border-b border-border-default ${i % 2 === 0 ? "bg-white" : "bg-[#F8FAFF]"}`}>
-                     <div className="text-[14px] text-text-body font-medium">{item.name}</div>
-                     <div className="flex justify-center items-center">
-                        {typeof item.h === "boolean" ? (item.h ? <span className="text-[#10B981] font-bold">&#10003;</span> : <span className="text-slate-300 font-bold">✕</span>) : <span className="text-[14px] text-text-heading">{item.h}</span>}
-                     </div>
-                     <div className="flex justify-center items-center">
-                        {typeof item.p === "boolean" ? (item.p ? <span className="text-[#10B981] font-bold">&#10003;</span> : <span className="text-slate-300 font-bold">✕</span>) : <span className="text-[14px] text-text-heading font-semibold">{item.p}</span>}
-                     </div>
-                     <div className="flex justify-center items-center">
-                        {typeof item.s === "boolean" ? (item.s ? <span className="text-[#10B981] font-bold">&#10003;</span> : <span className="text-slate-300 font-bold">✕</span>) : <span className="text-[14px] text-text-heading">{item.s}</span>}
-                     </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {dcdPlans.map((plan, i) => (
+            <motion.div 
+              key={plan.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              whileHover={{ y: -5 }}
+              className="bg-white border border-border-default rounded-[32px] p-8 hover:shadow-[0_20px_40px_rgba(14,84,135,0.08)] hover:border-brand transition-all group"
+            >
+              <div className="flex justify-between items-start mb-6">
+                <div>
+                  <h3 className="text-xl font-bold text-brand mb-1">{plan.id}</h3>
+                  <span className={`text-[12px] font-bold uppercase px-3 py-1 rounded-full ${plan.type === 'Dedicated' ? 'bg-amber-100 text-amber-700' : 'bg-slate-100 text-slate-600'}`}>
+                    {plan.type}
+                  </span>
+                </div>
+                <div className="text-right">
+                  <div className="text-2xl font-extrabold text-text-heading">
+                    {formatPrice(isAnnual ? Math.round(plan.monthlyPrice[currency] * 0.8) : plan.monthlyPrice[currency])}
+                    <span className="text-sm text-text-muted font-normal">/mo</span>
                   </div>
-               ))}
-             </div>
+                  <div className="text-[12px] text-text-muted font-medium mt-1">
+                    {formatMinutePrice(plan.minutePrice[currency])}/min
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-4 mb-8">
+                {[plan.memory, plan.storage, plan.cpu].map((spec, idx) => (
+                  <div key={idx} className="flex items-center gap-3">
+                    <div className="w-5 h-5 rounded-full bg-bg-blue-tint text-brand flex items-center justify-center text-[10px] font-bold shrink-0">&#10003;</div>
+                    <span className="text-[15px] text-text-body">{spec}</span>
+                  </div>
+                ))}
+              </div>
+
+              <button className="w-full py-4 rounded-2xl bg-bg-page border border-border-default text-text-heading font-bold hover:bg-brand hover:text-white hover:border-brand transition-all">
+                Select {plan.id}
+              </button>
+            </motion.div>
           ))}
         </div>
       </section>
 
-      {/* COST CALCULATOR */}
-      <section className="py-24 px-6 bg-bg-page relative border-t border-[#E2E8F0] shadow-inner">
-        <div className="max-w-[700px] mx-auto bg-white border border-border-default rounded-2xl p-8 shadow-[0_4px_24px_rgba(14,84,135,0.08)]">
-           <h3 className="text-[28px] font-heading font-bold text-text-heading mb-8 text-center">Estimate Your Monthly Cost</h3>
-           
-           <div className="flex flex-col gap-6 mb-10">
-              {/* slider 1 */}
-              <div>
-                 <div className="flex justify-between mb-2">
-                    <label className="text-[14px] font-medium text-text-heading">Services</label>
-                    <span className="text-[14px] font-bold text-brand">{services}</span>
-                 </div>
-                 <input type="range" min="1" max="50" value={services} onChange={e => setServices(parseInt(e.target.value))} className="w-full accent-brand" />
+      {/* PLATFORM PLANS */}
+      <section className="bg-bg-page py-32 border-y border-border-default relative overflow-hidden">
+        <div className="absolute inset-0 circuit-pattern opacity-[0.03] pointer-events-none"></div>
+        <div className="max-w-[1100px] mx-auto w-full px-6 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-heading font-bold text-text-heading mb-4">Platform Features</h2>
+            <p className="text-text-body">Everything you need to manage your infrastructure.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+            
+            {/* HOBBY CARD */}
+            <div className="bg-white border border-border-default rounded-3xl p-8 flex flex-col h-full hover:shadow-xl transition-all">
+              <h3 className="text-[20px] font-heading font-semibold text-text-heading mb-4">Hobby</h3>
+              <div className="mb-2 flex items-end gap-2">
+                <span className="text-[48px] font-heading font-extrabold text-text-heading leading-none">{formatPrice(0)}</span>
+                <span className="text-[18px] text-text-muted mb-2">/month</span>
               </div>
-              {/* slider 2 */}
+              <p className="text-[14px] text-text-muted mb-8">Perfect for side projects</p>
+              <div className="w-full border-t border-dashed border-border-default mb-8"></div>
+              <ul className="flex flex-col gap-4 mb-10 flex-1 text-[14px]">
+                <li>&#10003; 2 services</li>
+                <li>&#10003; Global CDN</li>
+                <li>&#10003; Automatic SSL</li>
+                <li>&#10003; Community support</li>
+              </ul>
+              <button className="w-full py-3 px-6 rounded-full border border-border-default font-semibold text-[15px] hover:border-brand transition-all">Get Started</button>
+            </div>
+
+            {/* PRO CARD */}
+            <div className="bg-white border-2 border-brand rounded-3xl p-8 flex flex-col h-full shadow-2xl relative scale-105 z-10">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase">Recommended</div>
+              <h3 className="text-[20px] font-heading font-semibold text-text-heading mb-4">Pro</h3>
+              <div className="mb-2 flex items-end gap-2">
+                <span className="text-[48px] font-heading font-extrabold text-brand leading-none">{formatPrice(isAnnual ? (currency === 'INR' ? 1360 : 16) : (currency === 'INR' ? 1700 : 20))}</span>
+                <span className="text-[18px] text-text-muted mb-2">/month</span>
+              </div>
+              <p className="text-[14px] text-text-muted mb-8">For growing apps and teams</p>
+              <div className="w-full border-t border-brand/10 mb-8"></div>
+              <ul className="flex flex-col gap-4 mb-10 flex-1 text-[14px]">
+                <li className="font-semibold text-text-heading">&#10003; Unlimited services</li>
+                <li className="font-semibold text-text-heading">&#10003; Team collaboration</li>
+                <li className="font-semibold text-text-heading">&#10003; Priority support</li>
+                <li className="font-semibold text-text-heading">&#10003; Advanced metrics</li>
+              </ul>
+              <button className="w-full py-3 px-6 rounded-full bg-brand text-white font-semibold text-[15px] hover:bg-brand-hover transition-all">Start 14-day Trial</button>
+            </div>
+
+            {/* SCALE CARD */}
+            <div className="bg-white border border-border-default rounded-3xl p-8 flex flex-col h-full hover:shadow-xl transition-all">
+              <h3 className="text-[20px] font-heading font-semibold text-text-heading mb-4">Enterprise</h3>
+              <div className="mb-2 flex items-end gap-2 h-[48px]">
+                <span className="text-[32px] font-heading font-bold text-text-heading leading-tight">Custom</span>
+              </div>
+              <p className="text-[14px] text-text-muted mb-8">For high-scale workloads</p>
+              <div className="w-full border-t border-dashed border-border-default mb-8"></div>
+              <ul className="flex flex-col gap-4 mb-10 flex-1 text-[14px]">
+                <li>&#10003; Custom SLA</li>
+                <li>&#10003; Dedicated account manager</li>
+                <li>&#10003; Single Sign-On (SSO)</li>
+                <li>&#10003; VPC Peering</li>
+              </ul>
+              <button className="w-full py-3 px-6 rounded-full border border-border-default font-semibold text-[15px] hover:border-text-heading transition-all">Contact Sales</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* COST CALCULATOR */}
+      <section className="py-24 px-6 bg-white relative border-t border-border-default">
+        <div className="max-w-[700px] mx-auto bg-white border border-border-default rounded-[40px] p-8 md:p-12 shadow-[0_32px_64px_rgba(0,0,0,0.05)]">
+           <h3 className="text-[28px] font-heading font-bold text-text-heading mb-8 text-center">Cost Calculator</h3>
+           
+           <div className="flex flex-col gap-8 mb-12">
               <div>
-                 <div className="flex justify-between mb-3">
-                    <label className="text-[14px] font-medium text-text-heading">RAM per service</label>
-                    <span className="text-[14px] font-bold text-brand">{ram}GB</span>
+                 <div className="flex justify-between mb-4">
+                    <label className="text-[15px] font-bold text-text-heading uppercase tracking-wider">Services</label>
+                    <span className="text-[15px] font-bold text-brand">{services}</span>
                  </div>
-                 <div className="flex gap-2">
+                 <input type="range" min="1" max="50" value={services} onChange={e => setServices(parseInt(e.target.value))} className="w-full h-2 bg-bg-page rounded-lg appearance-none cursor-pointer accent-brand" />
+              </div>
+
+              <div>
+                 <div className="flex justify-between mb-4">
+                    <label className="text-[15px] font-bold text-text-heading uppercase tracking-wider">RAM per service</label>
+                    <span className="text-[15px] font-bold text-brand">{ram}GB</span>
+                 </div>
+                 <div className="grid grid-cols-4 gap-3">
                     {[0.5, 1, 2, 4].map(val => (
-                       <button key={val} onClick={() => setRam(val)} className={`flex-1 py-1.5 rounded-lg text-[13px] font-medium transition-all border ${ram === val ? 'bg-brand text-white border-brand' : 'bg-white text-text-muted border-border-default hover:border-brand/50'}`}>
+                       <button key={val} onClick={() => setRam(val)} className={`py-3 rounded-2xl text-[14px] font-bold transition-all border ${ram === val ? 'bg-brand text-white border-brand shadow-lg shadow-brand/20' : 'bg-bg-page text-text-muted border-transparent hover:border-brand/30'}`}>
                          {val === 0.5 ? "512MB" : `${val}GB`}
                        </button>
                     ))}
                  </div>
               </div>
-              {/* slider 3 */}
+
               <div>
-                 <div className="flex justify-between mb-2">
-                    <label className="text-[14px] font-medium text-text-heading">Monthly requests</label>
-                    <span className="text-[14px] font-bold text-brand">{requests.toLocaleString()}</span>
+                 <div className="flex justify-between mb-4">
+                    <label className="text-[15px] font-bold text-text-heading uppercase tracking-wider">Monthly requests</label>
+                    <span className="text-[15px] font-bold text-brand">{requests.toLocaleString()}</span>
                  </div>
-                 <input type="range" min="10000" max="10000000" step="10000" value={requests} onChange={e => setRequests(parseInt(e.target.value))} className="w-full accent-brand" />
-              </div>
-              {/* slider 4 */}
-              <div>
-                 <div className="flex justify-between mb-2">
-                    <label className="text-[14px] font-medium text-text-heading">Managed Databases</label>
-                    <span className="text-[14px] font-bold text-brand">{databases}</span>
-                 </div>
-                 <input type="range" min="0" max="5" value={databases} onChange={e => setDatabases(parseInt(e.target.value))} className="w-full accent-brand" />
-              </div>
-              {/* slider 5 */}
-              <div>
-                 <div className="flex justify-between mb-2">
-                    <label className="text-[14px] font-medium text-text-heading">Team members</label>
-                    <span className="text-[14px] font-bold text-brand">{team}</span>
-                 </div>
-                 <input type="range" min="1" max="50" value={team} onChange={e => setTeam(parseInt(e.target.value))} className="w-full accent-brand" />
+                 <input type="range" min="10000" max="10000000" step="10000" value={requests} onChange={e => setRequests(parseInt(e.target.value))} className="w-full h-2 bg-bg-page rounded-lg appearance-none cursor-pointer accent-brand" />
               </div>
            </div>
 
-           <div className="bg-gradient-to-br from-[#EFF6FF] to-[#DBEAFE] border border-border-blue rounded-xl p-6 text-center shadow-inner">
-             <div className="text-[14px] text-text-muted mb-2">Estimated cost:</div>
-             <div className="text-[48px] font-heading font-extrabold text-brand leading-none mb-4">${estimatedCost} <span className="text-[18px] text-brand-light font-medium">/ month</span></div>
-             
-             <div className="flex items-center justify-center gap-4">
-                <span className="bg-brand-light/20 text-brand text-[13px] font-bold px-3 py-1 rounded-full uppercase">
-                  Recommended: {recommendedPlan}
-                </span>
+           <div className="bg-[#0F172A] rounded-[32px] p-10 text-center relative overflow-hidden">
+             <div className="absolute top-0 right-0 w-32 h-32 bg-brand/20 rounded-full blur-[60px]"></div>
+             <div className="text-[14px] text-slate-400 font-bold uppercase tracking-widest mb-4">Estimated Total</div>
+             <div className="text-[56px] font-heading font-extrabold text-white leading-none mb-4">{formatPrice(estimatedCost)}</div>
+             <div className="inline-block bg-brand/20 text-brand-light text-[13px] font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-8">
+               Matches {recommendedPlan} Plan
              </div>
-             
-             <button className="mt-6 px-8 py-3 bg-brand text-white font-semibold rounded-full hover:bg-brand-hover shadow-md transition-all">
-               Start with {recommendedPlan} &rarr;
+             <button className="w-full py-5 bg-brand text-white rounded-2xl font-bold hover:bg-brand-hover transition-all shadow-xl shadow-brand/20">
+               Get Started with {recommendedPlan}
              </button>
            </div>
         </div>
       </section>
 
       {/* FAQ SECTION */}
-      <section className="py-24 px-6 bg-white">
+      <section className="py-32 px-6 bg-bg-page border-t border-border-default">
         <div className="max-w-[700px] mx-auto">
-          <h3 className="text-[28px] font-heading font-bold text-text-heading mb-8">Frequently Asked Questions</h3>
+          <h3 className="text-[32px] font-heading font-bold text-text-heading mb-12 text-center">Frequently Asked Questions</h3>
           
-          <div className="flex flex-col">
+          <div className="flex flex-col gap-4">
              {faqs.map((faq, i) => (
-                <div key={i} className="border-b border-border-default">
+                <div key={i} className="bg-white border border-border-default rounded-[24px] overflow-hidden transition-all hover:border-brand/30">
                   <button 
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    className="w-full flex items-center justify-between py-5 text-left focus:outline-none"
+                    className="w-full flex items-center justify-between p-8 text-left focus:outline-none"
                   >
-                    <span className="text-[15px] font-semibold text-text-heading">{faq}</span>
-                    <svg className={`w-5 h-5 text-text-muted transition-transform duration-200 ${openFaq === i ? "rotate-90" : ""}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                    <span className="text-[16px] font-bold text-text-heading">{faq.q}</span>
+                    <div className={`w-8 h-8 rounded-full bg-bg-blue-tint flex items-center justify-center text-brand transition-transform duration-300 ${openFaq === i ? "rotate-180" : ""}`}>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="m6 9 6 6 6-6"/></svg>
+                    </div>
                   </button>
                   <AnimatePresence>
                      {openFaq === i && (
@@ -331,11 +360,11 @@ export default function PricingPage() {
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.2 }}
+                          transition={{ duration: 0.3, ease: "easeInOut" }}
                           className="overflow-hidden"
                         >
-                           <p className="pb-5 text-[14px] text-text-body leading-[1.7]">
-                             Yes, our free tier is designed to give you everything you need to host a hobby project indefinitely. It comes with custom domains, automatic HTTPS, and enough compute for small applications.
+                           <p className="px-8 pb-8 text-[15px] text-text-body leading-[1.7] opacity-80">
+                             {faq.a}
                            </p>
                         </motion.div>
                      )}
