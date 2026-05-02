@@ -93,6 +93,59 @@ export default function PricingPage() {
     },
   ];
 
+  const dbPlans = [
+    {
+      id: "DCD-1-DB",
+      type: "shared",
+      memory: "1 GB",
+      storage: "3 GB",
+      dbStorage: "1 GB",
+      cpu: "1 vCPU",
+      monthlyPrice: { INR: 450.00, USD: 5.30 },
+      minutePrice: { INR: 0.01044, USD: 0.000123 },
+    },
+    {
+      id: "DCD-2-DB",
+      type: "dedicated",
+      memory: "2 GB",
+      storage: "5 GB",
+      dbStorage: "2 GB",
+      cpu: "1 vCPU",
+      monthlyPrice: { INR: 810.00, USD: 9.50 },
+      minutePrice: { INR: 0.01872, USD: 0.00022 },
+    },
+    {
+      id: "DCD-3-DB",
+      type: "dedicated",
+      memory: "4 GB",
+      storage: "10 GB",
+      dbStorage: "5 GB",
+      cpu: "2 vCPU",
+      monthlyPrice: { INR: 1620.00, USD: 19.00 },
+      minutePrice: { INR: 0.03753, USD: 0.00044 },
+    },
+    {
+      id: "DCD-4-DB",
+      type: "dedicated",
+      memory: "8 GB",
+      storage: "12 GB",
+      dbStorage: "8 GB",
+      cpu: "2 vCPU",
+      monthlyPrice: { INR: 2250.00, USD: 26.50 },
+      minutePrice: { INR: 0.05211, USD: 0.00061 },
+    },
+    {
+      id: "DCD-5-DB",
+      type: "dedicated",
+      memory: "8 GB",
+      storage: "20 GB",
+      dbStorage: "20 GB",
+      cpu: "4 vCPU",
+      monthlyPrice: { INR: 3420.00, USD: 40.20 },
+      minutePrice: { INR: 0.0792, USD: 0.00093 },
+    },
+  ];
+
   const faqs = [
     { q: "Is the free tier really free forever?", a: "Yes, our free tier is designed to give you everything you need to host a hobby project indefinitely. It comes with custom domains, automatic HTTPS, and enough compute for small applications." },
     { q: "What exactly counts as a \"service\"?", a: "A service is any individual application, worker, or static site you deploy on DCDeploy." },
@@ -103,14 +156,14 @@ export default function PricingPage() {
 
   const formatPrice = (amount: number) => {
     return currency === "INR" 
-      ? `₹${amount.toLocaleString('en-IN')}` 
-      : `$${amount.toLocaleString('en-US')}`;
+      ? `₹${amount.toLocaleString('en-IN', { minimumFractionDigits: 0, maximumFractionDigits: 2 })}` 
+      : `$${amount.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 })}`;
   };
 
   const formatMinutePrice = (amount: number) => {
     return currency === "INR" 
-      ? `₹${amount.toFixed(4)}` 
-      : `$${amount.toFixed(6)}`;
+      ? `₹${amount.toFixed(5)}` 
+      : `$${amount.toFixed(7)}`;
   };
 
   return (
@@ -129,9 +182,8 @@ export default function PricingPage() {
           Start free. Scale as you grow. Cancel anytime.
         </p>
 
-        <div className="flex flex-col gap-6 items-center">
-          {/* Currency Toggle */}
-          <div className="relative z-10 bg-[#F1F5F9] border border-border-default rounded-full p-1 inline-flex items-center">
+        <div className="flex flex-col md:flex-row gap-6 items-center z-10">
+          <div className="bg-[#F1F5F9] border border-border-default rounded-full p-1 inline-flex items-center">
             <button 
               onClick={() => setCurrency("USD")}
               className={`px-6 py-2 rounded-full text-[15px] font-bold transition-all ${currency === "USD" ? "bg-white shadow-sm text-brand" : "text-text-muted hover:text-text-heading"}`}
@@ -146,8 +198,7 @@ export default function PricingPage() {
             </button>
           </div>
 
-          {/* Monthly/Annual Toggle */}
-          <div className="relative z-10 bg-[#F1F5F9] border border-border-default rounded-full p-1 inline-flex items-center">
+          <div className="bg-[#F1F5F9] border border-border-default rounded-full p-1 inline-flex items-center">
             <button 
               onClick={() => setIsAnnual(false)}
               className={`px-5 py-2 rounded-full text-[15px] font-semibold transition-all ${!isAnnual ? "bg-white shadow-sm text-text-heading" : "text-text-muted hover:text-text-heading"}`}
@@ -165,11 +216,11 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* DCD RESOURCE PLANS */}
-      <section className="relative px-6 pb-32 max-w-7xl mx-auto w-full z-10">
+      {/* COMPUTE RESOURCE PLANS */}
+      <section className="relative px-6 pb-20 max-w-7xl mx-auto w-full z-10">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-heading font-bold text-text-heading mb-4">Resource Plans</h2>
-          <p className="text-text-body">Predictable compute resources for your applications.</p>
+          <h2 className="text-3xl font-heading font-bold text-text-heading mb-4">Compute Resource Plans</h2>
+          <p className="text-text-body">High-performance instances for your web applications.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -218,78 +269,75 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* PLATFORM PLANS */}
-      <section className="bg-bg-page py-32 border-y border-border-default relative overflow-hidden">
+      {/* DATABASE RESOURCE PLANS */}
+      <section className="relative px-6 py-32 bg-bg-page border-y border-border-default overflow-hidden">
         <div className="absolute inset-0 circuit-pattern opacity-[0.03] pointer-events-none"></div>
-        <div className="max-w-[1100px] mx-auto w-full px-6 relative z-10">
+        <div className="max-w-7xl mx-auto w-full relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-heading font-bold text-text-heading mb-4">Platform Features</h2>
-            <p className="text-text-body">Everything you need to manage your infrastructure.</p>
+            <div className="inline-block bg-brand-pale text-brand text-[12px] font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-6">Database Tier</div>
+            <h2 className="text-3xl font-heading font-bold text-text-heading mb-4">Database Machine Plans</h2>
+            <p className="text-text-body max-w-2xl mx-auto">Fully managed database instances with high availability and automated backups.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-            
-            {/* HOBBY CARD */}
-            <div className="bg-white border border-border-default rounded-3xl p-8 flex flex-col h-full hover:shadow-xl transition-all">
-              <h3 className="text-[20px] font-heading font-semibold text-text-heading mb-4">Hobby</h3>
-              <div className="mb-2 flex items-end gap-2">
-                <span className="text-[48px] font-heading font-extrabold text-text-heading leading-none">{formatPrice(0)}</span>
-                <span className="text-[18px] text-text-muted mb-2">/month</span>
-              </div>
-              <p className="text-[14px] text-text-muted mb-8">Perfect for side projects</p>
-              <div className="w-full border-t border-dashed border-border-default mb-8"></div>
-              <ul className="flex flex-col gap-4 mb-10 flex-1 text-[14px]">
-                <li>&#10003; 2 services</li>
-                <li>&#10003; Global CDN</li>
-                <li>&#10003; Automatic SSL</li>
-                <li>&#10003; Community support</li>
-              </ul>
-              <button className="w-full py-3 px-6 rounded-full border border-border-default font-semibold text-[15px] hover:border-brand transition-all">Get Started</button>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {dbPlans.map((plan, i) => (
+              <motion.div 
+                key={plan.id}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-white border border-border-default rounded-[32px] p-8 shadow-sm hover:shadow-xl transition-all"
+              >
+                <div className="flex justify-between items-start mb-8 pb-8 border-b border-border-default">
+                  <div>
+                    <h3 className="text-xl font-bold text-text-heading mb-1">{plan.id}</h3>
+                    <span className={`text-[10px] font-bold uppercase px-2 py-0.5 rounded-md ${plan.type === 'dedicated' ? 'bg-purple-100 text-purple-700' : 'bg-blue-100 text-blue-700'}`}>
+                      {plan.type}
+                    </span>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-2xl font-extrabold text-brand">
+                      {formatPrice(isAnnual ? Math.round(plan.monthlyPrice[currency] * 0.8) : plan.monthlyPrice[currency])}
+                    </div>
+                    <div className="text-[11px] text-text-muted font-bold mt-1 uppercase">
+                      {formatMinutePrice(plan.minutePrice[currency])} / min
+                    </div>
+                  </div>
+                </div>
 
-            {/* PRO CARD */}
-            <div className="bg-white border-2 border-brand rounded-3xl p-8 flex flex-col h-full shadow-2xl relative scale-105 z-10">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase">Recommended</div>
-              <h3 className="text-[20px] font-heading font-semibold text-text-heading mb-4">Pro</h3>
-              <div className="mb-2 flex items-end gap-2">
-                <span className="text-[48px] font-heading font-extrabold text-brand leading-none">{formatPrice(isAnnual ? (currency === 'INR' ? 1360 : 16) : (currency === 'INR' ? 1700 : 20))}</span>
-                <span className="text-[18px] text-text-muted mb-2">/month</span>
-              </div>
-              <p className="text-[14px] text-text-muted mb-8">For growing apps and teams</p>
-              <div className="w-full border-t border-brand/10 mb-8"></div>
-              <ul className="flex flex-col gap-4 mb-10 flex-1 text-[14px]">
-                <li className="font-semibold text-text-heading">&#10003; Unlimited services</li>
-                <li className="font-semibold text-text-heading">&#10003; Team collaboration</li>
-                <li className="font-semibold text-text-heading">&#10003; Priority support</li>
-                <li className="font-semibold text-text-heading">&#10003; Advanced metrics</li>
-              </ul>
-              <button className="w-full py-3 px-6 rounded-full bg-brand text-white font-semibold text-[15px] hover:bg-brand-hover transition-all">Start 14-day Trial</button>
-            </div>
+                <div className="grid grid-cols-2 gap-y-6 gap-x-4 mb-10">
+                   <div className="flex flex-col">
+                      <span className="text-[11px] text-text-muted font-bold uppercase mb-1">RAM</span>
+                      <span className="text-[15px] font-bold text-text-heading">{plan.memory}</span>
+                   </div>
+                   <div className="flex flex-col">
+                      <span className="text-[11px] text-text-muted font-bold uppercase mb-1">Compute</span>
+                      <span className="text-[15px] font-bold text-text-heading">{plan.cpu}</span>
+                   </div>
+                   <div className="flex flex-col">
+                      <span className="text-[11px] text-text-muted font-bold uppercase mb-1">OS Storage</span>
+                      <span className="text-[15px] font-bold text-text-heading">{plan.storage}</span>
+                   </div>
+                   <div className="flex flex-col">
+                      <span className="text-[11px] text-text-muted font-bold uppercase mb-1">DB Storage</span>
+                      <span className="text-[15px] font-bold text-brand">{plan.dbStorage}</span>
+                   </div>
+                </div>
 
-            {/* SCALE CARD */}
-            <div className="bg-white border border-border-default rounded-3xl p-8 flex flex-col h-full hover:shadow-xl transition-all">
-              <h3 className="text-[20px] font-heading font-semibold text-text-heading mb-4">Enterprise</h3>
-              <div className="mb-2 flex items-end gap-2 h-[48px]">
-                <span className="text-[32px] font-heading font-bold text-text-heading leading-tight">Custom</span>
-              </div>
-              <p className="text-[14px] text-text-muted mb-8">For high-scale workloads</p>
-              <div className="w-full border-t border-dashed border-border-default mb-8"></div>
-              <ul className="flex flex-col gap-4 mb-10 flex-1 text-[14px]">
-                <li>&#10003; Custom SLA</li>
-                <li>&#10003; Dedicated account manager</li>
-                <li>&#10003; Single Sign-On (SSO)</li>
-                <li>&#10003; VPC Peering</li>
-              </ul>
-              <button className="w-full py-3 px-6 rounded-full border border-border-default font-semibold text-[15px] hover:border-text-heading transition-all">Contact Sales</button>
-            </div>
+                <button className="w-full py-4 rounded-2xl bg-brand text-white font-bold hover:bg-brand-hover shadow-lg shadow-brand/20 transition-all">
+                  Deploy DB Instance
+                </button>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* COST CALCULATOR */}
-      <section className="py-24 px-6 bg-white relative border-t border-border-default">
+      <section className="py-24 px-6 bg-white relative">
         <div className="max-w-[700px] mx-auto bg-white border border-border-default rounded-[40px] p-8 md:p-12 shadow-[0_32px_64px_rgba(0,0,0,0.05)]">
-           <h3 className="text-[28px] font-heading font-bold text-text-heading mb-8 text-center">Cost Calculator</h3>
+           <h3 className="text-[28px] font-heading font-bold text-text-heading mb-8 text-center">Custom Usage Estimate</h3>
            
            <div className="flex flex-col gap-8 mb-12">
               <div>
@@ -316,16 +364,16 @@ export default function PricingPage() {
 
               <div>
                  <div className="flex justify-between mb-4">
-                    <label className="text-[15px] font-bold text-text-heading uppercase tracking-wider">Monthly requests</label>
-                    <span className="text-[15px] font-bold text-brand">{requests.toLocaleString()}</span>
+                    <label className="text-[15px] font-bold text-text-heading uppercase tracking-wider">Managed Databases</label>
+                    <span className="text-[15px] font-bold text-brand">{databases}</span>
                  </div>
-                 <input type="range" min="10000" max="10000000" step="10000" value={requests} onChange={e => setRequests(parseInt(e.target.value))} className="w-full h-2 bg-bg-page rounded-lg appearance-none cursor-pointer accent-brand" />
+                 <input type="range" min="0" max="5" value={databases} onChange={e => setDatabases(parseInt(e.target.value))} className="w-full h-2 bg-bg-page rounded-lg appearance-none cursor-pointer accent-brand" />
               </div>
            </div>
 
            <div className="bg-[#0F172A] rounded-[32px] p-10 text-center relative overflow-hidden">
              <div className="absolute top-0 right-0 w-32 h-32 bg-brand/20 rounded-full blur-[60px]"></div>
-             <div className="text-[14px] text-slate-400 font-bold uppercase tracking-widest mb-4">Estimated Total</div>
+             <div className="text-[14px] text-slate-400 font-bold uppercase tracking-widest mb-4">Estimated Monthly Total</div>
              <div className="text-[56px] font-heading font-extrabold text-white leading-none mb-4">{formatPrice(estimatedCost)}</div>
              <div className="inline-block bg-brand/20 text-brand-light text-[13px] font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-8">
                Matches {recommendedPlan} Plan
