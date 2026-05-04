@@ -39,20 +39,6 @@ export default async function BlogPage() {
   return (
     <div className="flex flex-col w-full bg-bg-page relative overflow-hidden min-h-screen">
       
-      {/* Sticky Deploy Button - Desktop */}
-      <div className="hidden lg:flex fixed top-1/2 right-8 -translate-y-1/2 z-50 flex-col items-center gap-3">
-        <Link href="/pricing" className="flex flex-col items-center gap-2 group">
-          <div className="w-14 h-14 bg-brand text-white rounded-2xl flex items-center justify-center shadow-[0_12px_40px_rgba(14,84,135,0.4)] group-hover:scale-110 transition-all duration-300 group-hover:rotate-6">
-             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-             </svg>
-          </div>
-          <div className="bg-white border border-brand/20 shadow-xl px-4 py-2 rounded-xl scale-0 group-hover:scale-100 transition-all duration-300 origin-right">
-             <span className="text-[12px] font-bold text-brand uppercase tracking-widest whitespace-nowrap">Deploy Now</span>
-          </div>
-        </Link>
-      </div>
-
       {/* HERO / FEATURED POST */}
       <section className="relative pt-32 pb-16 px-6 max-w-6xl mx-auto w-full">
         <h1 className="text-[48px] font-heading font-extrabold text-text-heading leading-[1.1] tracking-[-0.02em] mb-12 text-center md:text-left">

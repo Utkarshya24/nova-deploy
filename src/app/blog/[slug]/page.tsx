@@ -76,20 +76,30 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
   }
 
   return (
-    <div className="flex flex-col w-full bg-white relative overflow-hidden min-h-screen">
+    <div className="flex flex-col w-full bg-white relative overflow-visible min-h-screen">
       
-      {/* Sticky Deploy Button - Desktop */}
-      <div className="hidden lg:flex fixed top-1/2 right-8 -translate-y-1/2 z-50 flex-col items-center gap-3">
-        <Link href="/pricing" className="flex flex-col items-center gap-2 group">
-          <div className="w-14 h-14 bg-brand text-white rounded-2xl flex items-center justify-center shadow-[0_12px_40px_rgba(14,84,135,0.4)] group-hover:scale-110 transition-all duration-300 group-hover:rotate-6">
-             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-             </svg>
+      {/* Sidebar Deploy Card - Desktop */}
+      <div className="hidden xl:block absolute top-[600px] right-[calc(50%-600px)] w-[300px] z-40">
+        <div className="sticky top-32 bg-white border border-border-default rounded-[24px] p-8 shadow-[0_20px_50px_rgba(14,84,135,0.08)] hover:shadow-[0_20px_60px_rgba(14,84,135,0.12)] transition-all group overflow-hidden">
+          <div className="absolute top-0 right-0 w-24 h-24 bg-brand/5 rounded-full -mr-12 -mt-12 transition-transform group-hover:scale-150 duration-700"></div>
+          
+          <div className="relative z-10">
+            <div className="w-12 h-12 bg-brand/10 text-brand rounded-xl flex items-center justify-center mb-6">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            
+            <h3 className="text-xl font-heading font-bold text-text-heading mb-4 leading-tight">Ready to supercharge?</h3>
+            <p className="text-[14px] text-text-muted leading-relaxed mb-8">
+              Leverage DCDeploy’s high-performance CPUs to supercharge your applications. With automatic scaling, it dynamically adjusts resources based on demand and even shuts down idle services (scale-to-zero), ensuring you only pay for what you use.
+            </p>
+            
+            <Link href="/pricing" className="block w-full py-4 bg-brand text-white text-center rounded-xl font-bold shadow-lg shadow-brand/20 hover:bg-brand-hover transition-all transform hover:-translate-y-1">
+              Deploy Now
+            </Link>
           </div>
-          <div className="bg-white border border-brand/20 shadow-xl px-4 py-2 rounded-xl scale-0 group-hover:scale-100 transition-all duration-300 origin-right">
-             <span className="text-[12px] font-bold text-brand uppercase tracking-widest whitespace-nowrap">Deploy Now</span>
-          </div>
-        </Link>
+        </div>
       </div>
 
       {/* Article Header */}
