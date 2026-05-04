@@ -1,21 +1,23 @@
 # Robust Dockerfile for Next.js with Native Modules
 FROM node:20 AS builder
 
+# Install pnpm
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
 WORKDIR /app
 
 # Disable Next.js telemetry
 ENV NEXT_TELEMETRY_DISABLED 1
-ENV NODE_ENV production
 
-# Install dependencies in the same environment where we build
-COPY package.json package-lock.json* .npmrc* ./
-RUN npm install --legacy-peer-deps
+# Install dependencies - we need devDependencies for the build
+COPY package.json pnpm-lock.yaml* .npmrc* ./
+RUN pnpm install --frozen-lockfile
 
 # Copy the rest of the application
 COPY . .
 
 # Build the application
-RUN npm run build
+RUN pnpm run build
 
 # Runner stage
 FROM node:20-slim AS runner
