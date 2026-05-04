@@ -253,9 +253,9 @@ export default function PricingPage() {
               </li>
             </ul>
 
-            <button className="w-full py-4 rounded-2xl bg-bg-page border border-border-default text-text-heading font-bold hover:bg-brand hover:text-white hover:border-brand transition-all">
+            <Link href="https://dash.dcdeploy.com" className="w-full py-4 text-center rounded-2xl bg-bg-page border border-border-default text-text-heading font-bold hover:bg-brand hover:text-white hover:border-brand transition-all">
               Start Free
-            </button>
+            </Link>
           </motion.div>
 
           {/* PRO PLAN */}
@@ -295,9 +295,9 @@ export default function PricingPage() {
               </li>
             </ul>
 
-            <button className="w-full py-5 bg-brand text-white rounded-2xl font-bold hover:bg-brand-hover shadow-xl shadow-brand/20 transition-all">
+            <Link href="https://dash.dcdeploy.com" className="w-full py-5 text-center bg-brand text-white rounded-2xl font-bold hover:bg-brand-hover shadow-xl shadow-brand/20 transition-all">
               Go Pro Now
-            </button>
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -346,9 +346,9 @@ export default function PricingPage() {
                 ))}
               </div>
 
-              <button className="w-full py-4 rounded-2xl bg-bg-page border border-border-default text-text-heading font-bold hover:bg-brand hover:text-white hover:border-brand transition-all">
+              <Link href="https://dash.dcdeploy.com" className="w-full py-4 text-center rounded-2xl bg-bg-page border border-border-default text-text-heading font-bold hover:bg-brand hover:text-white hover:border-brand transition-all">
                 Add {plan.id}
-              </button>
+              </Link>
             </motion.div>
           ))}
         </div>
@@ -410,9 +410,9 @@ export default function PricingPage() {
                    </div>
                 </div>
 
-                <button className="w-full py-4 rounded-2xl bg-brand text-white font-bold hover:bg-brand-hover shadow-lg shadow-brand/20 transition-all">
+                <Link href="https://dash.dcdeploy.com" className="w-full py-4 text-center rounded-2xl bg-brand text-white font-bold hover:bg-brand-hover shadow-lg shadow-brand/20 transition-all">
                   Deploy DB Instance
-                </button>
+                </Link>
               </motion.div>
             ))}
           </div>
@@ -463,9 +463,9 @@ export default function PricingPage() {
              <div className="inline-block bg-brand/20 text-brand-light text-[13px] font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-8">
                Matches {recommendedPlan} Plan
              </div>
-             <button className="w-full py-5 bg-brand text-white rounded-2xl font-bold hover:bg-brand-hover transition-all shadow-xl shadow-brand/20">
+             <Link href="https://dash.dcdeploy.com" className="w-full py-5 text-center bg-brand text-white rounded-2xl font-bold hover:bg-brand-hover transition-all shadow-xl shadow-brand/20">
                Get Started with {recommendedPlan}
-             </button>
+             </Link>
            </div>
         </div>
       </section>

@@ -106,10 +106,10 @@ export default async function BlogPostPage({
   return (
     <div className="flex flex-col w-full bg-white relative overflow-visible min-h-screen">
       
-      <section className="relative pt-32 pb-16 px-6 max-w-6xl mx-auto w-full">
+      <section className="relative pt-4 pb-16 px-6 max-w-6xl mx-auto w-full">
         <Link
           href="/blog"
-          className="text-brand font-bold text-[14px] mb-8 inline-flex items-center gap-2 group"
+          className="text-brand font-bold text-[14px] inline-flex items-center gap-2 group"
         >
           <svg
             width="16"
@@ -221,7 +221,7 @@ export default async function BlogPostPage({
                 </p>
 
                 <Link
-                  href="/pricing"
+                  href="https://dash.dcdeploy.com"
                   className="block w-full py-5 bg-brand text-white text-center rounded-2xl font-bold shadow-lg shadow-brand/20 hover:bg-brand-hover transition-all transform hover:-translate-y-1"
                 >
                   Deploy Now
@@ -242,9 +242,12 @@ export default async function BlogPostPage({
             Join thousands of developers building the future on DCDeploy.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-4 bg-brand text-white rounded-full font-bold shadow-lg shadow-brand/20 hover:bg-brand-hover transition-all">
+            <Link
+              href="https://dash.dcdeploy.com"
+              className="px-8 py-4 bg-brand text-white rounded-full font-bold shadow-lg shadow-brand/20 hover:bg-brand-hover transition-all"
+            >
               Start Building Now
-            </button>
+            </Link>
             <Link
               href="/pricing"
               className="px-8 py-4 bg-white border border-border-default text-text-heading rounded-full font-bold hover:border-brand transition-all"

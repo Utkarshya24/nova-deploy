@@ -47,10 +47,10 @@ export function NavBar() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <Link href="/login" className="hidden sm:inline-flex text-[15px] font-medium text-text-body hover:text-brand transition-colors">
+          <Link href="https://dash.dcdeploy.com" className="hidden sm:inline-flex text-[15px] font-medium text-text-body hover:text-brand transition-colors">
             Log In
           </Link>
-          <Link href="/signup" className="inline-flex items-center justify-center bg-brand text-white rounded-full px-5 py-2 font-semibold text-[15px] hover:bg-brand-hover transition-colors shadow-sm">
+          <Link href="https://dash.dcdeploy.com" className="inline-flex items-center justify-center bg-brand text-white rounded-full px-5 py-2 font-semibold text-[15px] hover:bg-brand-hover transition-colors shadow-sm">
             Sign Up
           </Link>
         </div>

@@ -28,9 +28,9 @@ export default function FeaturesPage() {
         </p>
         
         <div className="relative z-10 flex flex-col sm:flex-row gap-4 mb-20">
-          <button className="px-7 py-3 bg-brand text-white font-semibold rounded-full shadow-[0_4px_14px_rgba(14,84,135,0.35)] hover:bg-brand-hover transition-colors">
+          <Link href="https://dash.dcdeploy.com" className="px-7 py-3 bg-brand text-white font-semibold rounded-full shadow-[0_4px_14px_rgba(14,84,135,0.35)] hover:bg-brand-hover transition-colors text-center">
             Get Started Free &rarr;
-          </button>
+          </Link>
           <Link href="/pricing" className="px-7 py-3 bg-white text-text-body border-[1.5px] border-border-default font-semibold rounded-full hover:border-brand hover:text-brand transition-colors">
             View Pricing
           </Link>
@@ -284,7 +284,7 @@ export default function FeaturesPage() {
       {/* FINAL CTA */}
       <section className="py-24 px-6 bg-[#0F172A] text-white text-center">
         <h2 className="text-[36px] font-heading font-bold mb-6">Ready to experience these features?</h2>
-        <button className="bg-brand text-white font-bold px-8 py-4 rounded-full hover:bg-brand-hover transition-all shadow-lg">Start Building Now</button>
+        <Link href="https://dash.dcdeploy.com" className="bg-brand text-white font-bold px-8 py-4 rounded-full hover:bg-brand-hover transition-all shadow-lg inline-block">Start Building Now</Link>
       </section>
 
     </div>

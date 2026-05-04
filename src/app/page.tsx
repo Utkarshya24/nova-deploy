@@ -152,7 +152,7 @@ export default function Home() {
           initial="hidden" animate="show" transition={{ delay: 0.3 }} variants={fadeUp}
           className="relative z-10 flex flex-col sm:flex-row items-center gap-4 mb-20"
         >
-          <Link href="/contact" className="px-8 py-3.5 bg-brand text-white text-[16px] font-semibold rounded-full shadow-[0_4px_14px_rgba(14,84,135,0.35)] hover:bg-brand-hover hover:-translate-y-0.5 transition-all">
+          <Link href="https://dash.dcdeploy.com" className="px-8 py-3.5 bg-brand text-white text-[16px] font-semibold rounded-full shadow-[0_4px_14px_rgba(14,84,135,0.35)] hover:bg-brand-hover hover:-translate-y-0.5 transition-all">
             Get Started For Free
           </Link>
           <Link href="/docs" className="px-8 py-3.5 bg-white text-text-body border-[1.5px] border-border-default text-[16px] font-semibold rounded-full hover:border-[#CBD5E1] hover:text-text-heading hover:-translate-y-0.5 transition-all">
@@ -807,9 +807,12 @@ export default function Home() {
                   {plan.price !== "Custom" && <span className="text-text-muted font-semibold">/mo</span>}
                 </div>
                 <p className="text-text-muted mb-8 text-[15px]">{plan.desc}</p>
-                <button className={`w-full py-4 rounded-full font-bold transition-all mb-8 ${plan.highlight ? 'bg-brand text-white hover:bg-brand-hover shadow-lg shadow-brand/20' : 'bg-white border border-border-default text-text-heading hover:border-brand hover:text-brand'}`}>
+                <Link 
+                  href={plan.name === "Enterprise" ? "/contact" : "https://dash.dcdeploy.com"}
+                  className={`block w-full py-4 text-center rounded-full font-bold transition-all mb-8 ${plan.highlight ? 'bg-brand text-white hover:bg-brand-hover shadow-lg shadow-brand/20' : 'bg-white border border-border-default text-text-heading hover:border-brand hover:text-brand'}`}
+                >
                   {plan.cta}
-                </button>
+                </Link>
                 <div className="space-y-4">
                   {plan.features.map((feature, idx) => (
                     <div key={idx} className="flex items-center gap-3">
@@ -919,8 +922,8 @@ export default function Home() {
             <h2 className="text-[40px] md:text-[52px] font-heading font-bold text-white mb-6 leading-tight">Ready to ship <br/>faster than ever?</h2>
             <p className="text-[18px] text-blue-100 mb-10 max-w-md leading-relaxed">Join thousands of developers building scalable applications without the DevOps friction.</p>
             <div className="flex flex-col sm:flex-row gap-4">
-               <button className="bg-white text-brand font-bold px-8 py-4 rounded-full text-[16px] hover:bg-slate-50 hover:scale-105 transition-all shadow-lg">Start Deploying Free</button>
-               <button className="bg-[#052b49] border border-[#227dbf] text-white font-bold px-8 py-4 rounded-full text-[16px] hover:bg-[#073a61] transition-all">Talk To Sales</button>
+               <Link href="https://dash.dcdeploy.com" className="bg-white text-brand font-bold px-8 py-4 rounded-full text-[16px] hover:bg-slate-50 hover:scale-105 transition-all shadow-lg text-center">Start Deploying Free</Link>
+               <Link href="/contact" className="bg-[#052b49] border border-[#227dbf] text-white font-bold px-8 py-4 rounded-full text-[16px] hover:bg-[#073a61] transition-all text-center flex items-center justify-center">Talk To Sales</Link>
             </div>
           </div>
           
