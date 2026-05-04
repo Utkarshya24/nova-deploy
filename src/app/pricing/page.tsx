@@ -34,7 +34,7 @@ export default function PricingPage() {
 
   const estimatedCostUSD = calculateCost();
   const estimatedCost = currency === "USD" ? estimatedCostUSD : estimatedCostUSD * 85;
-  const recommendedPlan = estimatedCostUSD === 0 ? "Hobby" : estimatedCostUSD > 150 ? "Scale" : "Pro";
+  const recommendedPlan = estimatedCostUSD === 0 ? "Basic" : estimatedCostUSD > 150 ? "Scale" : "Pro";
 
   const dcdPlans = [
     {
@@ -147,7 +147,7 @@ export default function PricingPage() {
   ];
 
   const faqs = [
-    { q: "Is the free tier really free forever?", a: "Yes, our free tier is designed to give you everything you need to host a hobby project indefinitely. It comes with custom domains, automatic HTTPS, and enough compute for small applications." },
+    { q: "Is the Basic tier really free forever?", a: "Yes, our Basic tier is free forever. It allows you to deploy 1 service in a single environment within one organization. Perfect for personal projects or proof-of-concepts." },
     { q: "What exactly counts as a \"service\"?", a: "A service is any individual application, worker, or static site you deploy on DCDeploy." },
     { q: "How does usage-based billing work?", a: "We track your resource usage down to the minute. You only pay for what you use, when you use it." },
     { q: "Can I set a hard spending limit?", a: "Yes, you can configure budget alerts and hard limits in your billing dashboard to prevent unexpected costs." },
@@ -216,11 +216,97 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* COMPUTE RESOURCE PLANS */}
-      <section className="relative px-6 pb-20 max-w-7xl mx-auto w-full z-10">
+      {/* PLATFORM FEATURES SECTION */}
+      <section className="relative px-6 pb-32 max-w-6xl mx-auto w-full z-10">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-heading font-bold text-text-heading mb-4">Compute Resource Plans</h2>
-          <p className="text-text-body">High-performance instances for your web applications.</p>
+           <h2 className="text-3xl font-heading font-bold text-text-heading mb-4">Platform Features</h2>
+           <p className="text-text-body">Choose the right management tier for your team.</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-[900px] mx-auto">
+          {/* BASIC PLAN */}
+          <motion.div 
+            whileHover={{ y: -5 }}
+            className="bg-white border border-border-default rounded-[32px] p-10 flex flex-col h-full hover:shadow-xl transition-all"
+          >
+            <div className="bg-slate-100 text-slate-600 text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-6 w-max">Free Forever</div>
+            <h3 className="text-2xl font-bold text-text-heading mb-2">Basic</h3>
+            <div className="text-[48px] font-heading font-extrabold text-text-heading mb-6">{formatPrice(0)}</div>
+            <p className="text-[15px] text-text-muted mb-8 leading-relaxed">Essential features for individuals getting started with modern infrastructure.</p>
+            
+            <ul className="space-y-4 mb-10 flex-1">
+              <li className="flex items-center gap-3 text-[14px] text-text-body font-semibold">
+                <div className="w-5 h-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-[10px] font-bold">&#10003;</div>
+                1 Service Capacity
+              </li>
+              <li className="flex items-center gap-3 text-[14px] text-text-body font-semibold">
+                <div className="w-5 h-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-[10px] font-bold">&#10003;</div>
+                1 Organization Limit
+              </li>
+              <li className="flex items-center gap-3 text-[14px] text-text-body font-semibold">
+                <div className="w-5 h-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-[10px] font-bold">&#10003;</div>
+                1 Environment Only
+              </li>
+              <li className="flex items-center gap-3 text-[14px] text-text-muted">
+                <div className="w-5 h-5 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center text-[10px] font-bold">&#10003;</div>
+                Community Support
+              </li>
+            </ul>
+
+            <button className="w-full py-4 rounded-2xl bg-bg-page border border-border-default text-text-heading font-bold hover:bg-brand hover:text-white hover:border-brand transition-all">
+              Start Free
+            </button>
+          </motion.div>
+
+          {/* PRO PLAN */}
+          <motion.div 
+            whileHover={{ y: -5 }}
+            className="bg-white border-2 border-brand rounded-[32px] p-10 flex flex-col h-full shadow-2xl relative"
+          >
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand text-white text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-widest">Recommended</div>
+            <div className="bg-brand-pale text-brand text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-6 w-max">For Teams</div>
+            <h3 className="text-2xl font-bold text-text-heading mb-2">Pro</h3>
+            <div className="text-[48px] font-heading font-extrabold text-brand mb-6">
+              {formatPrice(isAnnual ? (currency === 'INR' ? 1360 : 16) : (currency === 'INR' ? 1700 : 20))}
+              <span className="text-[18px] text-text-muted font-medium">/mo</span>
+            </div>
+            <p className="text-[15px] text-text-muted mb-8 leading-relaxed">Complete control and unlimited scaling for professional teams and production apps.</p>
+            
+            <ul className="space-y-4 mb-10 flex-1">
+              <li className="flex items-center gap-3 text-[14px] text-text-heading font-bold">
+                <div className="w-5 h-5 rounded-full bg-brand text-white flex items-center justify-center text-[10px] font-bold">&#10003;</div>
+                Unlimited Services
+              </li>
+              <li className="flex items-center gap-3 text-[14px] text-text-heading font-bold">
+                <div className="w-5 h-5 rounded-full bg-brand text-white flex items-center justify-center text-[10px] font-bold">&#10003;</div>
+                Unlimited Organizations
+              </li>
+              <li className="flex items-center gap-3 text-[14px] text-text-heading font-bold">
+                <div className="w-5 h-5 rounded-full bg-brand text-white flex items-center justify-center text-[10px] font-bold">&#10003;</div>
+                Unlimited Environments
+              </li>
+              <li className="flex items-center gap-3 text-[14px] text-text-heading font-bold">
+                <div className="w-5 h-5 rounded-full bg-brand text-white flex items-center justify-center text-[10px] font-bold">&#10003;</div>
+                Priority Support 24/7
+              </li>
+              <li className="flex items-center gap-3 text-[14px] text-text-heading font-bold">
+                <div className="w-5 h-5 rounded-full bg-brand text-white flex items-center justify-center text-[10px] font-bold">&#10003;</div>
+                Custom SLAs
+              </li>
+            </ul>
+
+            <button className="w-full py-5 bg-brand text-white rounded-2xl font-bold hover:bg-brand-hover shadow-xl shadow-brand/20 transition-all">
+              Go Pro Now
+            </button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* COMPUTE RESOURCE PLANS */}
+      <section className="relative px-6 pb-20 max-w-7xl mx-auto w-full z-10 border-t border-border-default pt-24">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-heading font-bold text-text-heading mb-4">Compute Resources</h2>
+          <p className="text-text-body">Add instances to your plan as you grow.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -244,9 +330,8 @@ export default function PricingPage() {
                 <div className="text-right">
                   <div className="text-2xl font-extrabold text-text-heading">
                     {formatPrice(isAnnual ? Math.round(plan.monthlyPrice[currency] * 0.8) : plan.monthlyPrice[currency])}
-                    <span className="text-sm text-text-muted font-normal">/mo</span>
                   </div>
-                  <div className="text-[12px] text-text-muted font-medium mt-1">
+                  <div className="text-[11px] text-text-muted font-medium mt-1 uppercase">
                     {formatMinutePrice(plan.minutePrice[currency])}/min
                   </div>
                 </div>
@@ -262,7 +347,7 @@ export default function PricingPage() {
               </div>
 
               <button className="w-full py-4 rounded-2xl bg-bg-page border border-border-default text-text-heading font-bold hover:bg-brand hover:text-white hover:border-brand transition-all">
-                Select {plan.id}
+                Add {plan.id}
               </button>
             </motion.div>
           ))}
@@ -274,7 +359,7 @@ export default function PricingPage() {
         <div className="absolute inset-0 circuit-pattern opacity-[0.03] pointer-events-none"></div>
         <div className="max-w-7xl mx-auto w-full relative z-10">
           <div className="text-center mb-16">
-            <div className="inline-block bg-brand-pale text-brand text-[12px] font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-6">Database Tier</div>
+            <div className="inline-block bg-brand-pale text-brand text-[12px] font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-6">Managed Data</div>
             <h2 className="text-3xl font-heading font-bold text-text-heading mb-4">Database Machine Plans</h2>
             <p className="text-text-body max-w-2xl mx-auto">Fully managed database instances with high availability and automated backups.</p>
           </div>
