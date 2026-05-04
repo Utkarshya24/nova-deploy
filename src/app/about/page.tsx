@@ -166,7 +166,7 @@ export default function AboutPage() {
               We're always looking for kind, talented people.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-               <button className="px-8 py-4 bg-brand text-white rounded-full font-bold shadow-lg shadow-brand/20 hover:scale-105 transition-all">View Openings</button>
+               <button className="px-8 py-4 bg-[#fcb817] text-[#0F172A] rounded-full font-bold shadow-lg shadow-[#fcb817]/20 hover:scale-105 transition-all">View Openings</button>
                <button className="px-8 py-4 bg-white border border-border-default text-text-heading rounded-full font-bold hover:border-brand transition-all">Our Culture</button>
             </div>
          </motion.div>

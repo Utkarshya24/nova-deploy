@@ -105,7 +105,7 @@ export default async function BlogPage() {
       {/* FILTER PILLS */}
       <section className="px-6 mb-12">
         <div className="max-w-6xl mx-auto flex flex-wrap gap-3">
-          <button className="px-5 py-2 rounded-full text-[14px] font-medium bg-brand text-white shadow-md">All Posts</button>
+          <button className="px-5 py-2 rounded-full text-[14px] font-medium bg-[#fcb817] text-[#0F172A] shadow-md">All Posts</button>
           <button className="px-5 py-2 rounded-full text-[14px] font-medium bg-white text-text-muted hover:text-text-heading border border-border-default">Tutorials</button>
           <button className="px-5 py-2 rounded-full text-[14px] font-medium bg-white text-text-muted hover:text-text-heading border border-border-default">Engineering</button>
           <button className="px-5 py-2 rounded-full text-[14px] font-medium bg-white text-text-muted hover:text-text-heading border border-border-default">Product Updates</button>
@@ -173,7 +173,7 @@ export default async function BlogPage() {
              <p className="text-[16px] text-text-muted mb-8">Get the latest engineering posts, platform updates, and deployment tips sent straight to your inbox once a month.</p>
              <div className="flex flex-col sm:flex-row gap-3">
                <input type="email" placeholder="Email address" className="flex-1 bg-white border border-border-default rounded-full px-5 py-3 focus:outline-none focus:border-brand shadow-sm text-[15px]" />
-               <button className="bg-brand text-white font-semibold rounded-full px-8 py-3 hover:bg-brand-hover transition-colors shadow-[0_4px_14px_rgba(14,84,135,0.3)]">Subscribe</button>
+               <button className="bg-[#fcb817] text-[#0F172A] font-semibold rounded-full px-8 py-3 hover:bg-[#e5a515] transition-colors shadow-[0_4px_14px_rgba(14,84,135,0.3)]">Subscribe</button>
              </div>
              <p className="text-[12px] text-text-light mt-4">No spam. Unsubscribe anytime.</p>
            </div>

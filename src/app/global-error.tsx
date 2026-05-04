@@ -15,7 +15,7 @@ export default function GlobalError({
           <p className="text-text-body mb-8">We're sorry for the inconvenience. Please try again.</p>
           <button
             onClick={() => reset()}
-            className="px-8 py-3 bg-brand text-white font-bold rounded-full"
+            className="px-8 py-3 bg-[#fcb817] text-[#0F172A] font-bold rounded-full"
           >
             Try again
           </button>

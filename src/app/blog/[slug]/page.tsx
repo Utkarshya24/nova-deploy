@@ -222,7 +222,7 @@ export default async function BlogPostPage({
 
                 <Link
                   href="https://dash.dcdeploy.com"
-                  className="block w-full py-5 bg-brand text-white text-center rounded-2xl font-bold shadow-lg shadow-brand/20 hover:bg-brand-hover transition-all transform hover:-translate-y-1"
+                  className="block w-full py-5 bg-[#fcb817] text-[#0F172A] text-center rounded-2xl font-bold shadow-lg shadow-[#fcb817]/20 hover:bg-[#e5a515] transition-all transform hover:-translate-y-1"
                 >
                   Deploy Now
                 </Link>
@@ -244,7 +244,7 @@ export default async function BlogPostPage({
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="https://dash.dcdeploy.com"
-              className="px-8 py-4 bg-brand text-white rounded-full font-bold shadow-lg shadow-brand/20 hover:bg-brand-hover transition-all"
+              className="px-8 py-4 bg-[#fcb817] text-[#0F172A] rounded-full font-bold shadow-lg shadow-[#fcb817]/20 hover:bg-[#e5a515] transition-all"
             >
               Start Building Now
             </Link>

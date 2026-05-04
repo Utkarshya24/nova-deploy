@@ -240,7 +240,7 @@ export default function ContactPage() {
                 <button 
                   disabled={formState === "submitting"}
                   type="submit" 
-                  className="w-full py-5 bg-brand text-white font-bold rounded-2xl shadow-lg shadow-brand/20 hover:bg-brand-hover transition-all disabled:opacity-50 flex items-center justify-center gap-3"
+                  className="w-full py-5 bg-[#fcb817] text-[#0F172A] font-bold rounded-2xl shadow-lg shadow-[#fcb817]/20 hover:bg-[#e5a515] transition-all disabled:opacity-50 flex items-center justify-center gap-3"
                 >
                   {formState === "submitting" ? (
                     <>

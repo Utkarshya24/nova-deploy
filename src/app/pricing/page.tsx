@@ -253,7 +253,7 @@ export default function PricingPage() {
               </li>
             </ul>
 
-            <Link href="https://dash.dcdeploy.com" className="w-full py-4 text-center rounded-2xl bg-bg-page border border-border-default text-text-heading font-bold hover:bg-brand hover:text-white hover:border-brand transition-all">
+            <Link href="https://dash.dcdeploy.com" className="w-full py-4 px-6 text-center rounded-2xl bg-bg-page border border-border-default text-text-heading font-bold hover:bg-[#fcb817] hover:text-[#0F172A] hover:border-[#fcb817] transition-all">
               Start Free
             </Link>
           </motion.div>
@@ -295,7 +295,7 @@ export default function PricingPage() {
               </li>
             </ul>
 
-            <Link href="https://dash.dcdeploy.com" className="w-full py-5 text-center bg-brand text-white rounded-2xl font-bold hover:bg-brand-hover shadow-xl shadow-brand/20 transition-all">
+            <Link href="https://dash.dcdeploy.com" className="w-full py-5 text-center bg-[#fcb817] text-[#0F172A] rounded-2xl font-bold hover:bg-[#e5a515] shadow-xl shadow-[#fcb817]/20 transition-all">
               Go Pro Now
             </Link>
           </motion.div>
@@ -346,9 +346,9 @@ export default function PricingPage() {
                 ))}
               </div>
 
-              <Link href="https://dash.dcdeploy.com" className="w-full py-4 text-center rounded-2xl bg-bg-page border border-border-default text-text-heading font-bold hover:bg-brand hover:text-white hover:border-brand transition-all">
-                Add {plan.id}
-              </Link>
+                <Link href="https://dash.dcdeploy.com" className="w-full py-4 px-6 text-center rounded-2xl bg-bg-page border border-border-default text-text-heading font-bold hover:bg-[#fcb817] hover:text-[#0F172A] hover:border-[#fcb817] transition-all">
+                  Add {plan.id}
+                </Link>
             </motion.div>
           ))}
         </div>
@@ -410,7 +410,7 @@ export default function PricingPage() {
                    </div>
                 </div>
 
-                <Link href="https://dash.dcdeploy.com" className="w-full py-4 text-center rounded-2xl bg-brand text-white font-bold hover:bg-brand-hover shadow-lg shadow-brand/20 transition-all">
+                <Link href="https://dash.dcdeploy.com" className="w-full py-4 px-6 text-center rounded-2xl bg-[#fcb817] text-[#0F172A] font-bold hover:bg-[#e5a515] shadow-lg shadow-[#fcb817]/20 transition-all">
                   Deploy DB Instance
                 </Link>
               </motion.div>
@@ -440,7 +440,7 @@ export default function PricingPage() {
                  </div>
                  <div className="grid grid-cols-4 gap-3">
                     {[0.5, 1, 2, 4].map(val => (
-                       <button key={val} onClick={() => setRam(val)} className={`py-3 rounded-2xl text-[14px] font-bold transition-all border ${ram === val ? 'bg-brand text-white border-brand shadow-lg shadow-brand/20' : 'bg-bg-page text-text-muted border-transparent hover:border-brand/30'}`}>
+                       <button key={val} onClick={() => setRam(val)} className={`py-3 rounded-2xl text-[14px] font-bold transition-all border ${ram === val ? 'bg-[#fcb817] text-[#0F172A] border-brand shadow-lg shadow-[#fcb817]/20' : 'bg-bg-page text-text-muted border-transparent hover:border-brand/30'}`}>
                          {val === 0.5 ? "512MB" : `${val}GB`}
                        </button>
                     ))}
@@ -463,7 +463,7 @@ export default function PricingPage() {
              <div className="inline-block bg-brand/20 text-brand-light text-[13px] font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-8">
                Matches {recommendedPlan} Plan
              </div>
-             <Link href="https://dash.dcdeploy.com" className="w-full py-5 text-center bg-brand text-white rounded-2xl font-bold hover:bg-brand-hover transition-all shadow-xl shadow-brand/20">
+             <Link href="https://dash.dcdeploy.com" className="w-full py-5 px-6 text-center bg-[#fcb817] text-[#0F172A] rounded-2xl font-bold hover:bg-[#e5a515] transition-all shadow-xl shadow-[#fcb817]/20">
                Get Started with {recommendedPlan}
              </Link>
            </div>

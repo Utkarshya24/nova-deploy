@@ -50,7 +50,7 @@ export function NavBar() {
           <Link href="https://dash.dcdeploy.com" className="hidden sm:inline-flex text-[15px] font-medium text-text-body hover:text-brand transition-colors">
             Log In
           </Link>
-          <Link href="https://dash.dcdeploy.com" className="inline-flex items-center justify-center bg-brand text-white rounded-full px-5 py-2 font-semibold text-[15px] hover:bg-brand-hover transition-colors shadow-sm">
+          <Link href="https://dash.dcdeploy.com" className="inline-flex items-center justify-center bg-[#fcb817] text-[#0F172A] rounded-full px-5 py-2 font-semibold text-[15px] hover:bg-[#e5a515] transition-colors shadow-sm">
             Sign Up
           </Link>
         </div>

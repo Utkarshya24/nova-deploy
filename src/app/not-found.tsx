@@ -14,7 +14,7 @@ export default function NotFound() {
       </p>
       <Link
         href="/"
-        className="px-8 py-4 bg-brand text-white font-bold rounded-full shadow-lg shadow-brand/20 hover:bg-brand-hover transition-all"
+        className="px-8 py-4 bg-[#fcb817] text-[#0F172A] font-bold rounded-full shadow-lg shadow-[#fcb817]/20 hover:bg-[#e5a515] transition-all"
       >
         Back to Dashboard &rarr;
       </Link>
