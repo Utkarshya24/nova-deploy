@@ -78,7 +78,7 @@ export default function Home() {
       )
     },
     "Secure": {
-      checklist: ["Automatic managed TLS/SSL", "Enterprise DDoS protection", "Environment secret encryption", "IP Access Whitelisting", "SOC2 Compliance ready"],
+      checklist: ["Automatic managed TLS/SSL", "Enterprise DDoS protection", "Environment secret encryption", "IP Access Whitelisting", "Advanced Threat Detection"],
       terminal: (
         <>
           <div className="text-brand-light font-bold mb-4">$ dcd secure --audit</div>
@@ -255,19 +255,18 @@ export default function Home() {
                From <span className="text-[#0F172A] border-b-4 border-brand/30">git push</span> to <span className="gradient-text">global impact.</span>
             </motion.h2>
             <motion.p variants={fadeUp} className="text-[18px] text-text-body text-center max-w-2xl mb-16 leading-[1.7]">
-               We've eliminated the friction of traditional CI/CD. DCDeploy intelligently orchestrates your builds, optimizes your assets, and distributes them automatically.
+               We've eliminated the friction of traditional CI/CD. DCDeploy intelligently orchestrates your builds, manages your databases, and distributes your entire stack automatically.
             </motion.p>
 
             <motion.div variants={fadeUp} className="w-full relative">
-               {/* Connective Line */}
-               <div className="absolute top-[80px] left-[10%] right-[10%] h-[2px] bg-gradient-to-r from-border-default via-brand to-border-default hidden md:block"></div>
-               
-               <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
+               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
                   {[
-                     { step: "1", title: "Git Push", desc: "Commit to your branch. We listen for webhooks instantly.", icon: "📦" },
-                     { step: "2", title: "Smart Build", desc: "Nixpacks auto-detects your framework and builds it optimally.", icon: "⚙️" },
-                     { step: "3", title: "Asset Optimization", desc: "Images, JS, and CSS are compressed and hashed.", icon: "✨" },
-                     { step: "4", title: "Edge Deploy", desc: "Your app is pushed to 35+ CDN nodes globally.", icon: "🚀" }
+                     { title: "Git Push", desc: "Commit to any branch. We listen for webhooks instantly for both FE and BE repos.", icon: "📦" },
+                     { title: "Docker Build", desc: "Provide your Dockerfile path and we'll build, optimize and deploy your container instantly.", icon: "⚙️" },
+                     { title: "Asset Optimization", desc: "Automatic compression and hashing for your frontend assets to ensure lightning speed.", icon: "✨" },
+                     { title: "Managed Databases", desc: "1-click PostgreSQL and Redis clusters. Provisioned and connected to your app in seconds.", icon: "🗄️" },
+                     { title: "Backend Clusters", desc: "Deploy long-running background workers and serverless functions with auto-scaling.", icon: "☁️" },
+                     { title: "Global Impact", desc: "Your entire stack is distributed across 35+ regions worldwide with 99.99% uptime.", icon: "🚀" }
                   ].map((node, i) => (
                      <motion.div 
                         key={i}
@@ -282,8 +281,7 @@ export default function Home() {
                      </motion.div>
                   ))}
                </div>
-            </motion.div>
-         </motion.div>
+            </motion.div>         </motion.div>
       </section>
 
       {/* SECTION 4: HOW IT WORKS */}
@@ -493,7 +491,7 @@ export default function Home() {
                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m8 16 4-4 4 4"/></svg>
                  </div>
                  <h3 className="text-[28px] font-heading font-bold mb-4 leading-tight">Zero-Config<br/>Deployments</h3>
-                 <p className="text-[16px] opacity-80 leading-[1.7]">Push code and go live in seconds. Native auto-detection and optimization for 40+ modern frontend frameworks.</p>
+                 <p className="text-[16px] opacity-80 leading-[1.7]">Push code and go live in seconds. Native auto-detection and optimization for 40+ modern frontend and backend frameworks.</p>
                </div>
                <div className="relative z-10 bg-white/10 backdrop-blur-md rounded-xl p-4 font-mono text-[14px] flex items-center justify-between border border-white/20">
                  <span>Average time to live:</span>
@@ -714,7 +712,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* NEW SECTION 11: SECURITY & COMPLIANCE */}
+      {/* NEW SECTION 11: SECURITY & PROTECTION */}
       <section className="py-32 bg-[#0F172A] relative overflow-hidden">
         <div className="absolute inset-0 circuit-pattern opacity-[0.03] invert"></div>
         <div className="max-w-6xl mx-auto px-6 relative z-10">
@@ -728,7 +726,7 @@ export default function Home() {
                 <span className="text-brand-light">non-negotiable.</span>
               </motion.h2>
               <motion.p variants={fadeUp} className="text-[18px] text-slate-400 mb-10 leading-relaxed max-w-lg">
-                We handle the complexity of infrastructure security so you can focus on building. From SOC2 to DDoS protection, we've got you covered.
+                We handle the complexity of infrastructure security so you can focus on building. From end-to-end encryption to DDoS protection, we&apos;ve got you covered.
               </motion.p>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -759,18 +757,16 @@ export default function Home() {
               <div className="relative z-10 bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 p-10 rounded-[40px] shadow-2xl overflow-hidden group">
                  <div className="absolute inset-0 bg-brand/5 group-hover:bg-brand/10 transition-colors"></div>
                  <div className="relative z-20 flex flex-col items-center text-center">
-                    <div className="w-24 h-24 bg-brand rounded-3xl flex items-center justify-center mb-8 shadow-[0_0_50px_rgba(14,84,135,0.4)] animate-float">
-                       <svg className="w-12 h-12 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    </div>
-                    <h3 className="text-2xl font-bold text-white mb-2">SOC2 Type II Certified</h3>
-                    <p className="text-slate-400 mb-8">Rigorous security standards for your peace of mind.</p>
-                    <div className="flex gap-3">
-                       <div className="bg-slate-800 border border-slate-700 px-4 py-2 rounded-xl text-[12px] font-bold text-slate-300">ISO 27001</div>
-                       <div className="bg-slate-800 border border-slate-700 px-4 py-2 rounded-xl text-[12px] font-bold text-slate-300">HIPAA</div>
-                       <div className="bg-slate-800 border border-slate-700 px-4 py-2 rounded-xl text-[12px] font-bold text-slate-300">GDPR</div>
-                    </div>
-                 </div>
-              </div>
+                   <div className="w-24 h-24 bg-brand rounded-3xl flex items-center justify-center mb-8 shadow-[0_0_50px_rgba(14,84,135,0.4)] animate-float">
+                      <svg className="w-12 h-12 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                   </div>
+                   <h3 className="text-2xl font-bold text-white mb-2">Enterprise Grade Security</h3>
+                   <p className="text-slate-400 mb-8">Multi-layered protection for your infrastructure and data.</p>
+                   <div className="flex gap-3">
+                      <div className="bg-slate-800 border border-slate-700 px-4 py-2 rounded-xl text-[12px] font-bold text-slate-300">End-to-End Encryption</div>
+                      <div className="bg-slate-800 border border-slate-700 px-4 py-2 rounded-xl text-[12px] font-bold text-slate-300">DDoS Protection</div>
+                   </div>
+                 </div>              </div>
               {/* Decorative elements */}
               <div className="absolute -top-10 -right-10 w-40 h-40 bg-brand/20 rounded-full blur-[80px]"></div>
               <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-500/20 rounded-full blur-[80px]"></div>
@@ -843,8 +839,7 @@ export default function Home() {
               { q: "Can I use my own domain?", a: "Yes, you can connect unlimited custom domains to any project on the Pro and Enterprise plans." },
               { q: "Do you support monorepos?", a: "Absolutely. DCDeploy has native support for monorepos. You can configure multiple apps from a single repository with ease." },
               { q: "What happens if I exceed my limits?", a: "We don't believe in surprise bills. If you're approaching your limit, we'll notify you. We never shut down your app for minor overages." },
-              { q: "Is my data secure?", a: "We take security seriously. We are SOC2 Type II certified and use enterprise-grade encryption for all sensitive data." }
-            ].map((faq, i) => (
+              { q: "Is my data secure?", a: "We take security seriously. We use industry-standard encryption, multi-layered isolation, and enterprise-grade security protocols for all sensitive data." }            ].map((faq, i) => (
               <motion.div 
                 variants={fadeUp} 
                 key={i}
@@ -889,7 +884,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               { title: "Deploy Next.js 14 to production in 3 clicks", bg: "bg-gradient-to-br from-[#EFF6FF] to-[#DBEAFE]", badge: "TUTORIAL", time: "5 min", color: "text-blue-600" },
-              { title: "How we cut deploy times by 40% with Nixpacks", bg: "bg-gradient-to-br from-[#F0FDF4] to-[#DCFCE7]", badge: "ENGINEERING", time: "8 min", color: "text-green-600" },
+              { title: "How we cut deploy times by 40% with Dockerfile optimization", bg: "bg-gradient-to-br from-[#F0FDF4] to-[#DCFCE7]", badge: "ENGINEERING", time: "8 min", color: "text-green-600" },
               { title: "DCDeploy vs Railway vs Render: honest comparison", bg: "bg-gradient-to-br from-[#FFF7ED] to-[#FFEDD5]", badge: "GUIDE", time: "12 min", color: "text-orange-600" },
             ].map((post, i) => (
               <motion.div variants={fadeUp} key={i} className="bg-white border border-border-default rounded-[24px] overflow-hidden shadow-[0_4px_14px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(14,84,135,0.12)] hover:-translate-y-2 transition-all duration-300 flex flex-col group cursor-pointer">

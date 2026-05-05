@@ -22,12 +22,12 @@ export default function ChangelogPage() {
       type: "Improvement",
       typeColor: "bg-blue-100 text-brand",
       date: "April 12, 2026",
-      title: "Faster Build Times with Nixpacks 2.0",
-      desc: "We've upgraded our build infrastructure to use the latest version of Nixpacks. This drastically reduces the time it takes to build Node.js and Python projects by caching system dependencies more aggressively.",
+      title: "Optimized Dockerfile-based Builds",
+      desc: "We've upgraded our build infrastructure to support direct Dockerfile execution. Provide your Dockerfile path and we'll handle the build, caching system dependencies more aggressively to reduce deployment times.",
       bullets: [
-        "Up to 40% faster builds for Next.js applications",
-        "Improved caching for pip and npm/pnpm/yarn",
-        "Smaller final image sizes"
+        "Up to 40% faster builds via Docker layer caching",
+        "Support for custom Dockerfile paths per service",
+        "Smaller final image sizes with multi-stage build support"
       ],
       hasImage: true
     },
