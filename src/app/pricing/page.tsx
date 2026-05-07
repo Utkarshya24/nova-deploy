@@ -34,7 +34,7 @@ export default function PricingPage() {
 
   const estimatedCostUSD = calculateCost();
   const estimatedCost = currency === "USD" ? estimatedCostUSD : estimatedCostUSD * 85;
-  const recommendedPlan = estimatedCostUSD === 0 ? "Basic" : estimatedCostUSD > 150 ? "Scale" : "Pro";
+  const recommendedPlan = estimatedCostUSD === 0 ? "Basic" : "Pro";
 
   const dcdPlans = [
     {
@@ -231,30 +231,35 @@ export default function PricingPage() {
           >
             <div className="bg-slate-100 text-slate-600 text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-6 w-max">Free Forever</div>
             <h3 className="text-2xl font-bold text-text-heading mb-2">Basic</h3>
-            <div className="text-[48px] font-heading font-extrabold text-text-heading mb-6">{formatPrice(0)}</div>
-            <p className="text-[15px] text-text-muted mb-8 leading-relaxed">Essential features for individuals getting started with modern infrastructure.</p>
+            <div className="text-[48px] font-heading font-extrabold text-text-heading mb-1">{formatPrice(0)}</div>
+            <div className="text-text-muted font-bold mb-6">/Month + Compute</div>
+            <p className="text-[15px] text-text-muted mb-8 leading-relaxed">Run a always free service. Essential features for individuals getting started.</p>
             
             <ul className="space-y-4 mb-10 flex-1">
-              <li className="flex items-center gap-3 text-[14px] text-text-body font-semibold">
-                <div className="w-5 h-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-[10px] font-bold">&#10003;</div>
-                1 Service Capacity
-              </li>
-              <li className="flex items-center gap-3 text-[14px] text-text-body font-semibold">
-                <div className="w-5 h-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-[10px] font-bold">&#10003;</div>
-                1 Organization Limit
-              </li>
-              <li className="flex items-center gap-3 text-[14px] text-text-body font-semibold">
-                <div className="w-5 h-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-[10px] font-bold">&#10003;</div>
-                1 Environment Only
-              </li>
-              <li className="flex items-center gap-3 text-[14px] text-text-muted">
-                <div className="w-5 h-5 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center text-[10px] font-bold">&#10003;</div>
-                Community Support
-              </li>
+              {[
+                "1 Service",
+                "DCD-1 machine",
+                "1 Organization",
+                "1 Environment",
+                "No Custom domains",
+                "Single Region",
+                "No additional users",
+                "No autoscaling",
+                "Limited Observability",
+                "No SLA",
+                "Deploy from any source",
+                "Limited Support",
+                "No support for Dockerfile and optimizations."
+              ].map((feature, idx) => (
+                <li key={idx} className="flex items-center gap-3 text-[14px] text-text-body font-semibold">
+                  <div className="w-5 h-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-[10px] font-bold">&#10003;</div>
+                  {feature}
+                </li>
+              ))}
             </ul>
 
             <Link href="https://dash.dcdeploy.com" className="w-full py-4 px-6 text-center rounded-2xl bg-bg-page border border-border-default text-text-heading font-bold hover:bg-[#fcb817] hover:text-[#0F172A] hover:border-[#fcb817] transition-all">
-              Start Free
+              Default Plan
             </Link>
           </motion.div>
 
@@ -266,37 +271,35 @@ export default function PricingPage() {
             <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand text-white text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-widest">Recommended</div>
             <div className="bg-brand-pale text-brand text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-6 w-max">For Teams</div>
             <h3 className="text-2xl font-bold text-text-heading mb-2">Pro</h3>
-            <div className="text-[48px] font-heading font-extrabold text-brand mb-6">
-              {formatPrice(isAnnual ? (currency === 'INR' ? 1360 : 16) : (currency === 'INR' ? 1700 : 20))}
-              <span className="text-[18px] text-text-muted font-medium">/mo</span>
-            </div>
-            <p className="text-[15px] text-text-muted mb-8 leading-relaxed">Complete control and unlimited scaling for professional teams and production apps.</p>
+            <div className="text-[48px] font-heading font-extrabold text-brand mb-1">{formatPrice(0)}</div>
+            <div className="text-text-muted font-bold mb-6">/Month + Compute</div>
+            <p className="text-[15px] text-text-muted mb-8 leading-relaxed">Get started for free. No credit card required. Enjoy this prepaid plan and ensure you maintain enough balance.</p>
             
             <ul className="space-y-4 mb-10 flex-1">
-              <li className="flex items-center gap-3 text-[14px] text-text-heading font-bold">
-                <div className="w-5 h-5 rounded-full bg-brand text-white flex items-center justify-center text-[10px] font-bold">&#10003;</div>
-                Unlimited Services
-              </li>
-              <li className="flex items-center gap-3 text-[14px] text-text-heading font-bold">
-                <div className="w-5 h-5 rounded-full bg-brand text-white flex items-center justify-center text-[10px] font-bold">&#10003;</div>
-                Unlimited Organizations
-              </li>
-              <li className="flex items-center gap-3 text-[14px] text-text-heading font-bold">
-                <div className="w-5 h-5 rounded-full bg-brand text-white flex items-center justify-center text-[10px] font-bold">&#10003;</div>
-                Unlimited Environments
-              </li>
-              <li className="flex items-center gap-3 text-[14px] text-text-heading font-bold">
-                <div className="w-5 h-5 rounded-full bg-brand text-white flex items-center justify-center text-[10px] font-bold">&#10003;</div>
-                Priority Support 24/7
-              </li>
-              <li className="flex items-center gap-3 text-[14px] text-text-heading font-bold">
-                <div className="w-5 h-5 rounded-full bg-brand text-white flex items-center justify-center text-[10px] font-bold">&#10003;</div>
-                Custom SLAs
-              </li>
+              {[
+                "Unlimited services",
+                "All Machines",
+                "Unlimited Organizations",
+                "Unlimited Environments",
+                "Unlimited Custom domains",
+                "All Regions",
+                "Unlimited Users",
+                "Autoscaling and scale to 0",
+                "Full Observability. Logs, metrics and Alerts",
+                "99.5 % SLA",
+                "Deploy from any source",
+                "Dedicated support.",
+                "Support for Dockerfile and optimizations"
+              ].map((feature, idx) => (
+                <li key={idx} className="flex items-center gap-3 text-[14px] text-text-heading font-bold">
+                  <div className="w-5 h-5 rounded-full bg-brand text-white flex items-center justify-center text-[10px] font-bold">&#10003;</div>
+                  {feature}
+                </li>
+              ))}
             </ul>
 
             <Link href="https://dash.dcdeploy.com" className="w-full py-5 text-center bg-[#fcb817] text-[#0F172A] rounded-2xl font-bold hover:bg-[#e5a515] shadow-xl shadow-[#fcb817]/20 transition-all">
-              Go Pro Now
+              Join This Plan
             </Link>
           </motion.div>
         </div>

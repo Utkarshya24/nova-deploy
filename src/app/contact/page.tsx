@@ -40,7 +40,7 @@ export default function ContactPage() {
             How can we <span className="gradient-text">help?</span>
           </h1>
           <p className="text-[18px] text-text-body leading-[1.7] opacity-80">
-            Have a question about our platform, pricing, or enterprise solutions? 
+            Have a question about our platform, pricing, or high-volume solutions? 
             Our team is here to help you ship faster.
           </p>
         </motion.div>
@@ -59,7 +59,7 @@ export default function ContactPage() {
                 onClick={() => setActiveDepartment("sales")}
                 className={`flex-1 py-3 rounded-xl font-bold text-[14px] transition-all ${activeDepartment === "sales" ? "bg-white text-brand shadow-sm" : "text-text-muted hover:text-text-heading"}`}
               >
-                Sales & Enterprise
+                Sales Inquiries
               </button>
               <button 
                 onClick={() => setActiveDepartment("support")}
@@ -107,7 +107,7 @@ export default function ContactPage() {
                     <h3 className="text-[20px] font-bold text-text-heading mb-4">Technical Support</h3>
                     <p className="text-text-body text-[15px] mb-8 leading-relaxed">
                       Encountering an issue with your deployment? Our engineering team is available 24/7 
-                      for Pro and Enterprise customers.
+                      for Pro customers.
                     </p>
                     <div className="space-y-4">
                       <div className="flex items-center gap-4 p-4 bg-bg-blue-tint rounded-2xl border border-border-blue">
@@ -220,7 +220,7 @@ export default function ContactPage() {
                   <label className="text-[13px] font-bold text-text-heading uppercase tracking-wider">Subject</label>
                   <select className="w-full px-5 py-4 bg-bg-page border border-border-default rounded-2xl focus:outline-none focus:border-brand transition-colors text-[15px] appearance-none cursor-pointer">
                     <option>General Inquiry</option>
-                    <option>Sales & Enterprise</option>
+                    <option>Sales Inquiry</option>
                     <option>Technical Support</option>
                     <option>Partnership</option>
                     <option>Billing Question</option>

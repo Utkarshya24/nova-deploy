@@ -534,7 +534,7 @@ export default function Home() {
                  <div className="w-12 h-12 rounded-[14px] bg-bg-blue-tint text-brand flex items-center justify-center mb-6 shadow-inner group-hover:bg-brand group-hover:text-white transition-colors">
                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                  </div>
-                 <h3 className="text-[24px] font-heading font-bold text-text-heading mb-3">Enterprise Collaboration</h3>
+                 <h3 className="text-[24px] font-heading font-bold text-text-heading mb-3">Advanced Collaboration</h3>
                  <p className="text-[15px] text-text-muted leading-[1.6]">Invite unlimited developers, assign granular RBAC permissions, and stream team audit logs seamlessly.</p>
                </div>
                <div className="flex -space-x-4 bg-[#F8FAFF] p-4 rounded-3xl border border-border-default">
@@ -784,11 +784,54 @@ export default function Home() {
             <motion.p variants={fadeUp} className="text-[18px] text-text-muted max-w-2xl mx-auto">Start for free and scale as you grow. No hidden fees or surprise overages.</motion.p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {[
-              { name: "Starter", price: "$0", desc: "For hobbyists and small projects.", features: ["3 Projects", "Community Support", "Automatic SSL", "Global CDN"], cta: "Start for Free", highlight: false },
-              { name: "Pro", price: "$29", desc: "For growing teams and production apps.", features: ["Unlimited Projects", "Priority Support", "Custom Domains", "Advanced Metrics", "Team RBAC"], cta: "Start 14-day Trial", highlight: true },
-              { name: "Enterprise", price: "Custom", desc: "For large organizations with complex needs.", features: ["Custom SLA", "Dedicated Account Manager", "SSO/SAML", "VPC Peering", "Audit Logs"], cta: "Contact Sales", highlight: false }
+              { 
+                name: "Basic", 
+                price: "₹0", 
+                suffix: "/Month + Compute",
+                desc: "Run a always free service.", 
+                features: [
+                  "1 Service",
+                  "DCD-1 machine",
+                  "1 Organization",
+                  "1 Environment",
+                  "No Custom domains",
+                  "Single Region",
+                  "No additional users",
+                  "No autoscaling",
+                  "Limited Observability",
+                  "No SLA",
+                  "Deploy from any source",
+                  "Limited Support",
+                  "No support for Dockerfile and optimizations."
+                ], 
+                cta: "Default Plan", 
+                highlight: false 
+              },
+              { 
+                name: "Pro", 
+                price: "₹0", 
+                suffix: "/Month + Compute",
+                desc: "Get started for free. No credit card required. Enjoy this prepaid plan and ensure you maintain enough balance to keep your deployed workloads running.", 
+                features: [
+                  "Unlimited services",
+                  "All Machines",
+                  "Unlimited Organizations",
+                  "Unlimited Environments",
+                  "Unlimited Custom domains",
+                  "All Regions",
+                  "Unlimited Users",
+                  "Autoscaling and scale to 0",
+                  "Full Observability. Logs, metrics and Alerts",
+                  "99.5 % SLA",
+                  "Deploy from any source",
+                  "Dedicated support.",
+                  "Support for Dockerfile and optimizations"
+                ], 
+                cta: "Join This Plan", 
+                highlight: true 
+              }
             ].map((plan, i) => (
               <motion.div 
                 variants={fadeUp} 
@@ -800,11 +843,11 @@ export default function Home() {
                 <h3 className="text-[20px] font-bold text-text-heading mb-2">{plan.name}</h3>
                 <div className="flex items-baseline gap-1 mb-6">
                   <span className="text-[48px] font-heading font-extrabold text-text-heading">{plan.price}</span>
-                  {plan.price !== "Custom" && <span className="text-text-muted font-semibold">/mo</span>}
+                  <span className="text-text-muted font-semibold">{plan.suffix}</span>
                 </div>
                 <p className="text-text-muted mb-8 text-[15px]">{plan.desc}</p>
                 <Link 
-                  href={plan.name === "Enterprise" ? "/contact" : "https://dash.dcdeploy.com"}
+                  href="https://dash.dcdeploy.com"
                   className={`block w-full py-4 text-center rounded-full font-bold transition-all mb-8 ${plan.highlight ? 'bg-[#fcb817] text-[#0F172A] hover:bg-[#e5a515] shadow-lg shadow-[#fcb817]/20' : 'bg-white border border-border-default text-text-heading hover:border-brand hover:text-brand'}`}
                 >
                   {plan.cta}
@@ -835,8 +878,8 @@ export default function Home() {
           
           <div className="space-y-4">
             {[
-              { q: "How does the free tier work?", a: "Our free tier includes everything you need to host hobby projects. You get 3 projects, a global CDN, and automatic SSL forever." },
-              { q: "Can I use my own domain?", a: "Yes, you can connect unlimited custom domains to any project on the Pro and Enterprise plans." },
+              { q: "How does the free tier work?", a: "Our Basic tier includes everything you need to host a service for free. You get 1 service, a global CDN, and automatic SSL forever." },
+              { q: "Can I use my own domain?", a: "Yes, you can connect unlimited custom domains to any project on the Pro plan." },
               { q: "Do you support monorepos?", a: "Absolutely. DCDeploy has native support for monorepos. You can configure multiple apps from a single repository with ease." },
               { q: "What happens if I exceed my limits?", a: "We don't believe in surprise bills. If you're approaching your limit, we'll notify you. We never shut down your app for minor overages." },
               { q: "Is my data secure?", a: "We take security seriously. We use industry-standard encryption, multi-layered isolation, and enterprise-grade security protocols for all sensitive data." }            ].map((faq, i) => (
